@@ -1,2 +1,2 @@
 # hobbyVector
-reamking the vectors in cpp for a fun hobby poject (and to exercise dynamic memory allocation in cpp)
+remaking the vectors in cpp for a fun hobby project (and to exercise dynamic memory allocation in cpp)
