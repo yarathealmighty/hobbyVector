@@ -1,3 +1,26 @@
 # ninja log v5
 3	2679	7232297947038547	CMakeFiles/customVectors.dir/main.cpp.obj	28bbf92499e27014
 2679	2806	7232297948248723	customVectors.exe	ea8f9e2be4bd67a8
+17	122	7232355248935865	CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj	567a64cc15997b9
+38	712	7232355254865844	CMakeFiles/customVectors.dir/CustomVectorIndexOutOfBoundsException.cpp.obj	2955fd6c08ee7046
+30	726	7232355254915874	CMakeFiles/customVectors.dir/CustomVectorLengthCannotBeModifiedException.cpp.obj	37f49a92ac7657fe
+23	777	7232355255525852	CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj	d1ca032a054534fb
+122	791	7232355255675843	CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj	f8401eb7da7a05b6
+712	1203	7232355259786004	CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj	c9f9920a637ce16d
+3	2311	7232355270866024	CMakeFiles/customVectors.dir/main.cpp.obj	28bbf92499e27014
+16	669	7232355807139772	CMakeFiles/customVectors.dir/CustomVectorLengthCannotBeModifiedException.cpp.obj	37f49a92ac7657fe
+8	681	7232355807399798	CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj	d1ca032a054534fb
+12	701	7232355807629775	CMakeFiles/customVectors.dir/CustomVectorIndexOutOfBoundsException.cpp.obj	2955fd6c08ee7046
+30	732	7232355807979757	CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj	c9f9920a637ce16d
+22	735	7232355808009788	CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj	f8401eb7da7a05b6
+3	2379	7232355824448002	CMakeFiles/customVectors.dir/CustomVector.cpp.obj	698a7d30b94d02d1
+8	94	7232356326213953	CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj	567a64cc15997b9
+15	722	7232356332423999	CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj	f8401eb7da7a05b6
+20	729	7232356332463960	CMakeFiles/customVectors.dir/CustomVectorIndexOutOfBoundsException.cpp.obj	2955fd6c08ee7046
+25	730	7232356332523960	CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj	d1ca032a054534fb
+94	780	7232356333063959	CMakeFiles/customVectors.dir/CustomVectorLengthCannotBeModifiedException.cpp.obj	37f49a92ac7657fe
+722	1255	7232356337833971	CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj	c9f9920a637ce16d
+3	2302	7232356348313943	CMakeFiles/customVectors.dir/main.cpp.obj	28bbf92499e27014
+12	2473	7232356350003926	CMakeFiles/customVectors.dir/CustomVector.cpp.obj	698a7d30b94d02d1
+3	2696	7232356693168794	CMakeFiles/customVectors.dir/CustomVector.cpp.obj	698a7d30b94d02d1
+2697	2845	7232356694608792	customVectors.exe	a2ab84ad3586a0e6

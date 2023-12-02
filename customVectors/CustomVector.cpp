@@ -10,7 +10,6 @@
 #include "CustomVectorIndexOutOfBoundsException.h"
 #include <bits/stdc++.h>
 #include <utility>
-//#define TESTING
 
     CustomVector::CustomVector(int elements[],int length) : length(length) {
         //todo incorrect parameters exception handling
@@ -270,22 +269,4 @@ void swap(CustomVector& cv1, CustomVector& cv2){
     CustomVector tmp(cv2);
     cv2 = cv1;
     cv1 = tmp;
-}
-
-int main(){
-#ifdef TESTING
-    int elements[] = {2,4,6,8};
-    CustomVector cv(elements,4);
-    cout << string(cv) << endl;
-    cout << int(cv) << endl;
-    CustomVector cv2(elements,4);
-    cv2.sDivide(2);
-    cout << string(cv2) << endl;
-    cout << int(cv2) << endl;
-
-    cout << string(cv+=cv2) << endl;
-    cout << string(cv2<<5) << endl;
-    cout << string(cv2>>2) << endl;
-#endif
-    return 0;
 }

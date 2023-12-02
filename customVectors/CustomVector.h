@@ -2,6 +2,7 @@
 // Created by yarr on 2023. 12. 02..
 //
 
+#pragma once
 #include <bits/stdc++.h>
 #include <utility>
 //#define TESTING
