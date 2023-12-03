@@ -67,6 +67,10 @@ void CustomMatrix::cpyMtx(int** originalMtx,int** newMtx, int originalRows, int 
     }
 }
 
+int CustomMatrix::at(int n,int k) const {
+    return mtx[n][k];
+}
+
 int CustomMatrix::find(CustomVector cv, bool findInColumns) const {
     int length=!findInColumns?rows:columns;
     CustomVector* vectors = this->split(findInColumns);
@@ -82,14 +86,7 @@ int CustomMatrix::find(CustomVector cv, bool findInColumns) const {
 
 int** CustomMatrix::sorted(bool sortByColumns)const {
     int length = !sortByColumns ? rows : columns;
-    CustomVector* vectors = new CustomVector[length];
-    CustomVector* splitResult = CustomMatrix::split(sortByColumns);
-    std::copy(splitResult, splitResult + length, vectors);
-    delete[] splitResult;
-
-    for(int i=0;i<rows;i++){
-        std::cout << std::string(vectors[i]) << std::endl;
-    }
+    CustomVector* vectors = CustomMatrix::split(sortByColumns);
 
     //todo exception handling and optimalization
     std::sort(vectors, vectors + length);
@@ -155,6 +152,53 @@ int **CustomMatrix::transponent() const {
     return output;
 }
 
+void CustomMatrix::sAdd(int scalarNumber) {
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<columns;j++){
+            mtx[i][j]+=scalarNumber;
+        }
+    }
+}
+
+void CustomMatrix::sSubtract(int scalarNumber) {
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<columns;j++){
+            mtx[i][j]-=scalarNumber;
+        }
+    }
+}
+
+CustomMatrix& CustomMatrix::sMultiple(int scalarNumber) {
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<columns;j++){
+            mtx[i][j]*=scalarNumber;
+        }
+    }
+    return *this;
+}
+
+CustomMatrix& CustomMatrix::sDivide(int scalarNumber) {
+    bool possible=true;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<columns;j++){
+            if(mtx[i][j]%scalarNumber!=0){
+                possible=false;
+                break;
+            }
+        }
+    }
+    if(possible) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                mtx[i][j] /= scalarNumber;
+            }
+        }
+    } else {
+        //todo exception handling here
+    }
+    return *this;
+}
+
 void CustomMatrix::print(int** matrix,int row, int column) const{
     for(int i=0;i<row;i++){
         for(int j=0;j<column;j++){
@@ -197,4 +241,65 @@ CustomMatrix::operator std::string() const {
     }
     return s;
 }
+
+CustomMatrix &CustomMatrix::operator+=(const CustomMatrix &other) {
+    if(rows==other.rows && columns==other.columns){
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<columns;j++){
+                mtx[i][j]+=other.mtx[i][j];
+            }
+        }
+    } else {
+        //todo exception handling
+    }
+    return *this;
+}
+
+CustomMatrix &CustomMatrix::operator-=(const CustomMatrix &other) {
+    if(rows==other.rows && columns==other.columns){
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<columns;j++){
+                mtx[i][j]-=other.mtx[i][j];
+            }
+        }
+    } else {
+        //todo exception handling
+    }
+    return *this;
+}
+
+bool CustomMatrix::operator==(const CustomMatrix& other) const {
+    if(rows!=other.rows || columns != other.columns){
+        return false;
+    }
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<columns;j++){
+            if(mtx[i][j]!=other.mtx[i][j]){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+int* CustomMatrix::operator[](int index) const {
+    if(index>-1 && index<rows){
+        return mtx[index];
+    } else {
+        //todo exception handling
+    }
+}
+
+CustomMatrix& CustomMatrix::operator=(CustomMatrix& other) {
+    if(this!=&other){
+        destroyMtx(mtx,rows);
+        rows = other.rows;
+        columns = other.columns;
+        mtx = createNewMtx(rows,columns);
+        cpyMtx(other.mtx,mtx,rows,columns,rows,columns);
+    }
+    return *this;
+}
+
+
 

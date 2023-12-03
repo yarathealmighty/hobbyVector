@@ -5,7 +5,6 @@
 #pragma once
 #include <bits/stdc++.h>
 #include <utility>
-//#define TESTING
 
 class CustomVector{
     int length;

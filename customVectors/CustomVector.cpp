@@ -206,16 +206,20 @@
     }
 
     CustomVector& CustomVector::operator+=(const CustomVector& cv){
-        int biggerLength=cv.length>length?length:cv.length;
-        for(int i=0;i<biggerLength;i++){
+        if(cv.length!=length){
+            throw CustomVectorIncorrectParametersException("The dimensions of the 2 vectors are different, this:" + std::to_string(length) + ", other:" + std::to_string(cv.length));
+        }
+        for(int i=0;i<length;i++){
             contain[i]+=cv.contain[i];
         }
         return *this;
     }
 
     CustomVector& CustomVector::operator-=(const CustomVector& cv){
-        int biggerLength=cv.length>length?length:cv.length;
-        for(int i=0;i<biggerLength;i++){
+        if(cv.length!=length){
+            throw CustomVectorIncorrectParametersException("The dimensions of the 2 vectors are different, this:" + std::to_string(length) + ", other:" + std::to_string(cv.length));
+        }
+        for(int i=0;i<length;i++){
             contain[i]-=cv.contain[i];
         }
         return *this;

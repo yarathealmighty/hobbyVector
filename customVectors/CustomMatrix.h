@@ -22,6 +22,8 @@ public:
 
     static void cpyMtx(int**,int**,int,int,int,int);
 
+    int at(int,int)const;
+
     [[nodiscard]] int find(CustomVector, bool=false)const;
 
     [[nodiscard]] int** sorted(bool=false)const;
@@ -66,14 +68,14 @@ public:
 
     CustomMatrix& operator-=(const CustomMatrix&);
 
-    CustomMatrix& operator*=(const CustomMatrix&);
+    CustomMatrix operator*(const CustomMatrix&);
 
     //todo this will need inverting
     CustomMatrix& operator/=(const CustomMatrix&);
 
     bool operator==(const CustomMatrix&)const;
 
-    CustomVector& operator[](int) const;
+    int* operator[](int) const;
 
     CustomMatrix& operator=(CustomMatrix&);
 

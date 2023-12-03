@@ -59,6 +59,30 @@ void CMtesting() {
     cm.sort();
     cm.coutPrint();
 
+    std::cout << "---------------------[scalar operators]----------------" << std::endl;
+
+    //sAdd (success)
+    cm.sAdd(1);
+    cm.coutPrint();
+
+    std::cout << "-------------------------------------------------------" << std::endl;
+
+    //sSubtract (success)
+    cm.sSubtract(1);
+    cm.coutPrint();
+
+    std::cout << "-------------------------------------------------------" << std::endl;
+
+    //sMultiple (success)
+    cm.sMultiple(2);
+    cm.coutPrint();
+
+    std::cout << "-------------------------------------------------------" << std::endl;
+
+    //sDivide (success)
+    cm.sDivide(2);
+    cm.coutPrint();
+
     std::cout << "-------------------------------------------------------" << std::endl;
 
     //free up allocated elements
