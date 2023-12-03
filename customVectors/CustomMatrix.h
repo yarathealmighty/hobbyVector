@@ -8,7 +8,7 @@
 class CustomMatrix {
     CustomVector* mtx;
     int rows;
-    int coloumns;
+    int columns;
 public:
     explicit CustomMatrix(int=1,int=1);
 
