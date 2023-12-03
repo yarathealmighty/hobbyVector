@@ -67,25 +67,56 @@ void CustomMatrix::cpyMtx(int** originalMtx,int** newMtx, int originalRows, int 
     }
 }
 
-CustomVector *CustomMatrix::split(bool splitToColumns) {
+CustomVector* CustomMatrix::split(bool splitToColumns) {
     if(!columns){
-        CustomVector rows[rows];
+        CustomVector tmpRows[rows];
         for(int i=0;i<CustomMatrix::rows;i++){
             CustomVector tmp(mtx[i],columns);
-            rows[i] = tmp;
+            tmpRows[i] = tmp;
         }
-        return rows;
+        return tmpRows;
     } else {
-        CustomVector columns[columns];
+        CustomVector tmpColumns[columns];
         for(int i=0;i<CustomMatrix::columns;i++){
             int column[rows];
             for(int j=0;j<rows;j++){
                 column[j] = mtx[j][i];
             }
             CustomVector tmp(column,rows);
-            columns[i] = tmp;
+            tmpColumns[i] = tmp;
         }
-        return columns;
+        return tmpColumns;
     }
+}
+
+void CustomMatrix::coutPrint() const {
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<columns;j++){
+            std:: cout << mtx[i][j];
+            if(j!=columns-1){
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
+CustomMatrix::operator std::string() const {
+    std::string s="{ ";
+    for(int i=0;i<rows;i++){
+        s+="{ ";
+        for(int j=0;j<columns;j++){
+            s+= std::to_string(mtx[i][j]) + " ";
+            if(j!=columns-1){
+                s+=", ";
+            }
+        }
+        if(i==rows-1){
+            s+="} }";
+        } else {
+            s+="} , ";
+        }
+    }
+    return s;
 }
 

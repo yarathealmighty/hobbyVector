@@ -3,25 +3,29 @@
 //
 
 #include <bits/stdc++.h>
-#include "CustomVector.h"
+#include "CustomMatrix.h"
 #define TESTING
 
 using namespace std;
 
-int main(){
+int main() {
 #ifdef TESTING
-    int elements[] = {2,4,6,8};
-    CustomVector cv(elements,4);
-    cout << string(cv) << endl;
-    cout << int(cv) << endl;
-    CustomVector cv2(elements,4);
-    cv2.sDivide(2);
-    cout << string(cv2) << endl;
-    cout << int(cv2) << endl;
+    int** elements = new int*[3];
+    for (int i = 0; i < 3; ++i) {
+        elements[i] = new int[3];
+        for (int j = 0; j < 3; ++j) {
+            elements[i][j] = j+1;
+        }
+    }
 
-    cout << string(cv+=cv2) << endl;
-    cout << string(cv2<<5) << endl;
-    cout << string(cv2>>2) << endl;
+    CustomMatrix cm(elements, 3, 3);
+    std::cout << std::string(cm) << std::endl;
+    cm.coutPrint();
+
+    for (int i = 0; i < 3; ++i) {
+        delete[] elements[i];
+    }
+    delete[] elements;
 #endif
     return 0;
 }

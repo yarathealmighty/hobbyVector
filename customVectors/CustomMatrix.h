@@ -22,7 +22,7 @@ public:
 
     static void cpyMtx(int**,int**,int,int,int,int);
 
-    [[nodiscard]] int find(CustomVector) const;
+    [[nodiscard]] int find(CustomVector, bool=false) const;
 
     void sort(bool=false);
 
@@ -37,6 +37,10 @@ public:
     CustomMatrix& sMultiple(int);
 
     CustomMatrix& sDivide(int);
+
+    void coutPrint() const;
+
+    explicit operator std::string() const;
 
     CustomMatrix& operator+=(const CustomMatrix&);
 

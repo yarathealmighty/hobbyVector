@@ -330,7 +330,8 @@ CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj: ../CustomMatrix.cpp \
   D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/enable_special_members.h \
   D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/memory_resource \
   D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/uses_allocator_args.h \
-  D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/variant
+  D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/variant \
+  ../CustomVectorException.h
 
 CMakeFiles/customVectors.dir/CustomVector.cpp.obj: ../CustomVector.cpp \
   ../CustomVector.h \
@@ -1689,6 +1690,7 @@ CMakeFiles/customVectors.dir/main.cpp.obj: ../main.cpp \
   D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/memory_resource \
   D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/uses_allocator_args.h \
   D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/variant \
+  ../CustomMatrix.h \
   ../CustomVector.h
 
 
