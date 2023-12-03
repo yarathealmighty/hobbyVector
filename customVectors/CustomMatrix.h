@@ -22,7 +22,7 @@ public:
 
     static void cpyMtx(int**,int**,int,int,int,int);
 
-    int at(int,int)const;
+    [[nodiscard]] int at(int,int)const;
 
     [[nodiscard]] int find(CustomVector, bool=false)const;
 
@@ -52,17 +52,17 @@ public:
 
     CustomMatrix& addRow(const CustomVector&);
 
-    CustomMatrix& addEmptyRow(const CustomVector&);
+    CustomMatrix& addEmptyRow();
 
-    CustomMatrix& addEmptyColumn(const CustomVector&);
+    CustomMatrix& addEmptyColumn();
 
     CustomMatrix& removeRow(const CustomVector&);
 
-    CustomMatrix& removeLastRow(const CustomVector&);
+    CustomMatrix& removeLastRow();
 
     CustomMatrix& removeColumn(const CustomVector&);
 
-    CustomMatrix& removeLastColumn(const CustomVector&);
+    CustomMatrix& removeLastColumn();
 
     CustomMatrix& operator+=(const CustomMatrix&);
 
@@ -71,7 +71,7 @@ public:
     CustomMatrix operator*(const CustomMatrix&);
 
     //todo this will need inverting
-    CustomMatrix& operator/=(const CustomMatrix&);
+    CustomMatrix operator/(const CustomMatrix&);
 
     bool operator==(const CustomMatrix&)const;
 

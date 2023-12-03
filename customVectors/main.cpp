@@ -83,6 +83,12 @@ void CMtesting() {
     cm.sDivide(2);
     cm.coutPrint();
 
+    std::cout << "---------------------[addEmptyRow()]-------------------" << std::endl;
+
+    //addEmptyRow (success, but gets memory leak)
+    cm.addEmptyRow();
+    cm.coutPrint();
+
     std::cout << "-------------------------------------------------------" << std::endl;
 
     //free up allocated elements

@@ -223,6 +223,29 @@ void CustomMatrix::coutPrint() const {
     }
 }
 
+CustomMatrix &CustomMatrix::addEmptyRow() {
+    int** newMtx = new int*[rows+1];
+    for(int i=0;i<rows;i++){
+        int* newRow = new int[columns];
+        for(int j=0;j<columns;j++){
+            newRow[j] = mtx[i][j];
+        }
+        newMtx[i]=newRow;
+        delete[] newRow;
+    }
+    int* cv = new int[columns];
+    for(int i=0;i<columns;i++){
+        cv[i] = 0;
+    }
+    newMtx[rows]=cv;
+    destroyMtx(mtx,rows);
+    delete[] cv;
+    rows++;
+    mtx= newMtx;
+    std::cout << rows << ", " << columns << std::endl;
+    return *this;
+}
+
 CustomMatrix::operator std::string() const {
     std::string s="{ ";
     for(int i=0;i<rows;i++){
