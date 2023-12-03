@@ -6,7 +6,7 @@
 #include "CustomVector.h"
 
 class CustomMatrix {
-    CustomVector* mtx;
+    int** mtx;
     int rows;
     int columns;
 public:
@@ -16,11 +16,11 @@ public:
 
     CustomMatrix(CustomMatrix&);
 
-    static CustomVector* createNewMtx(int,int);
+    static int** createNewMtx(int,int);
 
-    static void destroyMtx(const CustomVector*);
+    static void destroyMtx(int**,int);
 
-    static void cpyMtx(const CustomVector*, const CustomVector*,int,int,int,int);
+    static void cpyMtx(int**,int**,int,int,int,int);
 
     [[nodiscard]] int find(CustomVector) const;
 

@@ -11,9 +11,13 @@ class CustomVector{
     int length;
     int* contain;
 public:
-    explicit CustomVector(int[]={},int=0);
+    CustomVector(int[],int);
+
+    explicit CustomVector(int=0);
 
     CustomVector(CustomVector&);
+
+    [[nodiscard]] int *getContain() const;
 
     static int* createNewContain(int);
 

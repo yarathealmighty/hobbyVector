@@ -20,6 +20,19 @@
             std::cerr << cve.what() << std::endl;
         }
     }
+    CustomVector::CustomVector(int length) : length(length) {
+        try{
+            int elements[length];
+            for(int i=0;i<length;i++){
+                elements[i]=0;
+            }
+            contain = createNewContain(CustomVector::length);
+            cpyContain(elements,CustomVector::contain,length, CustomVector::length);
+        } catch(CustomVectorException& cve){
+            std::cerr << cve.what() << std::endl;
+        }
+    }
+
     CustomVector::CustomVector(CustomVector& cv) : length(cv.length) {
         try{
             contain=createNewContain(cv.length);
@@ -27,6 +40,14 @@
         } catch(CustomVectorException& cve){
             std::cout << cve.what() << std::endl;
         }
+    }
+
+    CustomVector::~CustomVector() {
+        destroyContain(contain);
+    }
+
+    int *CustomVector::getContain() const {
+        return contain;
     }
 
     int* CustomVector::createNewContain(int length){
@@ -260,10 +281,6 @@
         contain = createNewContain(cv.length);
         cpyContain(cv.contain,contain,cv.length,length);
         return *this;
-    }
-
-    CustomVector::~CustomVector() {
-        delete[] contain;
     }
 
 void swap(CustomVector& cv1, CustomVector& cv2){
