@@ -102,7 +102,7 @@
         }
     }
 
-    void CustomVector::sMultiple(int scalarNumber){
+    CustomVector& CustomVector::sMultiple(int scalarNumber){
         //2^30-1
         if(scalarNumber>=1073741823){
             throw CustomVectorIncorrectParametersException("Warning: this number is very big and will probably yield overflowing!");
@@ -110,6 +110,7 @@
         for(int i=0;i<length;i++){
             contain[i]*=scalarNumber;
         }
+        return *this;
     }
 
     CustomVector& CustomVector::sDivide(int scalarNumber){

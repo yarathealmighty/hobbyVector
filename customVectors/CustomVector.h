@@ -31,7 +31,7 @@ public:
 
     void sSubtract(int);
 
-    void sMultiple(int);
+    CustomVector& sMultiple(int);
 
     CustomVector& sDivide(int);
 

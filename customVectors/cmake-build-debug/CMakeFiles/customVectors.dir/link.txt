@@ -1,0 +1,3 @@
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\customVectors.dir/objects.a
+"D:\CLion 2022.2.1\bin\mingw\bin\ar.exe" qc CMakeFiles\customVectors.dir/objects.a @CMakeFiles\customVectors.dir\objects1.rsp
+"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\customVectors.dir/objects.a -Wl,--no-whole-archive -o customVectors.exe -Wl,--out-implib,libcustomVectors.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\customVectors.dir\linklibs.rsp
