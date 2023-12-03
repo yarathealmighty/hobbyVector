@@ -1,5 +1,5 @@
-CMakeFiles/customVectors.dir/main.cpp.obj: \
- D:\hobbyVector\customVectors\main.cpp \
+CMakeFiles/customVectors.dir/CustomMatrixTesting.cpp.obj: \
+ D:\hobbyVector\customVectors\CustomMatrixTesting.cpp \
  D:\hobbyVector\customVectors\CustomMatrix.h \
  D:\hobbyVector\customVectors\CustomVector.h \
  D:/CLion\ 2022.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/stdc++.h \

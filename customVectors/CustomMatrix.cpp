@@ -68,22 +68,23 @@ void CustomMatrix::cpyMtx(int** originalMtx,int** newMtx, int originalRows, int 
 }
 
 CustomVector* CustomMatrix::split(bool splitToColumns) {
-    if(!columns){
-        CustomVector tmpRows[rows];
-        for(int i=0;i<CustomMatrix::rows;i++){
-            CustomVector tmp(mtx[i],columns);
+    if (!splitToColumns) {
+        auto* tmpRows = new CustomVector[rows];
+        for (int i = 0; i < rows; i++) {
+            CustomVector tmp(mtx[i], columns);
             tmpRows[i] = tmp;
         }
         return tmpRows;
     } else {
-        CustomVector tmpColumns[columns];
-        for(int i=0;i<CustomMatrix::columns;i++){
-            int column[rows];
-            for(int j=0;j<rows;j++){
+        auto* tmpColumns = new CustomVector[columns];
+        for (int i = 0; i < columns; i++) {
+            int* column = new int[rows];
+            for (int j = 0; j < rows; j++) {
                 column[j] = mtx[j][i];
             }
-            CustomVector tmp(column,rows);
+            CustomVector tmp(column, rows);
             tmpColumns[i] = tmp;
+            delete[] column;
         }
         return tmpColumns;
     }
