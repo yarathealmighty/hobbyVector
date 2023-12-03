@@ -15,7 +15,7 @@ public:
 
     explicit CustomVector(int=0);
 
-    CustomVector(CustomVector&);
+    CustomVector(const CustomVector&);
 
     [[nodiscard]] int *getContain() const;
 
@@ -47,6 +47,10 @@ public:
 
     explicit operator int() const;
 
+    bool operator<(const CustomVector&)const;
+
+    bool operator==(const CustomVector&)const;
+
     CustomVector& operator+=(const CustomVector&);
 
     CustomVector& operator-=(const CustomVector&);
@@ -61,7 +65,7 @@ public:
 
     int& operator[](int) const;
 
-    CustomVector& operator=(CustomVector&);
+    CustomVector& operator=(const CustomVector&);
 
     virtual ~CustomVector();
 };

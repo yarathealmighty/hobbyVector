@@ -22,13 +22,17 @@ public:
 
     static void cpyMtx(int**,int**,int,int,int,int);
 
-    [[nodiscard]] int find(CustomVector, bool=false) const;
+    [[nodiscard]] int find(CustomVector, bool=false)const;
+
+    [[nodiscard]] int** sorted(bool=false)const;
 
     void sort(bool=false);
 
-    CustomVector* split(bool=false);
+    [[nodiscard]] CustomVector* split(bool=false) const;
 
-    int determinant();
+    [[nodiscard]] int** transponent() const;
+
+    int determinant() const;
 
     void sAdd(int);
 
@@ -40,19 +44,34 @@ public:
 
     void coutPrint() const;
 
+    void print(int**,int,int) const;
+
     explicit operator std::string() const;
+
+    CustomMatrix& addRow(const CustomVector&);
+
+    CustomMatrix& addEmptyRow(const CustomVector&);
+
+    CustomMatrix& addEmptyColumn(const CustomVector&);
+
+    CustomMatrix& removeRow(const CustomVector&);
+
+    CustomMatrix& removeLastRow(const CustomVector&);
+
+    CustomMatrix& removeColumn(const CustomVector&);
+
+    CustomMatrix& removeLastColumn(const CustomVector&);
 
     CustomMatrix& operator+=(const CustomMatrix&);
 
     CustomMatrix& operator-=(const CustomMatrix&);
 
-    CustomMatrix& operator<<(CustomVector);
+    CustomMatrix& operator*=(const CustomMatrix&);
 
-    CustomMatrix& operator>>(CustomVector);
+    //todo this will need inverting
+    CustomMatrix& operator/=(const CustomMatrix&);
 
-    CustomMatrix& operator++(int);
-
-    CustomMatrix& operator--(int);
+    bool operator==(const CustomMatrix&)const;
 
     CustomVector& operator[](int) const;
 

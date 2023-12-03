@@ -67,26 +67,103 @@ void CustomMatrix::cpyMtx(int** originalMtx,int** newMtx, int originalRows, int 
     }
 }
 
-CustomVector* CustomMatrix::split(bool splitToColumns) {
-    if (!splitToColumns) {
-        auto* tmpRows = new CustomVector[rows];
-        for (int i = 0; i < rows; i++) {
-            CustomVector tmp(mtx[i], columns);
-            tmpRows[i] = tmp;
+int CustomMatrix::find(CustomVector cv, bool findInColumns) const {
+    int length=!findInColumns?rows:columns;
+    CustomVector* vectors = this->split(findInColumns);
+
+    for(int i=0;i<length;i++){
+        if(cv == vectors[i]){
+            return i;
         }
-        return tmpRows;
+    }
+    //todo throw exception here
+    return -1;
+}
+
+int** CustomMatrix::sorted(bool sortByColumns)const {
+    int length = !sortByColumns ? rows : columns;
+    CustomVector* vectors = new CustomVector[length];
+    CustomVector* splitResult = CustomMatrix::split(sortByColumns);
+    std::copy(splitResult, splitResult + length, vectors);
+    delete[] splitResult;
+
+    for(int i=0;i<rows;i++){
+        std::cout << std::string(vectors[i]) << std::endl;
+    }
+
+    //todo exception handling and optimalization
+    std::sort(vectors, vectors + length);
+
+    int** output = new int*[length];
+    for (int i = 0; i < length; i++) {
+        int *tmp = new int[int(vectors[i])];
+        CustomVector::cpyContain(vectors[i].getContain(), tmp, int(vectors[i]), int(vectors[i]));
+        output[i] = tmp;
+    }
+
+    delete[] vectors;
+    return output;
+}
+
+void CustomMatrix::sort(bool sortByColumns) {
+    int** tmp = sorted(sortByColumns);
+    destroyMtx(mtx,rows);
+    mtx = createNewMtx(rows,columns);
+    cpyMtx(tmp,mtx,rows,columns,rows,columns);
+    destroyMtx(tmp,rows);
+    if(sortByColumns) {
+        tmp = transponent();
+        destroyMtx(mtx,rows);
+        mtx = createNewMtx(rows,columns);
+        cpyMtx(tmp,mtx,rows,columns,rows,columns);
+        destroyMtx(tmp,rows);
+    }
+}
+
+CustomVector* CustomMatrix::split(bool splitToColumns) const {
+    CustomVector* result;
+    if (!splitToColumns) {
+        result = new CustomVector[rows];
+        for (int i = 0; i < rows; i++) {
+            result[i] = CustomVector(mtx[i], columns);
+        }
     } else {
-        auto* tmpColumns = new CustomVector[columns];
+        result = new CustomVector[columns];
         for (int i = 0; i < columns; i++) {
             int* column = new int[rows];
             for (int j = 0; j < rows; j++) {
                 column[j] = mtx[j][i];
             }
-            CustomVector tmp(column, rows);
-            tmpColumns[i] = tmp;
+            result[i] = CustomVector(column, rows);
             delete[] column;
         }
-        return tmpColumns;
+    }
+    return result;
+}
+
+int **CustomMatrix::transponent() const {
+    int** output = new int*[rows];
+    for(int i=0;i<rows;i++){
+        int* row = new int[columns];
+        for(int j=0;j<columns;j++){
+            for(int k=0;k<rows;k++){
+                row[k]=mtx[k][j];
+            }
+        }
+        output[i]=row;
+    }
+    return output;
+}
+
+void CustomMatrix::print(int** matrix,int row, int column) const{
+    for(int i=0;i<row;i++){
+        for(int j=0;j<column;j++){
+            std::cout << matrix[i][j];
+            if(j!=row-1){
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
     }
 }
 

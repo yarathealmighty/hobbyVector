@@ -33,10 +33,10 @@
         }
     }
 
-    CustomVector::CustomVector(CustomVector& cv) : length(cv.length) {
+    CustomVector::CustomVector(const CustomVector& cv) : length(cv.length) {
         try{
             contain=createNewContain(cv.length);
-            cpyContain(cv.contain,CustomVector::contain,cv.length,CustomVector::length);
+            cpyContain(cv.contain,contain,cv.length,length);
         } catch(CustomVectorException& cve){
             std::cout << cve.what() << std::endl;
         }
@@ -185,6 +185,26 @@
         return length;
     }
 
+    bool CustomVector::operator<(const CustomVector& other)const {
+        for (int i = 0; i < std::min(length, other.length); ++i) {
+            if (contain[i] < other.contain[i]) return true;
+            if (contain[i] > other.contain[i]) return false;
+        }
+        return length < other.length;
+    }
+
+    bool CustomVector::operator==(const CustomVector& cv) const {
+        if(length!=cv.length){
+            return false;
+        }
+        for(int i=0;i<length;i++){
+            if(contain[i]!=cv.contain[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
     CustomVector& CustomVector::operator+=(const CustomVector& cv){
         int biggerLength=cv.length>length?length:cv.length;
         for(int i=0;i<biggerLength;i++){
@@ -275,11 +295,13 @@
         }
     }
 
-    CustomVector& CustomVector::operator=(CustomVector& cv) {
-        length=cv.length;
-        destroyContain(contain);
-        contain = createNewContain(cv.length);
-        cpyContain(cv.contain,contain,cv.length,length);
+    CustomVector& CustomVector::operator=(const CustomVector& cv) {
+        if(this!=&cv) {
+            length = cv.length;
+            destroyContain(contain);
+            contain = createNewContain(cv.length);
+            cpyContain(cv.contain, contain, cv.length, length);
+        }
         return *this;
     }
 
