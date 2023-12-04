@@ -24,6 +24,10 @@ public:
 
     [[nodiscard]] int at(int,int)const;
 
+    CustomVector& row(int) const;
+
+    CustomVector& column(int) const;
+
     [[nodiscard]] int find(CustomVector, bool=false)const;
 
     [[nodiscard]] int** sorted(bool=false)const;
@@ -77,7 +81,7 @@ public:
 
     bool operator==(const CustomMatrix&)const;
 
-    CustomVector& operator[](int) const;
+    int* operator[](int) const;
 
     CustomMatrix& operator=(CustomMatrix&);
 

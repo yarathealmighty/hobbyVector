@@ -72,6 +72,22 @@ int CustomMatrix::at(int n,int k) const {
     return mtx[n][k];
 }
 
+CustomVector &CustomMatrix::row(int index) const {
+    if(index<0 || index >= rows){
+        throw CustomMatrixIncorrectParametersException("The index-th row: " + std::to_string(index) + " does not exist");
+    }
+    CustomVector* vectors = split();
+    return vectors[index];
+}
+
+CustomVector &CustomMatrix::column(int index) const {
+    if(index<0 || index >= columns){
+        throw CustomMatrixIncorrectParametersException("The index-th column: " + std::to_string(index) + " does not exist");
+    }
+    CustomVector* vectors = split(true);
+    return vectors[index];
+}
+
 int CustomMatrix::find(CustomVector cv, bool findInColumns) const {
     int length=!findInColumns?rows:columns;
     CustomVector* vectors = this->split(findInColumns);
@@ -257,14 +273,43 @@ CustomMatrix &CustomMatrix::addEmptyRow() {
     return *this;
 }
 
-CustomMatrix &CustomMatrix::removeLastRow() {
-    rows--;
+CustomMatrix &CustomMatrix::addColumn(const CustomVector& cv) {
+    int* column = cv.getContain();
     int** newMtx = new int*[rows];
     for(int i=0;i<rows;i++){
-        newMtx[i] = mtx[i];
+        int* row = new int[columns+1];
+        for(int j=0;j<columns;j++){
+            row[j] = mtx[i][j];
+        }
+        row[columns] = column[i];
+        newMtx[i] = row;
+        delete[] row;
     }
-    destroyMtx(mtx,rows+1);
+    delete[] column;
+    destroyMtx(mtx,rows);
     mtx = newMtx;
+    columns++;
+    return *this;
+}
+
+CustomMatrix &CustomMatrix::addEmptyColumn() {
+    int column[rows];
+    for(int i=0;i<rows;i++){
+        column[i]=0;
+    }
+    int** newMtx = new int*[rows];
+    for(int i=0;i<rows;i++){
+        int* row = new int[columns+1];
+        for(int j=0;j<columns;j++){
+            row[j] = mtx[i][j];
+        }
+        row[columns] = column[i];
+        newMtx[i] = row;
+        delete[] row;
+    }
+    destroyMtx(mtx,rows);
+    mtx = newMtx;
+    columns++;
     return *this;
 }
 
@@ -286,6 +331,59 @@ CustomMatrix &CustomMatrix::removeRow(const CustomVector &cv) {
     } catch(CustomMatrixException& cme){
         std::cout << cme.what() << std::endl;
     }
+    return *this;
+}
+
+CustomMatrix &CustomMatrix::removeLastRow() {
+    rows--;
+    int** newMtx = new int*[rows];
+    for(int i=0;i<rows;i++){
+        newMtx[i] = mtx[i];
+    }
+    destroyMtx(mtx,rows+1);
+    mtx = newMtx;
+    return *this;
+}
+
+CustomMatrix &CustomMatrix::removeColumn(const CustomVector &cv) {
+    try{
+        int index = find(cv,true);
+        int** newMtx = new int*[rows];
+        for(int i=0;i<rows;i++){
+            int j=0;
+            int* row = new int[columns-1];
+            for(int k=0;k<columns;k++){
+                if(k==index){
+                    continue;
+                } else {
+                    row[j++] = mtx[i][k];
+                }
+            }
+            newMtx[i] = row;
+            delete[] row;
+        }
+        columns--;
+        destroyMtx(mtx,rows);
+        mtx=newMtx;
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
+    }
+    return *this;
+}
+
+CustomMatrix &CustomMatrix::removeLastColumn() {
+    columns--;
+    int** newMtx = new int*[rows];
+    for(int i=0;i<rows;i++){
+        int* row = new int[columns];
+        for(int j=0;j<columns;j++){
+            row[j] = mtx[i][j];
+        }
+        newMtx[i] = row;
+        delete[] row;
+    }
+    destroyMtx(mtx,rows);
+    mtx = newMtx;
     return *this;
 }
 
@@ -348,10 +446,9 @@ bool CustomMatrix::operator==(const CustomMatrix& other) const {
     return true;
 }
 
-CustomVector& CustomMatrix::operator[](int index) const {
-    CustomVector* vectors = split();
+int* CustomMatrix::operator[](int index) const {
     if(index>-1 && index<rows){
-        return vectors[index];
+        return mtx[index];
     } else {
         throw CustomMatrixIncorrectParametersException("The index: " + std::to_string(index) + " is not a valid index for " + std::to_string(rows) + " rows");
     }
