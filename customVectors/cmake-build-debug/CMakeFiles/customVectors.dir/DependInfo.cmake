@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/hobbyVector/customVectors/CustomMatrix.cpp" "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj.d"
+  "D:/hobbyVector/customVectors/CustomMatrixException.cpp" "CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj.d"
   "D:/hobbyVector/customVectors/CustomVector.cpp" "CMakeFiles/customVectors.dir/CustomVector.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomVector.cpp.obj.d"
   "D:/hobbyVector/customVectors/CustomVectorException.cpp" "CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj.d"
   "D:/hobbyVector/customVectors/CustomVectorIncorrectParametersException.cpp" "CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj.d"

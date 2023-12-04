@@ -152,6 +152,30 @@ CustomMatrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrix.cpp.s
 .PHONY : CustomMatrix.cpp.s
 
+CustomMatrixException.obj: CustomMatrixException.cpp.obj
+.PHONY : CustomMatrixException.obj
+
+# target to build an object file
+CustomMatrixException.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj
+.PHONY : CustomMatrixException.cpp.obj
+
+CustomMatrixException.i: CustomMatrixException.cpp.i
+.PHONY : CustomMatrixException.i
+
+# target to preprocess a source file
+CustomMatrixException.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixException.cpp.i
+.PHONY : CustomMatrixException.cpp.i
+
+CustomMatrixException.s: CustomMatrixException.cpp.s
+.PHONY : CustomMatrixException.s
+
+# target to generate assembly for a file
+CustomMatrixException.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixException.cpp.s
+.PHONY : CustomMatrixException.cpp.s
+
 CustomVector.obj: CustomVector.cpp.obj
 .PHONY : CustomVector.obj
 
@@ -332,6 +356,9 @@ help:
 	@echo ... CustomMatrix.obj
 	@echo ... CustomMatrix.i
 	@echo ... CustomMatrix.s
+	@echo ... CustomMatrixException.obj
+	@echo ... CustomMatrixException.i
+	@echo ... CustomMatrixException.s
 	@echo ... CustomVector.obj
 	@echo ... CustomVector.i
 	@echo ... CustomVector.s

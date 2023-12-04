@@ -88,6 +88,12 @@
 		<Unit filename="D:/hobbyVector/customVectors/CustomMatrix.h">
 			<Option target="customVectors"/>
 		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixException.cpp">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixException.h">
+			<Option target="customVectors"/>
+		</Unit>
 		<Unit filename="D:/hobbyVector/customVectors/CustomVector.cpp">
 			<Option target="customVectors"/>
 		</Unit>
