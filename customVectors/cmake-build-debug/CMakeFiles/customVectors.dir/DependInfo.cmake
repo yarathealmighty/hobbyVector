@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/hobbyVector/customVectors/CustomMatrix.cpp" "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj.d"
   "D:/hobbyVector/customVectors/CustomMatrixException.cpp" "CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj.d"
+  "D:/hobbyVector/customVectors/CustomMatrixIncorrectParametersException.cpp" "CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj.d"
+  "D:/hobbyVector/customVectors/CustomMatrixNonExistentElementException.cpp" "CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj.d"
   "D:/hobbyVector/customVectors/CustomVector.cpp" "CMakeFiles/customVectors.dir/CustomVector.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomVector.cpp.obj.d"
   "D:/hobbyVector/customVectors/CustomVectorException.cpp" "CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj.d"
   "D:/hobbyVector/customVectors/CustomVectorIncorrectParametersException.cpp" "CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj" "gcc" "CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj.d"

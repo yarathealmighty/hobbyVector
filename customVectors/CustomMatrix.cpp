@@ -3,22 +3,23 @@
 //
 
 #include "CustomMatrix.h"
-#include "CustomVectorException.h"
+#include "CustomMatrixIncorrectParametersException.h"
+#include "CustomMatrixNonExistentElementException.h"
 
 CustomMatrix::CustomMatrix(int** elements, int rows, int columns) : rows(rows), columns(columns) {
     try{
         mtx = createNewMtx(rows,columns);
         cpyMtx(elements,mtx,rows,columns,rows,columns);
-    } catch(CustomVectorException& cve){
-        std::cout << cve.what() << std::endl;
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
     }
 }
 
 CustomMatrix::CustomMatrix(int rows, int columns) : rows(rows), columns(columns) {
     try{
         mtx = createNewMtx(rows,columns);
-    } catch(CustomVectorException& cve){
-        std::cout << cve.what() << std::endl;
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
     }
 }
 
@@ -26,8 +27,8 @@ CustomMatrix::CustomMatrix(CustomMatrix& cm) :rows(cm.rows), columns(cm.columns)
     try{
         mtx= createNewMtx(cm.rows,cm.columns);
         cpyMtx(cm.mtx, mtx, cm.rows, cm.columns, rows, columns);
-    } catch(CustomVectorException& cve){
-        std::cout << cve.what() << std::endl;
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
     }
 }
 
@@ -62,8 +63,8 @@ void CustomMatrix::cpyMtx(int** originalMtx,int** newMtx, int originalRows, int 
         for(int i=0;i<smallerRows;i++){
             CustomVector::cpyContain(originalMtx[i],newMtx[i],originalColumns,newColumns);
         }
-    } catch(CustomVectorException& cve){
-        std::cout << cve.what() << std::endl;
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
     }
 }
 
@@ -80,7 +81,7 @@ int CustomMatrix::find(CustomVector cv, bool findInColumns) const {
             return i;
         }
     }
-    //todo throw exception here
+    throw CustomMatrixNonExistentElementException("The CustomVector: " + std::string(cv) + " doesn't exist in the matrix if searched in " + (findInColumns?"columns":"rows"));
     return -1;
 }
 
@@ -178,23 +179,17 @@ CustomMatrix& CustomMatrix::sMultiple(int scalarNumber) {
 }
 
 CustomMatrix& CustomMatrix::sDivide(int scalarNumber) {
-    bool possible=true;
     for(int i=0;i<rows;i++){
         for(int j=0;j<columns;j++){
-            if(mtx[i][j]%scalarNumber!=0){
-                possible=false;
-                break;
+            if(scalarNumber==0 || mtx[i][j]%scalarNumber!=0){
+                throw CustomMatrixIncorrectParametersException("The matrix is not divisible by scalarNumber: " + std::to_string(scalarNumber));
             }
         }
     }
-    if(possible) {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                mtx[i][j] /= scalarNumber;
-            }
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            mtx[i][j] /= scalarNumber;
         }
-    } else {
-        //todo exception handling here
     }
     return *this;
 }
@@ -242,7 +237,6 @@ CustomMatrix &CustomMatrix::addEmptyRow() {
     delete[] cv;
     rows++;
     mtx= newMtx;
-    std::cout << rows << ", " << columns << std::endl;
     return *this;
 }
 
@@ -273,7 +267,7 @@ CustomMatrix &CustomMatrix::operator+=(const CustomMatrix &other) {
             }
         }
     } else {
-        //todo exception handling
+        throw CustomMatrixIncorrectParametersException("The dimensions of this matrix: " + std::to_string(rows) + ", " + std::to_string(columns) + " are not equal to the dimensions of the other matrix: " + std::to_string(other.rows) + ", " + std::to_string(other.columns));
     }
     return *this;
 }
@@ -286,7 +280,7 @@ CustomMatrix &CustomMatrix::operator-=(const CustomMatrix &other) {
             }
         }
     } else {
-        //todo exception handling
+        throw CustomMatrixIncorrectParametersException("The dimensions of this matrix: " + std::to_string(rows) + ", " + std::to_string(columns) + " are not equal to the dimensions of the other matrix: " + std::to_string(other.rows) + ", " + std::to_string(other.columns));
     }
     return *this;
 }
@@ -309,7 +303,7 @@ int* CustomMatrix::operator[](int index) const {
     if(index>-1 && index<rows){
         return mtx[index];
     } else {
-        //todo exception handling
+        throw CustomMatrixIncorrectParametersException("The index: " + std::to_string(index) + " is not a valid index for " + std::to_string(rows) + " rows");
     }
 }
 

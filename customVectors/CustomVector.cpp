@@ -135,23 +135,13 @@
     }
 
     CustomVector& CustomVector::sDivide(int scalarNumber){
-        bool correctParam=true;
-        int* tmpContain = createNewContain(CustomVector::length);
-        cpyContain(CustomVector::contain,tmpContain,CustomVector::length,CustomVector::length);
         for(int i=0;i<length;i++){
-            if(tmpContain[i]%scalarNumber!=0){
-                destroyContain(tmpContain);
-                correctParam=false;
-                break;
-            } else {
-                tmpContain[i]/=scalarNumber;
+            if(scalarNumber==0 || contain[i]%scalarNumber!=0){
+                throw CustomVectorIncorrectParametersException("The vector is not divisible by this scalarNumber: " + std::to_string(scalarNumber));
             }
         }
-        if(correctParam) {
-            destroyContain(contain);
-            contain = tmpContain;
-        } else {
-            throw CustomVectorIncorrectParametersException("The number: " + std::to_string(scalarNumber) + " is not a valid number in this case");
+        for(int i=0;i<length;i++){
+            contain[i]/=scalarNumber;
         }
         return *this;
     }

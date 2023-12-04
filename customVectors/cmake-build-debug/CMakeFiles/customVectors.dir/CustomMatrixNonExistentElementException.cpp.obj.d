@@ -1,6 +1,7 @@
-CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj: \
- D:\hobbyVector\customVectors\CustomVectorNonExistentElementException.cpp \
- D:\hobbyVector\customVectors\CustomVectorNonExistentElementException.h \
+CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj: \
+ D:\hobbyVector\customVectors\CustomMatrixNonExistentElementException.cpp \
+ D:\hobbyVector\customVectors\CustomMatrixNonExistentElementException.h \
+ D:\hobbyVector\customVectors\CustomMatrixException.h \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
@@ -135,5 +136,4 @@ CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj: \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.tcc \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream.tcc \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
- D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
- D:\hobbyVector\customVectors\CustomVectorException.h
+ D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc
