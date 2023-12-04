@@ -218,6 +218,23 @@ void CustomMatrix::coutPrint() const {
     }
 }
 
+CustomMatrix &CustomMatrix::addRow(const CustomVector& cv) {
+    int** newMtx = new int*[rows+1];
+    for(int i=0;i<rows;i++){
+        int* newRow = new int[columns];
+        for(int j=0;j<columns;j++){
+            newRow[j] = mtx[i][j];
+        }
+        newMtx[i]=newRow;
+        delete[] newRow;
+    }
+    newMtx[rows]=cv.getContain();
+    destroyMtx(mtx,rows);
+    rows++;
+    mtx= newMtx;
+    return *this;
+}
+
 CustomMatrix &CustomMatrix::addEmptyRow() {
     int** newMtx = new int*[rows+1];
     for(int i=0;i<rows;i++){
@@ -237,6 +254,38 @@ CustomMatrix &CustomMatrix::addEmptyRow() {
     delete[] cv;
     rows++;
     mtx= newMtx;
+    return *this;
+}
+
+CustomMatrix &CustomMatrix::removeLastRow() {
+    rows--;
+    int** newMtx = new int*[rows];
+    for(int i=0;i<rows;i++){
+        newMtx[i] = mtx[i];
+    }
+    destroyMtx(mtx,rows+1);
+    mtx = newMtx;
+    return *this;
+}
+
+CustomMatrix &CustomMatrix::removeRow(const CustomVector &cv) {
+    try{
+        int index = find(cv);
+        int** newMtx = new int*[rows-1];
+        int j=0;
+        for(int i=0;i<rows;i++){
+            if(i==index){
+                continue;
+            } else {
+                newMtx[j++]=mtx[i];
+            }
+        }
+        destroyMtx(mtx,rows);
+        rows--;
+        mtx = newMtx;
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
+    }
     return *this;
 }
 
@@ -299,9 +348,10 @@ bool CustomMatrix::operator==(const CustomMatrix& other) const {
     return true;
 }
 
-int* CustomMatrix::operator[](int index) const {
+CustomVector& CustomMatrix::operator[](int index) const {
+    CustomVector* vectors = split();
     if(index>-1 && index<rows){
-        return mtx[index];
+        return vectors[index];
     } else {
         throw CustomMatrixIncorrectParametersException("The index: " + std::to_string(index) + " is not a valid index for " + std::to_string(rows) + " rows");
     }

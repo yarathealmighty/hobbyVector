@@ -54,6 +54,8 @@ public:
 
     CustomMatrix& addEmptyRow();
 
+    CustomMatrix& addColumn(const CustomVector&);
+
     CustomMatrix& addEmptyColumn();
 
     CustomMatrix& removeRow(const CustomVector&);
@@ -75,7 +77,7 @@ public:
 
     bool operator==(const CustomMatrix&)const;
 
-    int* operator[](int) const;
+    CustomVector& operator[](int) const;
 
     CustomMatrix& operator=(CustomMatrix&);
 

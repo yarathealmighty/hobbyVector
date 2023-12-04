@@ -22,7 +22,7 @@ void CMtesting() {
     CustomMatrix cm(elements, 3, 3);
     std::cout << std::string(cm) << std::endl;
     cm.coutPrint();
-/*
+
     std::cout << "---------------------[split()]-------------------------" << std::endl;
 
     //split testing (success)
@@ -82,11 +82,29 @@ void CMtesting() {
     //sDivide (success)
     cm.sDivide(2);
     cm.coutPrint();
-*/
+
     std::cout << "---------------------[addEmptyRow()]-------------------" << std::endl;
 
-    //addEmptyRow (success, but gets memory leak)
+    //addEmptyRow (success)
     cm.addEmptyRow();
+    cm.coutPrint();
+
+    std::cout << "---------------------[addRow()]------------------------" << std::endl;
+
+    //addRow (success)
+    cm.addRow(cv2);
+    cm.coutPrint();
+
+    std::cout << "---------------------[removeLastRow()]-----------------" << std::endl;
+
+    //removeLastRow (success)
+    cm.removeLastRow();
+    cm.coutPrint();
+
+    std::cout << "---------------------[removeRow()]---------------------" << std::endl;
+
+    //removeRow (success)
+    cm.removeRow(cm[3]);
     cm.coutPrint();
 
     std::cout << "-------------------------------------------------------" << std::endl;
