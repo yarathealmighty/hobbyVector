@@ -24,11 +24,15 @@ public:
 
     [[nodiscard]] int at(int,int)const;
 
-    CustomVector& row(int) const;
+    [[nodiscard]] CustomVector& row(int) const;
 
-    CustomVector& column(int) const;
+    CustomMatrix& setRow(int, const CustomVector&);
 
-    [[nodiscard]] int find(CustomVector, bool=false)const;
+    [[nodiscard]] CustomVector& column(int) const;
+
+    CustomMatrix& setColumn(int, const CustomVector&);
+
+    [[nodiscard]] int find(const CustomVector&, bool=false)const;
 
     [[nodiscard]] int** sorted(bool=false)const;
 
@@ -38,7 +42,7 @@ public:
 
     [[nodiscard]] int** transponent() const;
 
-    int determinant() const;
+    [[nodiscard]] int determinant() const;
 
     void sAdd(int);
 
@@ -50,7 +54,7 @@ public:
 
     void coutPrint() const;
 
-    void print(int**,int,int) const;
+    static void print(int**,int,int) ;
 
     explicit operator std::string() const;
 
@@ -74,7 +78,7 @@ public:
 
     CustomMatrix& operator-=(const CustomMatrix&);
 
-    CustomMatrix operator*(const CustomMatrix&);
+    CustomMatrix operator*(const CustomMatrix&) const;
 
     //todo this will need inverting
     CustomMatrix operator/(const CustomMatrix&);
@@ -83,6 +87,7 @@ public:
 
     int* operator[](int) const;
 
+    //todo this
     CustomMatrix& operator=(CustomMatrix&);
 
     virtual ~CustomMatrix();

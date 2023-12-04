@@ -131,6 +131,32 @@ void CMtesting() {
     cm.removeLastColumn();
     cm.coutPrint();
 
+    std::cout << "---------------------[operator*]-----------------------" << std::endl;
+
+    //operator* (success, need more tests to confirm)
+    CustomMatrix cm1(3,2);
+    CustomMatrix cm2(2,2);
+    int elements1[] = {1,2};
+    CustomVector cva(elements1,2);
+    int elements2[] = {3,4};
+    CustomVector cvb(elements2,2);
+    int elements3[] = {5,6};
+    CustomVector cvc(elements3,2);
+    int elements4[] = {7,8};
+    CustomVector cvd(elements4,2);
+    cm1.setRow(0,cva);
+    cm1.setRow(1,cvb);
+    cm1.setRow(2,cva);
+    cm2.setRow(0,cvc);
+    cm2.setRow(1,cvd);
+    cm1.coutPrint();
+    std::cout << std::endl;
+    cm2.coutPrint();
+    std::cout << std::endl;
+    CustomMatrix newCM=cm1*cm2;
+    std::cout << std::string(newCM) << std::endl;
+    newCM.coutPrint();
+
     std::cout << "-------------------------------------------------------" << std::endl;
 
     //free up allocated elements

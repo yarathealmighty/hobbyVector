@@ -80,6 +80,18 @@ CustomVector &CustomMatrix::row(int index) const {
     return vectors[index];
 }
 
+CustomMatrix &CustomMatrix::setRow(int index, const CustomVector &cv) {
+    if(index<0 || index >= rows){
+        throw CustomMatrixIncorrectParametersException("The index-th row: " + std::to_string(index) + " does not exist");
+    }
+    if(int(cv)!=columns){
+        throw CustomMatrixIncorrectParametersException("The length of the vector: " + std::to_string(int(cv)) + " and the number of columns:" + std::to_string(columns) + " are not equal");
+    }
+    CustomVector::destroyContain(mtx[index]);
+    mtx[index]=cv.getContain();
+    return *this;
+}
+
 CustomVector &CustomMatrix::column(int index) const {
     if(index<0 || index >= columns){
         throw CustomMatrixIncorrectParametersException("The index-th column: " + std::to_string(index) + " does not exist");
@@ -88,7 +100,20 @@ CustomVector &CustomMatrix::column(int index) const {
     return vectors[index];
 }
 
-int CustomMatrix::find(CustomVector cv, bool findInColumns) const {
+CustomMatrix &CustomMatrix::setColumn(int index, const CustomVector &cv) {
+    if(index<0 || index >= columns){
+        throw CustomMatrixIncorrectParametersException("The index-th column: " + std::to_string(index) + " does not exist");
+    }
+    if(int(cv)!=rows){
+        throw CustomMatrixIncorrectParametersException("The length of the vector: " + std::to_string(int(cv)) + " and the number of rows:" + std::to_string(rows) + " are not equal");
+    }
+    for(int i=0;i<rows;i++){
+        mtx[i][index] = cv[i];
+    }
+    return *this;
+}
+
+int CustomMatrix::find(const CustomVector& cv, bool findInColumns) const {
     int length=!findInColumns?rows:columns;
     CustomVector* vectors = this->split(findInColumns);
 
@@ -210,7 +235,7 @@ CustomMatrix& CustomMatrix::sDivide(int scalarNumber) {
     return *this;
 }
 
-void CustomMatrix::print(int** matrix,int row, int column) const{
+void CustomMatrix::print(int** matrix,int row, int column) {
     for(int i=0;i<row;i++){
         for(int j=0;j<column;j++){
             std::cout << matrix[i][j];
@@ -432,6 +457,29 @@ CustomMatrix &CustomMatrix::operator-=(const CustomMatrix &other) {
     return *this;
 }
 
+CustomMatrix CustomMatrix::operator*(const CustomMatrix &other) const {
+    if(columns!=other.rows){
+        throw CustomMatrixIncorrectParametersException("The k dimension of the left matrix is: " +std::to_string(columns)+ " and the n dimension of the second matrix is: " + std::to_string(other.rows) + ", which are not equal");
+    }
+    CustomVector* first = split();
+    CustomVector* second = other.split(true);
+    CustomMatrix newCM(rows,other.columns);
+    for(int i=0;i<rows;i++){
+        CustomVector tmp(0);
+        for(int j=0;j<other.columns;j++){
+            int sum=0;
+            for(int k=0;k<columns;k++){
+                sum+=first[i][k]*second[j][k];
+            }
+            tmp<<sum;
+        }
+        newCM.setRow(i,tmp);
+    }
+    delete[] first;
+    delete[] second;
+    return newCM;
+}
+
 bool CustomMatrix::operator==(const CustomMatrix& other) const {
     if(rows!=other.rows || columns != other.columns){
         return false;
@@ -454,6 +502,7 @@ int* CustomMatrix::operator[](int index) const {
     }
 }
 
+//todo this
 CustomMatrix& CustomMatrix::operator=(CustomMatrix& other) {
     if(this!=&other){
         destroyMtx(mtx,rows);
