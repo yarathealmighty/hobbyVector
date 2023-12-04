@@ -9,6 +9,6 @@ class CustomMatrixException : public std::exception{
 private:
     std::string message;
 public:
-    explicit CustomMatrixException(std::string message = "CustomMatrixException happened");
+    explicit CustomMatrixException(std::string = "CustomMatrixException happened");
     [[nodiscard]] const char * what() const noexcept override;
 };
