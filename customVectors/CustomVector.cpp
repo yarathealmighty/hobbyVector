@@ -20,13 +20,34 @@
             std::cerr << cve.what() << std::endl;
         }
     }
-    CustomVector::CustomVector(CustomVector& cv) : length(cv.length) {
+    CustomVector::CustomVector(int length) : length(length) {
+        try{
+            int elements[length];
+            for(int i=0;i<length;i++){
+                elements[i]=0;
+            }
+            contain = createNewContain(CustomVector::length);
+            cpyContain(elements,CustomVector::contain,length, CustomVector::length);
+        } catch(CustomVectorException& cve){
+            std::cerr << cve.what() << std::endl;
+        }
+    }
+
+    CustomVector::CustomVector(const CustomVector& cv) : length(cv.length) {
         try{
             contain=createNewContain(cv.length);
-            cpyContain(cv.contain,CustomVector::contain,cv.length,CustomVector::length);
+            cpyContain(cv.contain,contain,cv.length,length);
         } catch(CustomVectorException& cve){
             std::cout << cve.what() << std::endl;
         }
+    }
+
+    CustomVector::~CustomVector() {
+        destroyContain(contain);
+    }
+
+    int *CustomVector::getContain() const {
+        return contain;
     }
 
     int* CustomVector::createNewContain(int length){
@@ -114,23 +135,13 @@
     }
 
     CustomVector& CustomVector::sDivide(int scalarNumber){
-        bool correctParam=true;
-        int* tmpContain = createNewContain(CustomVector::length);
-        cpyContain(CustomVector::contain,tmpContain,CustomVector::length,CustomVector::length);
         for(int i=0;i<length;i++){
-            if(tmpContain[i]%scalarNumber!=0){
-                destroyContain(tmpContain);
-                correctParam=false;
-                break;
-            } else {
-                tmpContain[i]/=scalarNumber;
+            if(scalarNumber==0 || contain[i]%scalarNumber!=0){
+                throw CustomVectorIncorrectParametersException("The vector is not divisible by this scalarNumber: " + std::to_string(scalarNumber));
             }
         }
-        if(correctParam) {
-            destroyContain(contain);
-            contain = tmpContain;
-        } else {
-            throw CustomVectorIncorrectParametersException("The number: " + std::to_string(scalarNumber) + " is not a valid number in this case");
+        for(int i=0;i<length;i++){
+            contain[i]/=scalarNumber;
         }
         return *this;
     }
@@ -164,17 +175,41 @@
         return length;
     }
 
+    bool CustomVector::operator<(const CustomVector& other)const {
+        for (int i = 0; i < std::min(length, other.length); ++i) {
+            if (contain[i] < other.contain[i]) return true;
+            if (contain[i] > other.contain[i]) return false;
+        }
+        return length < other.length;
+    }
+
+    bool CustomVector::operator==(const CustomVector& cv) const {
+        if(length!=cv.length){
+            return false;
+        }
+        for(int i=0;i<length;i++){
+            if(contain[i]!=cv.contain[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
     CustomVector& CustomVector::operator+=(const CustomVector& cv){
-        int biggerLength=cv.length>length?length:cv.length;
-        for(int i=0;i<biggerLength;i++){
+        if(cv.length!=length){
+            throw CustomVectorIncorrectParametersException("The dimensions of the 2 vectors are different, this:" + std::to_string(length) + ", other:" + std::to_string(cv.length));
+        }
+        for(int i=0;i<length;i++){
             contain[i]+=cv.contain[i];
         }
         return *this;
     }
 
     CustomVector& CustomVector::operator-=(const CustomVector& cv){
-        int biggerLength=cv.length>length?length:cv.length;
-        for(int i=0;i<biggerLength;i++){
+        if(cv.length!=length){
+            throw CustomVectorIncorrectParametersException("The dimensions of the 2 vectors are different, this:" + std::to_string(length) + ", other:" + std::to_string(cv.length));
+        }
+        for(int i=0;i<length;i++){
             contain[i]-=cv.contain[i];
         }
         return *this;
@@ -254,16 +289,14 @@
         }
     }
 
-    CustomVector& CustomVector::operator=(CustomVector& cv) {
-        length=cv.length;
-        destroyContain(contain);
-        contain = createNewContain(cv.length);
-        cpyContain(cv.contain,contain,cv.length,length);
+    CustomVector& CustomVector::operator=(const CustomVector& cv) {
+        if(this!=&cv) {
+            length = cv.length;
+            destroyContain(contain);
+            contain = createNewContain(cv.length);
+            cpyContain(cv.contain, contain, cv.length, length);
+        }
         return *this;
-    }
-
-    CustomVector::~CustomVector() {
-        delete[] contain;
     }
 
 void swap(CustomVector& cv1, CustomVector& cv2){

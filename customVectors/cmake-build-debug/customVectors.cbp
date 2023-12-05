@@ -88,6 +88,24 @@
 		<Unit filename="D:/hobbyVector/customVectors/CustomMatrix.h">
 			<Option target="customVectors"/>
 		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixException.cpp">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixException.h">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixIncorrectParametersException.cpp">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixIncorrectParametersException.h">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixNonExistentElementException.cpp">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/CustomMatrixNonExistentElementException.h">
+			<Option target="customVectors"/>
+		</Unit>
 		<Unit filename="D:/hobbyVector/customVectors/CustomVector.cpp">
 			<Option target="customVectors"/>
 		</Unit>

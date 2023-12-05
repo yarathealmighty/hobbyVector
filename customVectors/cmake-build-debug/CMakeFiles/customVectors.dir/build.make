@@ -180,6 +180,48 @@ CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.s: cma
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.s"
 	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\hobbyVector\customVectors\CustomVectorIncorrectParametersException.cpp -o CMakeFiles\customVectors.dir\CustomVectorIncorrectParametersException.cpp.s
 
+CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj: CMakeFiles/customVectors.dir/flags.make
+CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj: ../CustomMatrixException.cpp
+CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj: CMakeFiles/customVectors.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj -MF CMakeFiles\customVectors.dir\CustomMatrixException.cpp.obj.d -o CMakeFiles\customVectors.dir\CustomMatrixException.cpp.obj -c D:\hobbyVector\customVectors\CustomMatrixException.cpp
+
+CMakeFiles/customVectors.dir/CustomMatrixException.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/customVectors.dir/CustomMatrixException.cpp.i"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\hobbyVector\customVectors\CustomMatrixException.cpp > CMakeFiles\customVectors.dir\CustomMatrixException.cpp.i
+
+CMakeFiles/customVectors.dir/CustomMatrixException.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/customVectors.dir/CustomMatrixException.cpp.s"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\hobbyVector\customVectors\CustomMatrixException.cpp -o CMakeFiles\customVectors.dir\CustomMatrixException.cpp.s
+
+CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj: CMakeFiles/customVectors.dir/flags.make
+CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj: ../CustomMatrixNonExistentElementException.cpp
+CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj: CMakeFiles/customVectors.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj -MF CMakeFiles\customVectors.dir\CustomMatrixNonExistentElementException.cpp.obj.d -o CMakeFiles\customVectors.dir\CustomMatrixNonExistentElementException.cpp.obj -c D:\hobbyVector\customVectors\CustomMatrixNonExistentElementException.cpp
+
+CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.i"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\hobbyVector\customVectors\CustomMatrixNonExistentElementException.cpp > CMakeFiles\customVectors.dir\CustomMatrixNonExistentElementException.cpp.i
+
+CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.s"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\hobbyVector\customVectors\CustomMatrixNonExistentElementException.cpp -o CMakeFiles\customVectors.dir\CustomMatrixNonExistentElementException.cpp.s
+
+CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj: CMakeFiles/customVectors.dir/flags.make
+CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj: ../CustomMatrixIncorrectParametersException.cpp
+CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj: CMakeFiles/customVectors.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj -MF CMakeFiles\customVectors.dir\CustomMatrixIncorrectParametersException.cpp.obj.d -o CMakeFiles\customVectors.dir\CustomMatrixIncorrectParametersException.cpp.obj -c D:\hobbyVector\customVectors\CustomMatrixIncorrectParametersException.cpp
+
+CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.i"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\hobbyVector\customVectors\CustomMatrixIncorrectParametersException.cpp > CMakeFiles\customVectors.dir\CustomMatrixIncorrectParametersException.cpp.i
+
+CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.s"
+	"D:\CLion 2022.2.1\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\hobbyVector\customVectors\CustomMatrixIncorrectParametersException.cpp -o CMakeFiles\customVectors.dir\CustomMatrixIncorrectParametersException.cpp.s
+
 # Object files for target customVectors
 customVectors_OBJECTS = \
 "CMakeFiles/customVectors.dir/main.cpp.obj" \
@@ -189,7 +231,10 @@ customVectors_OBJECTS = \
 "CMakeFiles/customVectors.dir/CustomVectorIndexOutOfBoundsException.cpp.obj" \
 "CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj" \
 "CMakeFiles/customVectors.dir/CustomVectorLengthCannotBeModifiedException.cpp.obj" \
-"CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj"
+"CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj" \
+"CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj" \
+"CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj" \
+"CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj"
 
 # External object files for target customVectors
 customVectors_EXTERNAL_OBJECTS =
@@ -202,11 +247,14 @@ customVectors.exe: CMakeFiles/customVectors.dir/CustomVectorIndexOutOfBoundsExce
 customVectors.exe: CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj
 customVectors.exe: CMakeFiles/customVectors.dir/CustomVectorLengthCannotBeModifiedException.cpp.obj
 customVectors.exe: CMakeFiles/customVectors.dir/CustomVectorIncorrectParametersException.cpp.obj
+customVectors.exe: CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj
+customVectors.exe: CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj
+customVectors.exe: CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj
 customVectors.exe: CMakeFiles/customVectors.dir/build.make
 customVectors.exe: CMakeFiles/customVectors.dir/linklibs.rsp
 customVectors.exe: CMakeFiles/customVectors.dir/objects1.rsp
 customVectors.exe: CMakeFiles/customVectors.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable customVectors.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable customVectors.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\customVectors.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

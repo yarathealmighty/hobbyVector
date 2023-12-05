@@ -5,15 +5,18 @@
 #pragma once
 #include <bits/stdc++.h>
 #include <utility>
-//#define TESTING
 
 class CustomVector{
     int length;
     int* contain;
 public:
-    explicit CustomVector(int[]={},int=0);
+    CustomVector(int[],int);
 
-    CustomVector(CustomVector&);
+    explicit CustomVector(int=0);
+
+    CustomVector(const CustomVector&);
+
+    [[nodiscard]] int *getContain() const;
 
     static int* createNewContain(int);
 
@@ -43,6 +46,10 @@ public:
 
     explicit operator int() const;
 
+    bool operator<(const CustomVector&)const;
+
+    bool operator==(const CustomVector&)const;
+
     CustomVector& operator+=(const CustomVector&);
 
     CustomVector& operator-=(const CustomVector&);
@@ -51,13 +58,14 @@ public:
 
     CustomVector& operator>>(int);
 
+    //todo these
     CustomVector& operator++(int);
 
     CustomVector& operator--(int);
 
     int& operator[](int) const;
 
-    CustomVector& operator=(CustomVector&);
+    CustomVector& operator=(const CustomVector&);
 
     virtual ~CustomVector();
 };

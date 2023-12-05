@@ -152,6 +152,78 @@ CustomMatrix.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrix.cpp.s
 .PHONY : CustomMatrix.cpp.s
 
+CustomMatrixException.obj: CustomMatrixException.cpp.obj
+.PHONY : CustomMatrixException.obj
+
+# target to build an object file
+CustomMatrixException.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj
+.PHONY : CustomMatrixException.cpp.obj
+
+CustomMatrixException.i: CustomMatrixException.cpp.i
+.PHONY : CustomMatrixException.i
+
+# target to preprocess a source file
+CustomMatrixException.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixException.cpp.i
+.PHONY : CustomMatrixException.cpp.i
+
+CustomMatrixException.s: CustomMatrixException.cpp.s
+.PHONY : CustomMatrixException.s
+
+# target to generate assembly for a file
+CustomMatrixException.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixException.cpp.s
+.PHONY : CustomMatrixException.cpp.s
+
+CustomMatrixIncorrectParametersException.obj: CustomMatrixIncorrectParametersException.cpp.obj
+.PHONY : CustomMatrixIncorrectParametersException.obj
+
+# target to build an object file
+CustomMatrixIncorrectParametersException.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj
+.PHONY : CustomMatrixIncorrectParametersException.cpp.obj
+
+CustomMatrixIncorrectParametersException.i: CustomMatrixIncorrectParametersException.cpp.i
+.PHONY : CustomMatrixIncorrectParametersException.i
+
+# target to preprocess a source file
+CustomMatrixIncorrectParametersException.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.i
+.PHONY : CustomMatrixIncorrectParametersException.cpp.i
+
+CustomMatrixIncorrectParametersException.s: CustomMatrixIncorrectParametersException.cpp.s
+.PHONY : CustomMatrixIncorrectParametersException.s
+
+# target to generate assembly for a file
+CustomMatrixIncorrectParametersException.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.s
+.PHONY : CustomMatrixIncorrectParametersException.cpp.s
+
+CustomMatrixNonExistentElementException.obj: CustomMatrixNonExistentElementException.cpp.obj
+.PHONY : CustomMatrixNonExistentElementException.obj
+
+# target to build an object file
+CustomMatrixNonExistentElementException.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj
+.PHONY : CustomMatrixNonExistentElementException.cpp.obj
+
+CustomMatrixNonExistentElementException.i: CustomMatrixNonExistentElementException.cpp.i
+.PHONY : CustomMatrixNonExistentElementException.i
+
+# target to preprocess a source file
+CustomMatrixNonExistentElementException.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.i
+.PHONY : CustomMatrixNonExistentElementException.cpp.i
+
+CustomMatrixNonExistentElementException.s: CustomMatrixNonExistentElementException.cpp.s
+.PHONY : CustomMatrixNonExistentElementException.s
+
+# target to generate assembly for a file
+CustomMatrixNonExistentElementException.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.s
+.PHONY : CustomMatrixNonExistentElementException.cpp.s
+
 CustomVector.obj: CustomVector.cpp.obj
 .PHONY : CustomVector.obj
 
@@ -332,6 +404,15 @@ help:
 	@echo ... CustomMatrix.obj
 	@echo ... CustomMatrix.i
 	@echo ... CustomMatrix.s
+	@echo ... CustomMatrixException.obj
+	@echo ... CustomMatrixException.i
+	@echo ... CustomMatrixException.s
+	@echo ... CustomMatrixIncorrectParametersException.obj
+	@echo ... CustomMatrixIncorrectParametersException.i
+	@echo ... CustomMatrixIncorrectParametersException.s
+	@echo ... CustomMatrixNonExistentElementException.obj
+	@echo ... CustomMatrixNonExistentElementException.i
+	@echo ... CustomMatrixNonExistentElementException.s
 	@echo ... CustomVector.obj
 	@echo ... CustomVector.i
 	@echo ... CustomVector.s

@@ -4,8 +4,6 @@
 
 #include "CustomVectorException.h"
 
-std::string message;
-
 CustomVectorException::CustomVectorException(std::string message) : message(message) {}
 
 const char *CustomVectorException::what() const noexcept {

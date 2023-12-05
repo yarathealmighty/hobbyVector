@@ -1,6 +1,12 @@
 file(REMOVE_RECURSE
   "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj"
   "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj.d"
+  "CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj"
+  "CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj.d"
+  "CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj"
+  "CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj.d"
+  "CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj"
+  "CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj.d"
   "CMakeFiles/customVectors.dir/CustomVector.cpp.obj"
   "CMakeFiles/customVectors.dir/CustomVector.cpp.obj.d"
   "CMakeFiles/customVectors.dir/CustomVectorException.cpp.obj"

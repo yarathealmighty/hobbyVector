@@ -6,9 +6,9 @@
 #include "CustomVector.h"
 
 class CustomMatrix {
-    CustomVector* mtx;
+    int** mtx;
     int rows;
-    int coloumns;
+    int columns;
 public:
     explicit CustomMatrix(int=1,int=1);
 
@@ -16,19 +16,39 @@ public:
 
     CustomMatrix(CustomMatrix&);
 
-    static CustomVector* createNewMtx(int,int);
+    static int** createNewMtx(int,int);
 
-    static void destroyMtx(const CustomVector*);
+    static void destroyMtx(int**,int);
 
-    static void cpyMtx(const CustomVector*, const CustomVector*,int,int,int,int);
+    static void cpyMtx(int**,int**,int,int,int,int);
 
-    [[nodiscard]] int find(CustomVector) const;
+    [[nodiscard]] int getRows()const;
+
+    [[nodiscard]] int getColumns()const;
+
+    [[nodiscard]] int** getMtx()const;
+
+    [[nodiscard]] int at(int,int)const;
+
+    [[nodiscard]] CustomVector& row(int) const;
+
+    CustomMatrix& setRow(int, const CustomVector&);
+
+    [[nodiscard]] CustomVector& column(int) const;
+
+    CustomMatrix& setColumn(int, const CustomVector&);
+
+    [[nodiscard]] int find(const CustomVector&, bool=false)const;
+
+    [[nodiscard]] int** sorted(bool=false)const;
 
     void sort(bool=false);
 
-    CustomVector* split(bool=false);
+    [[nodiscard]] CustomVector* split(bool=false) const;
 
-    int determinant();
+    [[nodiscard]] int** transponent() const;
+
+    [[nodiscard]] int selfDeterminant();
 
     void sAdd(int);
 
@@ -38,19 +58,40 @@ public:
 
     CustomMatrix& sDivide(int);
 
+    void coutPrint() const;
+
+    static void print(int**,int,int) ;
+
+    explicit operator std::string() const;
+
+    CustomMatrix& addRow(const CustomVector&);
+
+    CustomMatrix& addEmptyRow();
+
+    CustomMatrix& addColumn(const CustomVector&);
+
+    CustomMatrix& addEmptyColumn();
+
+    CustomMatrix& removeRow(const CustomVector&);
+
+    CustomMatrix& removeLastRow();
+
+    CustomMatrix& removeColumn(const CustomVector&);
+
+    CustomMatrix& removeLastColumn();
+
     CustomMatrix& operator+=(const CustomMatrix&);
 
     CustomMatrix& operator-=(const CustomMatrix&);
 
-    CustomMatrix& operator<<(CustomVector);
+    CustomMatrix operator*(const CustomMatrix&) const;
 
-    CustomMatrix& operator>>(CustomVector);
+    //todo this will need inverting
+    CustomMatrix operator/(const CustomMatrix&);
 
-    CustomMatrix& operator++(int);
+    bool operator==(const CustomMatrix&)const;
 
-    CustomMatrix& operator--(int);
-
-    CustomVector& operator[](int) const;
+    int* operator[](int) const;
 
     CustomMatrix& operator=(CustomMatrix&);
 
@@ -58,5 +99,7 @@ public:
 };
 
 void swap(CustomMatrix&, CustomMatrix&);
+
+int determinant(CustomMatrix);
 
 
