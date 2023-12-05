@@ -36,14 +36,14 @@ void CMtesting() {
         std::cout << std::string(cm.split()[i]) << std:: endl;
     }
 
-    std::cout << "---------------------[find(cv1)]--------------------------" << std::endl;
+    std::cout << "---------------------[find(cv1,true)]--------------------------" << std::endl;
 
     //find testing (success)
     int asd1[] = {2,2,2};
     CustomVector cv1(asd1,3);
     std::cout << cm.find(cv1,true)+1 << ".column" << std::endl;
 
-    std::cout << "---------------------[find(cv2,true)]--------------------------" << std::endl;
+    std::cout << "---------------------[find(cv2)]--------------------------" << std::endl;
 
     //find testing (success)
     int asd2[] = {3,2,1};
@@ -58,7 +58,7 @@ void CMtesting() {
     std::cout << std::endl << "after: " << std::endl;
     cm.sort();
     cm.coutPrint();
-
+/*
     std::cout << "---------------------[scalar operators (2)]----------------" << std::endl;
 
     //sAdd (success)
@@ -82,14 +82,15 @@ void CMtesting() {
     //sDivide (success)
     cm.sDivide(2);
     cm.coutPrint();
-
+*/
+    std::cout << "---------[BELOW THIS NEEDS EXTENSIVE TESTING]----------" << std::endl;
     std::cout << "---------------------[addEmptyRow()]-------------------" << std::endl;
 
     //addEmptyRow (success)
     cm.addEmptyRow();
     cm.coutPrint();
 
-    std::cout << "---------------------[addRow(cv2)]------------------------" << std::endl;
+    std::cout << "---------------------[addRow(cv2)]---------------------" << std::endl;
 
     //addRow (success)
     cm.addRow(cv2);
@@ -156,6 +157,10 @@ void CMtesting() {
     CustomMatrix newCM=cm1*cm2;
     std::cout << std::string(newCM) << std::endl;
     newCM.coutPrint();
+
+    std::cout << "---------------------[determinant()]-------------------" << std::endl;
+
+
 
     std::cout << "-------------------------------------------------------" << std::endl;
 

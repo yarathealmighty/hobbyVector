@@ -28,6 +28,8 @@ public:
 
     [[nodiscard]] int** getMtx()const;
 
+    [[nodiscard]] bool** getChessBoard()const;
+
     [[nodiscard]] int at(int,int)const;
 
     [[nodiscard]] CustomVector& row(int) const;

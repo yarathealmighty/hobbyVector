@@ -92,6 +92,26 @@ int **CustomMatrix::getMtx() const {
     return mtx;
 }
 
+bool **CustomMatrix::getChessBoard() const {
+    bool** chessBoard = new bool*[rows];
+    bool* firstRow = new bool[columns];
+    firstRow[0]=true;
+    for(int i=1;i<columns;i++){
+        firstRow[i]=!firstRow[i-1];
+    }
+    chessBoard[0] = firstRow;
+    delete[] firstRow;
+    for(int i=1;i<rows;i++){
+        bool* chessRow = new bool[columns];
+        for(int j=0;j<columns;j++){
+            chessRow[j]=!chessBoard[i-1];
+        }
+        chessBoard[i]=chessRow;
+        delete[] chessRow;
+    }
+    return chessBoard;
+}
+
 CustomMatrix &CustomMatrix::setRow(int index, const CustomVector &cv) {
     if(index<0 || index >= rows){
         throw CustomMatrixIncorrectParametersException("The index-th row: " + std::to_string(index) + " does not exist");
@@ -272,19 +292,21 @@ void CustomMatrix::coutPrint() const {
 }
 
 CustomMatrix &CustomMatrix::addRow(const CustomVector& cv) {
-    int** newMtx = new int*[rows+1];
-    for(int i=0;i<rows;i++){
+    int** newMtx = new int*[rows + 1];
+    for (int i = 0; i < rows; i++) {
         int* newRow = new int[columns];
-        for(int j=0;j<columns;j++){
+        for (int j = 0; j < columns; j++) {
             newRow[j] = mtx[i][j];
         }
-        newMtx[i]=newRow;
-        delete[] newRow;
+        newMtx[i] = newRow;
     }
-    newMtx[rows]=cv.getContain();
-    destroyMtx(mtx,rows);
+    newMtx[rows] = new int[columns];
+    for (int j = 0; j < columns; j++) {
+        newMtx[rows][j] = cv.getContain()[j];
+    }
+    destroyMtx(mtx, rows);
     rows++;
-    mtx= newMtx;
+    mtx = newMtx;
     return *this;
 }
 
@@ -296,7 +318,6 @@ CustomMatrix &CustomMatrix::addEmptyRow() {
             newRow[j] = mtx[i][j];
         }
         newMtx[i]=newRow;
-        delete[] newRow;
     }
     int* cv = new int[columns];
     for(int i=0;i<columns;i++){
@@ -304,14 +325,16 @@ CustomMatrix &CustomMatrix::addEmptyRow() {
     }
     newMtx[rows]=cv;
     destroyMtx(mtx,rows);
-    delete[] cv;
     rows++;
     mtx= newMtx;
     return *this;
 }
 
 CustomMatrix &CustomMatrix::addColumn(const CustomVector& cv) {
-    int* column = cv.getContain();
+    int* column = new int[rows];
+    for(int i=0;i<rows;i++){
+        column[i] = cv.getContain()[i];
+    }
     int** newMtx = new int*[rows];
     for(int i=0;i<rows;i++){
         int* row = new int[columns+1];
@@ -320,12 +343,11 @@ CustomMatrix &CustomMatrix::addColumn(const CustomVector& cv) {
         }
         row[columns] = column[i];
         newMtx[i] = row;
-        delete[] row;
     }
     delete[] column;
     destroyMtx(mtx,rows);
-    mtx = newMtx;
     columns++;
+    mtx = newMtx;
     return *this;
 }
 
@@ -342,11 +364,10 @@ CustomMatrix &CustomMatrix::addEmptyColumn() {
         }
         row[columns] = column[i];
         newMtx[i] = row;
-        delete[] row;
     }
     destroyMtx(mtx,rows);
-    mtx = newMtx;
     columns++;
+    mtx = newMtx;
     return *this;
 }
 
@@ -359,7 +380,11 @@ CustomMatrix &CustomMatrix::removeRow(const CustomVector &cv) {
             if(i==index){
                 continue;
             } else {
-                newMtx[j++]=mtx[i];
+                int* row = new int[columns];
+                for(int k=0;k<columns;k++){
+                    row[k] = mtx[i][k];
+                }
+                newMtx[j++]=row;
             }
         }
         destroyMtx(mtx,rows);
@@ -375,7 +400,11 @@ CustomMatrix &CustomMatrix::removeLastRow() {
     rows--;
     int** newMtx = new int*[rows];
     for(int i=0;i<rows;i++){
-        newMtx[i] = mtx[i];
+        int* row = new int[columns];
+        for(int j=0;j<columns;j++){
+            row[j]=mtx[i][j];
+        }
+        newMtx[i] = row;
     }
     destroyMtx(mtx,rows+1);
     mtx = newMtx;
@@ -397,7 +426,6 @@ CustomMatrix &CustomMatrix::removeColumn(const CustomVector &cv) {
                 }
             }
             newMtx[i] = row;
-            delete[] row;
         }
         columns--;
         destroyMtx(mtx,rows);
@@ -417,7 +445,6 @@ CustomMatrix &CustomMatrix::removeLastColumn() {
             row[j] = mtx[i][j];
         }
         newMtx[i] = row;
-        delete[] row;
     }
     destroyMtx(mtx,rows);
     mtx = newMtx;
@@ -534,18 +561,28 @@ void swap(CustomMatrix &cm1, CustomMatrix &cm2) {
 
 int determinant(CustomMatrix cm) {
     int sum=0;
-    //todo chessboard
+    bool** chessBoard = cm.getChessBoard();
     if(cm.getRows()<2 || cm.getColumns()<2 || cm.getRows()!=cm.getColumns()){
         throw CustomMatrixIncorrectParametersException("The dimensions of the matrix: " + std::to_string(cm.getRows()) + ", " + std::to_string(cm.getColumns()) + " are incorrect for determinant calculation");
     }
     if(cm.getRows()==2 && cm.getColumns()==2){
         return (cm.getMtx()[0][0]*cm.getMtx()[1][1])-(cm.getMtx()[0][1]*cm.getMtx()[1][0]);
     }
-    CustomMatrix* matrices = new CustomMatrix[cm.getColumns()];
+    cm.removeRow(cm.row(0));
+    CustomVector* columns = cm.split(true);
     for(int i=0;i<cm.getColumns();i++){
         //todo smaller matrices
-        matrices[i] = cm;
+        CustomMatrix tmp(cm.getRows()-1,cm.getColumns()-1);
+        int k=0;
+        for(int j=0;j<cm.getColumns();j++){
+            if(j==i){
+                continue;
+            } else {
+                tmp.setColumn(k++,columns[j]);
+            }
+        }
+        sum+=determinant(tmp);
     }
-    //todo recursive call for sum+=
+    delete[] columns;
     return sum;
 }
