@@ -58,6 +58,7 @@ public:
 
     CustomVector& operator>>(int);
 
+    //todo these
     CustomVector& operator++(int);
 
     CustomVector& operator--(int);

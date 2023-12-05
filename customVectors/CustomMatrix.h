@@ -93,7 +93,6 @@ public:
 
     int* operator[](int) const;
 
-    //todo this
     CustomMatrix& operator=(CustomMatrix&);
 
     virtual ~CustomMatrix();
