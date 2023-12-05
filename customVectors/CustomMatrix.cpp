@@ -80,6 +80,18 @@ CustomVector &CustomMatrix::row(int index) const {
     return vectors[index];
 }
 
+int CustomMatrix::getRows() const {
+    return rows;
+}
+
+int CustomMatrix::getColumns() const {
+    return columns;
+}
+
+int **CustomMatrix::getMtx() const {
+    return mtx;
+}
+
 CustomMatrix &CustomMatrix::setRow(int index, const CustomVector &cv) {
     if(index<0 || index >= rows){
         throw CustomMatrixIncorrectParametersException("The index-th row: " + std::to_string(index) + " does not exist");
@@ -514,5 +526,26 @@ CustomMatrix& CustomMatrix::operator=(CustomMatrix& other) {
     return *this;
 }
 
+void swap(CustomMatrix &cm1, CustomMatrix &cm2) {
+    CustomMatrix CM(cm2);
+    cm2=cm1;
+    cm1=CM;
+}
 
-
+int determinant(CustomMatrix cm) {
+    int sum=0;
+    //todo chessboard
+    if(cm.getRows()<2 || cm.getColumns()<2 || cm.getRows()!=cm.getColumns()){
+        throw CustomMatrixIncorrectParametersException("The dimensions of the matrix: " + std::to_string(cm.getRows()) + ", " + std::to_string(cm.getColumns()) + " are incorrect for determinant calculation");
+    }
+    if(cm.getRows()==2 && cm.getColumns()==2){
+        return (cm.getMtx()[0][0]*cm.getMtx()[1][1])-(cm.getMtx()[0][1]*cm.getMtx()[1][0]);
+    }
+    CustomMatrix* matrices = new CustomMatrix[cm.getColumns()];
+    for(int i=0;i<cm.getColumns();i++){
+        //todo smaller matrices
+        matrices[i] = cm;
+    }
+    //todo recursive call for sum+=
+    return sum;
+}

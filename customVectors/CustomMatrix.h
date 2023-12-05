@@ -22,6 +22,12 @@ public:
 
     static void cpyMtx(int**,int**,int,int,int,int);
 
+    [[nodiscard]] int getRows()const;
+
+    [[nodiscard]] int getColumns()const;
+
+    [[nodiscard]] int** getMtx()const;
+
     [[nodiscard]] int at(int,int)const;
 
     [[nodiscard]] CustomVector& row(int) const;
@@ -41,8 +47,6 @@ public:
     [[nodiscard]] CustomVector* split(bool=false) const;
 
     [[nodiscard]] int** transponent() const;
-
-    [[nodiscard]] int determinant() const;
 
     void sAdd(int);
 
@@ -94,5 +98,7 @@ public:
 };
 
 void swap(CustomMatrix&, CustomMatrix&);
+
+int determinant(CustomMatrix);
 
 
