@@ -122,7 +122,7 @@ void CMtesting() {
 
     std::cout << "---------------------[removeColumn(3)]------------------" << std::endl;
 
-    //removeColumn ()
+    //removeColumn (success)
     cm.removeColumn(cm.column(3));
     cm.coutPrint();
 
@@ -134,16 +134,16 @@ void CMtesting() {
 
     std::cout << "---------------------[operator*]-----------------------" << std::endl;
 
-    //operator* (success, need more tests to confirm)
+    //operator* (success)
     CustomMatrix cm1(3,2);
     CustomMatrix cm2(2,2);
-    int elements1[] = {1,2};
+    int elements1[2] = {1,2};
     CustomVector cva(elements1,2);
-    int elements2[] = {3,4};
+    int elements2[2] = {3,4};
     CustomVector cvb(elements2,2);
-    int elements3[] = {5,6};
+    int elements3[2] = {5,6};
     CustomVector cvc(elements3,2);
-    int elements4[] = {7,8};
+    int elements4[2] = {7,8};
     CustomVector cvd(elements4,2);
     cm1.setRow(0,cva);
     cm1.setRow(1,cvb);
@@ -158,9 +158,24 @@ void CMtesting() {
     std::cout << std::string(newCM) << std::endl;
     newCM.coutPrint();
 
-    std::cout << "---------------------[determinant()]-------------------" << std::endl;
 
+    std::cout << "-----------------[selfDeterminant()]-------------------" << std::endl;
 
+    //determinant and selfDeterminant (success)
+    int elements5[] = {1,2,3};
+    CustomVector cve(elements5,3);
+    int elements6[] = {4,5,6};
+    CustomVector cvf(elements6,3);
+    int elements7[] = {7,8,9};
+    CustomVector cvg(elements7,3);
+    CustomMatrix cm3(3,3);
+    cm3.setRow(0,cve);
+    cm3.setRow(1,cvf);
+    cm3.setRow(2,cvg);
+    int tmpcm3 = cm3.selfDeterminant();
+    if(tmpcm3!=0){
+        std::cout << tmpcm3 << std::endl;
+    }
 
     std::cout << "-------------------------------------------------------" << std::endl;
 

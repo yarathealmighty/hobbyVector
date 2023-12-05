@@ -28,8 +28,6 @@ public:
 
     [[nodiscard]] int** getMtx()const;
 
-    [[nodiscard]] bool** getChessBoard()const;
-
     [[nodiscard]] int at(int,int)const;
 
     [[nodiscard]] CustomVector& row(int) const;
@@ -49,6 +47,8 @@ public:
     [[nodiscard]] CustomVector* split(bool=false) const;
 
     [[nodiscard]] int** transponent() const;
+
+    [[nodiscard]] int selfDeterminant();
 
     void sAdd(int);
 
