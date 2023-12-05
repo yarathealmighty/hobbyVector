@@ -102,4 +102,10 @@ void swap(CustomMatrix&, CustomMatrix&);
 
 int determinant(CustomMatrix);
 
+bool isReduced(CustomMatrix&);
+
+CustomMatrix& reduce(CustomMatrix&);
+
+CustomMatrix& gaussEliminate(CustomMatrix&);
+
 
