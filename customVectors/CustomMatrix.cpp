@@ -574,5 +574,27 @@ void swap(CustomMatrix &cm1, CustomMatrix &cm2) {
     cm1=CM;
 }
 
-
+CustomMatrix &gaussEliminate(CustomMatrix &cm) {
+    //todo eliminationMatrix
+    cm.sort();
+    CustomVector* columnVectors = cm.split(true);
+    CustomVector* rowVectors = cm.split();
+    for(int i=0;i<cm.getRows();i++){
+        CustomVector row = rowVectors[i];
+        //todo non integer answers
+        cm.setRow(i,row.sDivide(row[0]));
+        for(int j=0;j<cm.getRows();j++){
+            //todo row changes
+            if(j==i){
+                continue;
+            }
+            int scalarNumber = cm.row(j)[0]/row[0];
+            cm.setRow(j,cm.row(j)-=row.sMultiple(scalarNumber));
+            row.sDivide(scalarNumber);
+        }
+    }
+    delete[] columnVectors;
+    delete[] rowVectors;
+    return cm;
+}
 

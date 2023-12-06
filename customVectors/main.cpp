@@ -177,6 +177,10 @@ void CMtesting() {
         std::cout << tmpcm3 << std::endl;
     }
 
+    std::cout << "---------------------[gauss]---------------------------" << std::endl;
+
+
+
     std::cout << "-------------------------------------------------------" << std::endl;
 
     //free up allocated elements
