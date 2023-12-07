@@ -6,7 +6,7 @@
 #include "CustomMatrixIncorrectParametersException.h"
 #include "CustomMatrixNonExistentElementException.h"
 
-CustomMatrix::CustomMatrix(int** elements, int rows, int columns) : rows(rows), columns(columns) {
+CustomMatrix::CustomMatrix(Fraction** elements, int rows, int columns) : rows(rows), columns(columns) {
     try{
         mtx = createNewMtx(rows,columns);
         cpyMtx(elements,mtx,rows,columns,rows,columns);
@@ -36,23 +36,23 @@ CustomMatrix::~CustomMatrix() {
     destroyMtx(mtx,rows);
 }
 
-int** CustomMatrix::createNewMtx(int rows, int columns) {
-    auto* output = new int*[rows];
+Fraction** CustomMatrix::createNewMtx(int rows, int columns) {
+    auto* output = new Fraction*[rows];
     for(int i=0;i<rows;i++){
-        int* tmp = CustomVector::createNewContain(columns);
+        Fraction* tmp = CustomVector::createNewContain(columns);
         output[i]=tmp;
     }
     return output;
 }
 
-void CustomMatrix::destroyMtx(int** cv,int rows) {
+void CustomMatrix::destroyMtx(Fraction** cv,int rows) {
     for(int i=0;i<rows;i++){
         CustomVector::destroyContain(cv[i]);
     }
     delete[] cv;
 }
 
-void CustomMatrix::cpyMtx(int** originalMtx,int** newMtx, int originalRows, int originalColumns, int newRows, int newColumns) {
+void CustomMatrix::cpyMtx(Fraction** originalMtx,Fraction** newMtx, int originalRows, int originalColumns, int newRows, int newColumns) {
     try{
         int smallerRows;
         if(originalRows<newRows){
@@ -68,7 +68,7 @@ void CustomMatrix::cpyMtx(int** originalMtx,int** newMtx, int originalRows, int 
     }
 }
 
-int CustomMatrix::at(int n,int k) const {
+Fraction CustomMatrix::at(int n,int k) const {
     return mtx[n][k];
 }
 
@@ -88,7 +88,7 @@ int CustomMatrix::getColumns() const {
     return columns;
 }
 
-int **CustomMatrix::getMtx() const {
+Fraction **CustomMatrix::getMtx() const {
     return mtx;
 }
 
@@ -136,19 +136,18 @@ int CustomMatrix::find(const CustomVector& cv, bool findInColumns) const {
         }
     }
     throw CustomMatrixNonExistentElementException("The CustomVector: " + std::string(cv) + " doesn't exist in the matrix if searched in " + (findInColumns?"columns":"rows"));
-    return -1;
 }
 
-int** CustomMatrix::sorted(bool sortByColumns)const {
+Fraction** CustomMatrix::sorted(bool sortByColumns)const {
     int length = !sortByColumns ? rows : columns;
     CustomVector* vectors = CustomMatrix::split(sortByColumns);
 
     //todo exception handling and optimalization
     std::sort(vectors, vectors + length);
 
-    int** output = new int*[length];
+    auto** output = new Fraction*[length];
     for (int i = 0; i < length; i++) {
-        int *tmp = new int[int(vectors[i])];
+        auto *tmp = new Fraction[int(vectors[i])];
         CustomVector::cpyContain(vectors[i].getContain(), tmp, int(vectors[i]), int(vectors[i]));
         output[i] = tmp;
     }
@@ -158,7 +157,7 @@ int** CustomMatrix::sorted(bool sortByColumns)const {
 }
 
 void CustomMatrix::sort(bool sortByColumns) {
-    int** tmp = sorted(sortByColumns);
+    Fraction** tmp = sorted(sortByColumns);
     destroyMtx(mtx,rows);
     mtx = createNewMtx(rows,columns);
     cpyMtx(tmp,mtx,rows,columns,rows,columns);
@@ -182,7 +181,7 @@ CustomVector* CustomMatrix::split(bool splitToColumns) const {
     } else {
         result = new CustomVector[columns];
         for (int i = 0; i < columns; i++) {
-            int* column = new int[rows];
+            auto* column = new Fraction[rows];
             for (int j = 0; j < rows; j++) {
                 column[j] = mtx[j][i];
             }
@@ -193,10 +192,10 @@ CustomVector* CustomMatrix::split(bool splitToColumns) const {
     return result;
 }
 
-int **CustomMatrix::transponent() const {
-    int** output = new int*[rows];
+Fraction **CustomMatrix::transponent() const {
+    auto** output = new Fraction*[rows];
     for(int i=0;i<rows;i++){
-        int* row = new int[columns];
+        auto* row = new Fraction[columns];
         for(int j=0;j<columns;j++){
             for(int k=0;k<rows;k++){
                 row[k]=mtx[k][j];
@@ -207,8 +206,8 @@ int **CustomMatrix::transponent() const {
     return output;
 }
 
-int determinant(CustomMatrix cm) {
-    int sum = 0;
+Fraction determinant(CustomMatrix cm) {
+    Fraction sum(0);
     if (cm.getRows() < 2 || cm.getColumns() < 2 || cm.getRows() != cm.getColumns()) {
         throw CustomMatrixIncorrectParametersException("The dimensions of the matrix: " + std::to_string(cm.getRows()) + ", " + std::to_string(cm.getColumns()) + " are incorrect for determinant calculation");
     }
@@ -219,20 +218,20 @@ int determinant(CustomMatrix cm) {
         CustomMatrix tmp = cm;
         tmp.removeRow(tmp.row(0));
         tmp.removeColumn(tmp.column(i));
-        int cofactor = cm.getMtx()[0][i] * determinant(tmp);
+        Fraction cofactor = cm.getMtx()[0][i] * determinant(tmp);
         if(i%2==1) {
-            cofactor*=-1;
+            cofactor*=Fraction(-1);
         }
         sum+=cofactor;
     }
     return sum;
 }
 
-int CustomMatrix::selfDeterminant() {
-    int tmp;
+Fraction CustomMatrix::selfDeterminant() {
+    Fraction tmp;
     try {
         tmp = determinant(*this);
-        if (tmp == 0) {
+        if (tmp == Fraction(0)) {
             throw CustomMatrixException("The matrix is degenerate");
         }
     } catch(CustomMatrixException& cme){
@@ -241,23 +240,25 @@ int CustomMatrix::selfDeterminant() {
     return tmp;
 }
 
-void CustomMatrix::sAdd(int scalarNumber) {
+CustomMatrix& CustomMatrix::sAdd(const Fraction& scalarNumber) {
     for(int i=0;i<rows;i++){
         for(int j=0;j<columns;j++){
             mtx[i][j]+=scalarNumber;
         }
     }
+    return *this;
 }
 
-void CustomMatrix::sSubtract(int scalarNumber) {
+CustomMatrix& CustomMatrix::sSubtract(const Fraction& scalarNumber) {
     for(int i=0;i<rows;i++){
         for(int j=0;j<columns;j++){
             mtx[i][j]-=scalarNumber;
         }
     }
+    return *this;
 }
 
-CustomMatrix& CustomMatrix::sMultiple(int scalarNumber) {
+CustomMatrix& CustomMatrix::sMultiple(const Fraction& scalarNumber) {
     for(int i=0;i<rows;i++){
         for(int j=0;j<columns;j++){
             mtx[i][j]*=scalarNumber;
@@ -266,11 +267,11 @@ CustomMatrix& CustomMatrix::sMultiple(int scalarNumber) {
     return *this;
 }
 
-CustomMatrix& CustomMatrix::sDivide(int scalarNumber) {
+CustomMatrix& CustomMatrix::sDivide(const Fraction& scalarNumber) {
     for(int i=0;i<rows;i++){
         for(int j=0;j<columns;j++){
-            if(scalarNumber==0 || mtx[i][j]%scalarNumber!=0){
-                throw CustomMatrixIncorrectParametersException("The matrix is not divisible by scalarNumber: " + std::to_string(scalarNumber));
+            if(scalarNumber==Fraction(0)){
+                throw CustomMatrixIncorrectParametersException("The matrix is not divisible by scalarNumber: " + std::string(scalarNumber));
             }
         }
     }
@@ -282,10 +283,10 @@ CustomMatrix& CustomMatrix::sDivide(int scalarNumber) {
     return *this;
 }
 
-void CustomMatrix::print(int** matrix,int row, int column) {
+void CustomMatrix::print(Fraction** matrix,int row, int column) {
     for(int i=0;i<row;i++){
         for(int j=0;j<column;j++){
-            std::cout << matrix[i][j];
+            std::cout << std::string(matrix[i][j]);
             if(j!=row-1){
                 std::cout << " ";
             }
@@ -297,7 +298,7 @@ void CustomMatrix::print(int** matrix,int row, int column) {
 void CustomMatrix::coutPrint() const {
     for(int i=0;i<rows;i++){
         for(int j=0;j<columns;j++){
-            std:: cout << mtx[i][j];
+            std:: cout << std::string(mtx[i][j]);
             if(j!=columns-1){
                 std::cout << " ";
             }
@@ -307,15 +308,15 @@ void CustomMatrix::coutPrint() const {
 }
 
 CustomMatrix &CustomMatrix::addRow(const CustomVector& cv) {
-    int** newMtx = new int*[rows + 1];
+    auto** newMtx = new Fraction*[rows + 1];
     for (int i = 0; i < rows; i++) {
-        int* newRow = new int[columns];
+        auto* newRow = new Fraction[columns];
         for (int j = 0; j < columns; j++) {
             newRow[j] = mtx[i][j];
         }
         newMtx[i] = newRow;
     }
-    newMtx[rows] = new int[columns];
+    newMtx[rows] = new Fraction[columns];
     for (int j = 0; j < columns; j++) {
         newMtx[rows][j] = cv.getContain()[j];
     }
@@ -326,17 +327,17 @@ CustomMatrix &CustomMatrix::addRow(const CustomVector& cv) {
 }
 
 CustomMatrix &CustomMatrix::addEmptyRow() {
-    int** newMtx = new int*[rows+1];
+    auto** newMtx = new Fraction*[rows+1];
     for(int i=0;i<rows;i++){
-        int* newRow = new int[columns];
+        auto* newRow = new Fraction[columns];
         for(int j=0;j<columns;j++){
             newRow[j] = mtx[i][j];
         }
         newMtx[i]=newRow;
     }
-    int* cv = new int[columns];
+    auto* cv = new Fraction[columns];
     for(int i=0;i<columns;i++){
-        cv[i] = 0;
+        cv[i] = Fraction(0);
     }
     newMtx[rows]=cv;
     destroyMtx(mtx,rows);
@@ -346,13 +347,13 @@ CustomMatrix &CustomMatrix::addEmptyRow() {
 }
 
 CustomMatrix &CustomMatrix::addColumn(const CustomVector& cv) {
-    int* column = new int[rows];
+    auto* column = new Fraction[rows];
     for(int i=0;i<rows;i++){
         column[i] = cv.getContain()[i];
     }
-    int** newMtx = new int*[rows];
+    auto** newMtx = new Fraction*[rows];
     for(int i=0;i<rows;i++){
-        int* row = new int[columns+1];
+        auto* row = new Fraction[columns+1];
         for(int j=0;j<columns;j++){
             row[j] = mtx[i][j];
         }
@@ -367,13 +368,13 @@ CustomMatrix &CustomMatrix::addColumn(const CustomVector& cv) {
 }
 
 CustomMatrix &CustomMatrix::addEmptyColumn() {
-    int column[rows];
+    Fraction column[rows];
     for(int i=0;i<rows;i++){
-        column[i]=0;
+        column[i]=Fraction(0);
     }
-    int** newMtx = new int*[rows];
+    auto** newMtx = new Fraction*[rows];
     for(int i=0;i<rows;i++){
-        int* row = new int[columns+1];
+        auto* row = new Fraction[columns+1];
         for(int j=0;j<columns;j++){
             row[j] = mtx[i][j];
         }
@@ -389,13 +390,13 @@ CustomMatrix &CustomMatrix::addEmptyColumn() {
 CustomMatrix &CustomMatrix::removeRow(const CustomVector &cv) {
     try{
         int index = find(cv);
-        int** newMtx = new int*[rows-1];
+        auto** newMtx = new Fraction*[rows-1];
         int j=0;
         for(int i=0;i<rows;i++){
             if(i==index){
                 continue;
             } else {
-                int* row = new int[columns];
+                auto* row = new Fraction[columns];
                 for(int k=0;k<columns;k++){
                     row[k] = mtx[i][k];
                 }
@@ -413,9 +414,9 @@ CustomMatrix &CustomMatrix::removeRow(const CustomVector &cv) {
 
 CustomMatrix &CustomMatrix::removeLastRow() {
     rows--;
-    int** newMtx = new int*[rows];
+    auto** newMtx = new Fraction*[rows];
     for(int i=0;i<rows;i++){
-        int* row = new int[columns];
+        auto* row = new Fraction[columns];
         for(int j=0;j<columns;j++){
             row[j]=mtx[i][j];
         }
@@ -429,10 +430,10 @@ CustomMatrix &CustomMatrix::removeLastRow() {
 CustomMatrix &CustomMatrix::removeColumn(const CustomVector &cv) {
     try{
         int index = find(cv,true);
-        int** newMtx = new int*[rows];
+        auto** newMtx = new Fraction*[rows];
         for(int i=0;i<rows;i++){
             int j=0;
-            int* row = new int[columns-1];
+            auto* row = new Fraction[columns-1];
             for(int k=0;k<columns;k++){
                 if(k==index){
                     continue;
@@ -453,9 +454,9 @@ CustomMatrix &CustomMatrix::removeColumn(const CustomVector &cv) {
 
 CustomMatrix &CustomMatrix::removeLastColumn() {
     columns--;
-    int** newMtx = new int*[rows];
+    auto** newMtx = new Fraction*[rows];
     for(int i=0;i<rows;i++){
-        int* row = new int[columns];
+        auto* row = new Fraction[columns];
         for(int j=0;j<columns;j++){
             row[j] = mtx[i][j];
         }
@@ -471,7 +472,7 @@ CustomMatrix::operator std::string() const {
     for(int i=0;i<rows;i++){
         s+="{ ";
         for(int j=0;j<columns;j++){
-            s+= std::to_string(mtx[i][j]) + " ";
+            s+= std::string(mtx[i][j]) + " ";
             if(j!=columns-1){
                 s+=", ";
             }
@@ -521,7 +522,7 @@ CustomMatrix CustomMatrix::operator*(const CustomMatrix &other) const {
     for(int i=0;i<rows;i++){
         CustomVector tmp(0);
         for(int j=0;j<other.columns;j++){
-            int sum=0;
+            Fraction sum(0);
             for(int k=0;k<columns;k++){
                 sum+=first[i][k]*second[j][k];
             }
@@ -548,7 +549,7 @@ bool CustomMatrix::operator==(const CustomMatrix& other) const {
     return true;
 }
 
-int* CustomMatrix::operator[](int index) const {
+Fraction* CustomMatrix::operator[](int index) const {
     if(index>-1 && index<rows){
         return mtx[index];
     } else {

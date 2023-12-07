@@ -6,29 +6,29 @@
 #include "CustomVector.h"
 
 class CustomMatrix {
-    int** mtx;
+    Fraction** mtx;
     int rows;
     int columns;
 public:
     explicit CustomMatrix(int=1,int=1);
 
-    CustomMatrix(int*[],int,int);
+    CustomMatrix(Fraction*[],int,int);
 
     CustomMatrix(CustomMatrix&);
 
-    static int** createNewMtx(int,int);
+    static Fraction** createNewMtx(int,int);
 
-    static void destroyMtx(int**,int);
+    static void destroyMtx(Fraction**,int);
 
-    static void cpyMtx(int**,int**,int,int,int,int);
+    static void cpyMtx(Fraction**,Fraction**,int,int,int,int);
 
     [[nodiscard]] int getRows()const;
 
     [[nodiscard]] int getColumns()const;
 
-    [[nodiscard]] int** getMtx()const;
+    [[nodiscard]] Fraction** getMtx()const;
 
-    [[nodiscard]] int at(int,int)const;
+    [[nodiscard]] Fraction at(int,int)const;
 
     [[nodiscard]] CustomVector& row(int) const;
 
@@ -40,27 +40,27 @@ public:
 
     [[nodiscard]] int find(const CustomVector&, bool=false)const;
 
-    [[nodiscard]] int** sorted(bool=false)const;
+    [[nodiscard]] Fraction** sorted(bool=false)const;
 
     void sort(bool=false);
 
     [[nodiscard]] CustomVector* split(bool=false) const;
 
-    [[nodiscard]] int** transponent() const;
+    [[nodiscard]] Fraction** transponent() const;
 
-    [[nodiscard]] int selfDeterminant();
+    [[nodiscard]] Fraction selfDeterminant();
 
-    void sAdd(int);
+    CustomMatrix& sAdd(const Fraction&);
 
-    void sSubtract(int);
+    CustomMatrix& sSubtract(const Fraction&);
 
-    CustomMatrix& sMultiple(int);
+    CustomMatrix& sMultiple(const Fraction&);
 
-    CustomMatrix& sDivide(int);
+    CustomMatrix& sDivide(const Fraction&);
 
     void coutPrint() const;
 
-    static void print(int**,int,int) ;
+    static void print(Fraction**,int,int) ;
 
     explicit operator std::string() const;
 
@@ -91,7 +91,7 @@ public:
 
     bool operator==(const CustomMatrix&)const;
 
-    int* operator[](int) const;
+    Fraction* operator[](int) const;
 
     CustomMatrix& operator=(CustomMatrix&);
 
@@ -100,6 +100,6 @@ public:
 
 void swap(CustomMatrix&, CustomMatrix&);
 
-int determinant(CustomMatrix);
+Fraction determinant(CustomMatrix);
 
 

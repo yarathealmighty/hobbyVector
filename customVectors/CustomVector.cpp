@@ -9,9 +9,8 @@
 #include "CustomVectorLengthCannotBeModifiedException.h"
 #include "CustomVectorIndexOutOfBoundsException.h"
 #include <bits/stdc++.h>
-#include <utility>
 
-    CustomVector::CustomVector(int elements[],int length) : length(length) {
+    CustomVector::CustomVector(Fraction elements[],int length) : length(length) {
         //todo incorrect parameters exception handling
         try{
             contain = createNewContain(CustomVector::length);
@@ -22,9 +21,10 @@
     }
     CustomVector::CustomVector(int length) : length(length) {
         try{
-            int elements[length];
+            Fraction elements[length];
             for(int i=0;i<length;i++){
-                elements[i]=0;
+                Fraction f(0);
+                elements[i]= f;
             }
             contain = createNewContain(CustomVector::length);
             cpyContain(elements,CustomVector::contain,length, CustomVector::length);
@@ -46,23 +46,23 @@
         destroyContain(contain);
     }
 
-    int *CustomVector::getContain() const {
+    Fraction *CustomVector::getContain() const {
         return contain;
     }
 
-    int* CustomVector::createNewContain(int length){
+    Fraction* CustomVector::createNewContain(int length){
         if(length<0){
             throw CustomVectorIncorrectParametersException("Length parameter is incorrect, it cannot be below 0, length value: " + std::to_string(length));
         }
-        int* newContain = new int[length];
+        auto* newContain = new Fraction[length];
         return newContain;
     }
 
-    void CustomVector::destroyContain(const int* contain){
+    void CustomVector::destroyContain(const Fraction* contain){
         delete[] contain;
     }
 
-    void CustomVector::cpyContain(const int* originalContain, int* newContain,const int oldLength,const int newLength){
+    void CustomVector::cpyContain(const Fraction* originalContain, Fraction* newContain,const int oldLength,const int newLength){
         if(oldLength > newLength){
             throw CustomVectorIncorrectParametersException("Old length: " + std::to_string(oldLength) + " and new length: " + std::to_string(newLength) + " are incorrect lengths");
         } else {
@@ -76,15 +76,16 @@
         }
     }
 
-    [[nodiscard]] int CustomVector::find(const int element) const{
+    [[nodiscard]] int CustomVector::find(const Fraction& element) const{
         for(int i=0;i<length;i++){
             if(contain[i]==element){
                 return i;
             }
         }
-        throw CustomVectorNonExistentElementException("Element " + std::to_string(element) + " doesn't exist in the vector, so it cannot be found");
+        throw CustomVectorNonExistentElementException("Element " + std::string(element) + " doesn't exist in the vector, so it cannot be found");
     }
 
+    //todo this
     void CustomVector::sort(bool reverse){
         if(!reverse){
             std::sort(&contain[0],&contain[length]);
@@ -93,7 +94,7 @@
         }
     }
 
-    int CustomVector::sum(int startIndex, int steps){
+    Fraction CustomVector::sum(int startIndex, int steps){
         //this is the most half-assed solution I could've come up with
         if(steps==-1){
             steps=length-startIndex;
@@ -104,28 +105,30 @@
         if(steps<-1 || steps > length-startIndex){
             throw CustomVectorIncorrectParametersException("Steps: " + std::to_string(steps) + " is not a valid amount of steps for startIndex: " + std::to_string(startIndex));
         }
-        int sum=0;
+        Fraction sum(0);
         for(int i=startIndex;i<startIndex+steps;i++){
             sum+=contain[i];
         }
         return sum;
     }
 
-    void CustomVector::sAdd(int scalarNumber){
+    CustomVector& CustomVector::sAdd(const Fraction& scalarNumber){
         for(int i=0;i<length;i++){
             contain[i]+=scalarNumber;
         }
+        return *this;
     }
 
-    void CustomVector::sSubtract(int scalarNumber){
+    CustomVector& CustomVector::sSubtract(const Fraction& scalarNumber){
         for(int i=0;i<length;i++){
             contain[i]-=scalarNumber;
         }
+        return *this;
     }
 
-    CustomVector& CustomVector::sMultiple(int scalarNumber){
+    CustomVector& CustomVector::sMultiple(const Fraction& scalarNumber){
         //2^30-1
-        if(scalarNumber>=1073741823){
+        if(scalarNumber>=Fraction(1073741823)){
             throw CustomVectorIncorrectParametersException("Warning: this number is very big and will probably yield overflowing!");
         }
         for(int i=0;i<length;i++){
@@ -134,10 +137,10 @@
         return *this;
     }
 
-    CustomVector& CustomVector::sDivide(int scalarNumber){
+    CustomVector& CustomVector::sDivide(const Fraction& scalarNumber){
         for(int i=0;i<length;i++){
-            if(scalarNumber==0 || contain[i]%scalarNumber!=0){
-                throw CustomVectorIncorrectParametersException("The vector is not divisible by this scalarNumber: " + std::to_string(scalarNumber));
+            if(scalarNumber==Fraction(0)){
+                throw CustomVectorIncorrectParametersException("The vector is not divisible by this scalarNumber: " + std::string(scalarNumber));
             }
         }
         for(int i=0;i<length;i++){
@@ -146,13 +149,13 @@
         return *this;
     }
 
-    CustomVector& CustomVector::rowMultple(int scalarNumber) {
+    CustomVector& CustomVector::rowMultple(const Fraction& scalarNumber) {
         CustomVector& output(*this);
         output.sMultiple(scalarNumber);
         return output;
     }
 
-    CustomVector& CustomVector::rowDivide(int scalarNumber){
+    CustomVector& CustomVector::rowDivide(const Fraction& scalarNumber){
         CustomVector& output(*this);
         output.sDivide(scalarNumber);
         return output;
@@ -162,9 +165,9 @@
         std::string str="{";
         for(int i=0;i<length;i++){
             if(i!=length-1){
-                str+= std::to_string(contain[i]) + ", ";
+                str+= std::string(contain[i]) + ", ";
             } else {
-                str += std::to_string(contain[i]);
+                str += std::string(contain[i]);
             }
         }
         str+="}";
@@ -215,12 +218,12 @@
         return *this;
     }
 
-    CustomVector& CustomVector::operator<<(int element){
+    CustomVector& CustomVector::operator<<(const Fraction& element){
         if(length==INT32_MAX){
             throw CustomVectorLengthCannotBeModifiedException("Length is already at INT32_MAX value, cannot be extended further");
         }
         length++;
-        int* tmpContain = new int[length];
+        auto* tmpContain = new Fraction[length];
         int tmpLength=length;
         cpyContain(CustomVector::contain,tmpContain,CustomVector::length-1,tmpLength);
         tmpContain[length-1] = element;
@@ -229,13 +232,13 @@
         return *this;
     }
 
-    CustomVector& CustomVector::operator>>(int element){
+    CustomVector& CustomVector::operator>>(const Fraction& element){
         if(length==0){
             throw CustomVectorLengthCannotBeModifiedException("Length is already at 0 value, cannot be reduced further");
         }
         bool foundElement=false;
         length--;
-        int* tmpContain = new int[length];
+        auto* tmpContain = new Fraction[length];
         int j=0;
         for(int i=0;i<length+1;i++){
             if(contain[i]!=element) {
@@ -246,7 +249,7 @@
         }
         if(!foundElement){
             length++;
-            throw CustomVectorNonExistentElementException("Element " + std::to_string(element) + " doesn't exist in the vector, so it cannot be taken out");
+            throw CustomVectorNonExistentElementException("Element " + std::string(element) + " doesn't exist in the vector, so it cannot be taken out");
         } else {
             destroyContain(contain);
             contain = tmpContain;
@@ -260,7 +263,7 @@
             throw CustomVectorLengthCannotBeModifiedException("Length is already at INT32_MAX value, cannot be extended further");
         }
         length++;
-        int* tmpContain = new int[length];
+        auto* tmpContain = new Fraction[length];
         int tmpLength=length;
         cpyContain(CustomVector::contain,tmpContain,CustomVector::length,tmpLength);
         destroyContain(contain);
@@ -273,7 +276,7 @@
             throw CustomVectorLengthCannotBeModifiedException("Length is already at 0 value, cannot be reduced further");
         }
         length--;
-        int* tmpContain = new int[length];
+        auto* tmpContain = new Fraction[length];
         int tmpLength=length;
         cpyContain(CustomVector::contain,tmpContain,CustomVector::length,tmpLength);
         destroyContain(contain);
@@ -281,7 +284,7 @@
         return *this;
     }
 
-    int& CustomVector::operator[](int index) const {
+    Fraction& CustomVector::operator[](int index) const {
         if(index<0 || index>=length){
             throw CustomVectorIndexOutOfBoundsException("Index out of bounds, index: " + std::to_string(index) + ", length: " + std::to_string(length));
         } else {

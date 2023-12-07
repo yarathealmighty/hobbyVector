@@ -5,42 +5,43 @@
 #pragma once
 #include <bits/stdc++.h>
 #include <utility>
+#include "Fraction.h"
 
 class CustomVector{
     int length;
-    int* contain;
+    Fraction* contain;
 public:
-    CustomVector(int[],int);
+    CustomVector(Fraction[],int);
 
     explicit CustomVector(int=0);
 
     CustomVector(const CustomVector&);
 
-    [[nodiscard]] int *getContain() const;
+    [[nodiscard]] Fraction* getContain() const;
 
-    static int* createNewContain(int);
+    static Fraction* createNewContain(int);
 
-    static void destroyContain(const int*);
+    static void destroyContain(const Fraction*);
 
-    static void cpyContain(const int*, int*,int,int);
+    static void cpyContain(const Fraction*, Fraction*,int,int);
 
-    [[nodiscard]] int find(int) const;
+    [[nodiscard]] int find(const Fraction&) const;
 
     void sort(bool=false);
 
-    int sum(int=0, int=-1);
+    Fraction sum(int=0, int=-1);
 
-    void sAdd(int);
+    CustomVector& sAdd(const Fraction&);
 
-    void sSubtract(int);
+    CustomVector& sSubtract(const Fraction&);
 
-    CustomVector& sMultiple(int);
+    CustomVector& sMultiple(const Fraction&);
 
-    CustomVector& sDivide(int);
+    CustomVector& sDivide(const Fraction&);
 
-    CustomVector& rowMultple(int);
+    CustomVector& rowMultple(const Fraction&);
 
-    CustomVector& rowDivide(int);
+    CustomVector& rowDivide(const Fraction&);
 
     explicit operator std::string() const;
 
@@ -54,16 +55,16 @@ public:
 
     CustomVector& operator-=(const CustomVector&);
 
-    CustomVector& operator<<(int);
+    CustomVector& operator<<(const Fraction&);
 
-    CustomVector& operator>>(int);
+    CustomVector& operator>>(const Fraction&);
 
     //todo these
     CustomVector& operator++(int);
 
     CustomVector& operator--(int);
 
-    int& operator[](int) const;
+    Fraction& operator[](int) const;
 
     CustomVector& operator=(const CustomVector&);
 
