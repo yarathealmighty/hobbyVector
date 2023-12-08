@@ -18,6 +18,8 @@ public:
 
     Fraction& simplify();
 
+    [[nodiscard]] float floatValue()const;
+
     Fraction& operator+=(const Fraction&);
 
     Fraction operator+(const Fraction&) const;
@@ -37,8 +39,6 @@ public:
     explicit operator std::string() const;
 
     explicit operator int() const;
-
-    explicit operator float() const;
 
     bool operator<(const Fraction&)const;
     bool operator<=(const Fraction&)const;

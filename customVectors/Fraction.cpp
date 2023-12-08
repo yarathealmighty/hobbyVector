@@ -26,6 +26,11 @@ Fraction &Fraction::simplify() {
     return *this;
 }
 
+float Fraction::floatValue() const {
+    float out = float(numerator)/float(denominator);
+    return out;
+}
+
 Fraction &Fraction::operator+=(const Fraction &f) {
     numerator*=f.numerator;
     denominator*=f.denominator;
@@ -63,12 +68,18 @@ Fraction Fraction::operator*(const Fraction &f) const {
 }
 
 Fraction &Fraction::operator/=(const Fraction &f) {
+    if(f.numerator==0){
+        throw FractionException("Cannot divide by 0");
+    }
     numerator*=f.denominator;
     denominator*=f.numerator;
     return *this;
 }
 
 Fraction Fraction::operator/(const Fraction &f) const {
+    if(f.numerator==0){
+        throw FractionException("Cannot divide by 0");
+    }
     int a=numerator*f.denominator, b=denominator*f.numerator;
     Fraction tmp(a,b);
     return tmp;
@@ -86,13 +97,9 @@ Fraction::operator int() const {
     }
 }
 
-Fraction::operator float() const {
-    return numerator/denominator;
-}
-
 bool Fraction::operator<(const Fraction &other) const {
     //todo more elegantly
-    if(float(*this)<float(other)){
+    if(this->floatValue()<other.floatValue()){
         return true;
     } else {
         return false;
@@ -100,7 +107,7 @@ bool Fraction::operator<(const Fraction &other) const {
 }
 
 bool Fraction::operator<=(const Fraction &other) const {
-    if(float(*this)<=float(other)){
+    if(this->floatValue()<=other.floatValue()){
         return true;
     } else {
         return false;
@@ -108,7 +115,7 @@ bool Fraction::operator<=(const Fraction &other) const {
 }
 
 bool Fraction::operator>(const Fraction &other) const {
-    if(float(*this)>float(other)){
+    if(this->floatValue()>other.floatValue()){
         return true;
     } else {
         return false;
@@ -116,7 +123,7 @@ bool Fraction::operator>(const Fraction &other) const {
 }
 
 bool Fraction::operator>=(const Fraction &other) const {
-    if(float(*this)>=float(other)){
+    if(this->floatValue()>=other.floatValue()){
         return true;
     } else {
         return false;
@@ -125,7 +132,7 @@ bool Fraction::operator>=(const Fraction &other) const {
 
 bool Fraction::operator==(const Fraction &other) const {
     //todo more elegantly
-    if(float(*this)==float(other)){
+    if(this->floatValue()==other.floatValue()){
         return true;
     } else {
         return false;
