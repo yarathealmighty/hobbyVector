@@ -148,6 +148,12 @@
 		<Unit filename="D:/hobbyVector/customVectors/Fraction.h">
 			<Option target="customVectors"/>
 		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/FractionException.cpp">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/FractionException.h">
+			<Option target="customVectors"/>
+		</Unit>
 		<Unit filename="D:/hobbyVector/customVectors/main.cpp">
 			<Option target="customVectors"/>
 		</Unit>

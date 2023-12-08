@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/customVectors.dir/CustomVectorNonExistentElementException.cpp.obj.d"
   "CMakeFiles/customVectors.dir/Fraction.cpp.obj"
   "CMakeFiles/customVectors.dir/Fraction.cpp.obj.d"
+  "CMakeFiles/customVectors.dir/FractionException.cpp.obj"
+  "CMakeFiles/customVectors.dir/FractionException.cpp.obj.d"
   "CMakeFiles/customVectors.dir/main.cpp.obj"
   "CMakeFiles/customVectors.dir/main.cpp.obj.d"
   "customVectors.exe"

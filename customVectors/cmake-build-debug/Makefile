@@ -392,6 +392,30 @@ Fraction.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/Fraction.cpp.s
 .PHONY : Fraction.cpp.s
 
+FractionException.obj: FractionException.cpp.obj
+.PHONY : FractionException.obj
+
+# target to build an object file
+FractionException.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/FractionException.cpp.obj
+.PHONY : FractionException.cpp.obj
+
+FractionException.i: FractionException.cpp.i
+.PHONY : FractionException.i
+
+# target to preprocess a source file
+FractionException.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/FractionException.cpp.i
+.PHONY : FractionException.cpp.i
+
+FractionException.s: FractionException.cpp.s
+.PHONY : FractionException.s
+
+# target to generate assembly for a file
+FractionException.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/FractionException.cpp.s
+.PHONY : FractionException.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -458,6 +482,9 @@ help:
 	@echo ... Fraction.obj
 	@echo ... Fraction.i
 	@echo ... Fraction.s
+	@echo ... FractionException.obj
+	@echo ... FractionException.i
+	@echo ... FractionException.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

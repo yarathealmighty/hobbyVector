@@ -3,6 +3,7 @@
 //
 
 #include "Fraction.h"
+#include "FractionException.h"
 
 Fraction::Fraction(int numerator) : numerator(numerator), denominator(1) {}
 
@@ -81,7 +82,7 @@ Fraction::operator int() const {
     if(denominator==1){
         return numerator;
     } else {
-        //todo exception here
+        throw FractionException("The fraction: " + std::string(*this) + " is not castable to int");
     }
 }
 
