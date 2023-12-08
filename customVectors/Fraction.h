@@ -20,19 +20,19 @@ public:
 
     Fraction& operator+=(const Fraction&);
 
-    Fraction operator+(const Fraction&);
+    Fraction operator+(const Fraction&) const;
 
     Fraction& operator-=(const Fraction&);
 
-    Fraction operator-(const Fraction&);
+    Fraction operator-(const Fraction&) const;
 
     Fraction& operator*=(const Fraction&);
 
-    Fraction operator*(const Fraction&);
+    Fraction operator*(const Fraction&) const;
 
     Fraction& operator/=(const Fraction&);
 
-    Fraction operator/(const Fraction&);
+    Fraction operator/(const Fraction&) const;
 
     explicit operator std::string() const;
 

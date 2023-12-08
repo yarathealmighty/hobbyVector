@@ -31,7 +31,7 @@ Fraction &Fraction::operator+=(const Fraction &f) {
     return *this;
 }
 
-Fraction Fraction::operator+(const Fraction &f) {
+Fraction Fraction::operator+(const Fraction &f) const {
     int a=numerator+f.numerator,b=denominator+f.denominator;
     Fraction tmp(a,b);
     return tmp;
@@ -43,7 +43,7 @@ Fraction &Fraction::operator-=(const Fraction &f) {
     return *this;
 }
 
-Fraction Fraction::operator-(const Fraction &f) {
+Fraction Fraction::operator-(const Fraction &f) const {
     int a=numerator-f.numerator,b=denominator-f.denominator;
     Fraction tmp(a,b);
     return tmp;
@@ -55,7 +55,7 @@ Fraction &Fraction::operator*=(const Fraction &f) {
     return *this;
 }
 
-Fraction Fraction::operator*(const Fraction &f) {
+Fraction Fraction::operator*(const Fraction &f) const {
     int a=numerator*f.numerator,b=denominator*f.denominator;
     Fraction tmp(a,b);
     return tmp;
@@ -67,7 +67,7 @@ Fraction &Fraction::operator/=(const Fraction &f) {
     return *this;
 }
 
-Fraction Fraction::operator/(const Fraction &f) {
+Fraction Fraction::operator/(const Fraction &f) const {
     int a=numerator*f.denominator, b=denominator*f.numerator;
     Fraction tmp(a,b);
     return tmp;
