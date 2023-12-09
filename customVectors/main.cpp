@@ -14,12 +14,12 @@ void CMtesting() {
 }
 
 void CVtesting() {
+    //construct/contain/find/sort/sum/sAdd/sSubtract/sMultiple/sDivide/rowMultiple/rowDivide/</==/+=/-=/<</>>/++/--/[]/swap
     //todo write testing ui
 }
 
 void Ftesting(){
     //construct/simple/+=/+/-=/-/*=/*/ /= / / /</<=/>/>=/==/!=/=
-    //todo write testing ui
     string s;
     bool op;
     cout << "construct/simple/+=/+/-=/-/*=/*/ /= / / /</<=/>/>=/==/!=/= are valid inputs for a command" << endl;
