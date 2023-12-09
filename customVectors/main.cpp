@@ -4,6 +4,7 @@
 
 #include "CustomMatrix.h"
 #include "FractionException.h"
+#include "CustomVectorException.h"
 
 #define TESTING
 
@@ -16,6 +17,104 @@ void CMtesting() {
 void CVtesting() {
     //construct/contain/find/sort/sum/sAdd/sSubtract/sMultiple/sDivide/rowMultiple/rowDivide/</==/+=/-=/<</>>/++/--/[]/swap
     //todo write testing ui
+    string s;
+    bool op;
+    cout << "construct/contain/find/sort/sum/sAdd/sSubtract/sMultiple/sDivide/rowMultiple/rowDivide/</==/+=/-=/<</>>/++/--/[]/swap are valid inputs for a command" << endl;
+    cin >> s;
+    int n,a,b;
+    CustomVector v1,v2,v3;
+    try{
+        if(s=="construct"){
+            cout << "default/param/ref" << endl;
+            cin >> s;
+            if(s=="default"){
+                v1 = CustomVector();
+                v2 = CustomVector();
+                v3 = CustomVector();
+            }
+            if(s=="param"){
+                cout << "length: ";
+                cin >> n;
+                cout << endl;
+                Fraction elements[n];
+                for(int i=0;i<n;i++){
+                    cout << "a/b: ";
+                    cin >> a >> b;
+                    cout << endl;
+                    Fraction tmp(a,b);
+                    elements[i] = tmp;
+                }
+                v1 = CustomVector(elements,n);
+                v2 = CustomVector(elements,n);
+                v3 = CustomVector(elements,n);
+            }
+            if(s=="ref"){
+
+            }
+        }
+        if(s=="contain"){
+
+        }
+        if(s=="find"){
+
+        }
+        if(s=="sort"){
+
+        }
+        if(s=="sum"){
+
+        }
+        if(s=="sAdd"){
+
+        }
+        if(s=="sSubtract"){
+
+        }
+        if(s=="sMultiple"){
+
+        }
+        if(s=="sDivide"){
+
+        }
+        if(s=="rowMultiple"){
+
+        }
+        if(s=="rowDivide"){
+
+        }
+        if(s=="<"){
+
+        }
+        if(s=="=="){
+
+        }
+        if(s=="+="){
+
+        }
+        if(s=="-="){
+
+        }
+        if(s=="<<"){
+
+        }
+        if(s==">>"){
+
+        }
+        if(s=="++"){
+
+        }
+        if(s=="--"){
+
+        }
+        if(s=="[]"){
+
+        }
+        if(s=="swap"){
+
+        }
+    } catch (CustomVectorException& cve){
+        cout << cve.what() << endl;
+    }
 }
 
 void Ftesting(){
