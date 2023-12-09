@@ -15,11 +15,11 @@ void CMtesting() {
 }
 
 void CVtesting() {
-    //construct/contain/find/sort/sum/sAdd/sSubtract/sMultiple/sDivide/rowMultiple/rowDivide/</==/+=/-=/<</>>/++/--/[]/swap
+    //construct/find/sort/sum/sAdd/sSubtract/sMultiple/sDivide/rowMultiple/rowDivide/</==/+=/-=/<</>>/++/--/[]/swap
     //todo write testing ui
     string s;
     bool op;
-    cout << "construct/contain/find/sort/sum/sAdd/sSubtract/sMultiple/sDivide/rowMultiple/rowDivide/</==/+=/-=/<</>>/++/--/[]/swap are valid inputs for a command" << endl;
+    cout << "construct/find/sort/sum/sAdd/sSubtract/sMultiple/sDivide/rowMultiple/rowDivide/</==/+=/-=/<</>>/++/--/[]/swap are valid inputs for a command" << endl;
     cin >> s;
     int n,a,b;
     CustomVector v1,v2,v3;
@@ -29,34 +29,51 @@ void CVtesting() {
             cin >> s;
             if(s=="default"){
                 v1 = CustomVector();
-                v2 = CustomVector();
-                v3 = CustomVector();
             }
             if(s=="param"){
                 cout << "length: ";
                 cin >> n;
-                cout << endl;
-                Fraction elements[n];
+                Fraction* elements = new Fraction[n];
                 for(int i=0;i<n;i++){
                     cout << "a/b: ";
                     cin >> a >> b;
-                    cout << endl;
                     Fraction tmp(a,b);
                     elements[i] = tmp;
                 }
                 v1 = CustomVector(elements,n);
-                v2 = CustomVector(elements,n);
-                v3 = CustomVector(elements,n);
+                delete[] elements;
             }
             if(s=="ref"){
-
+                cout << "length: ";
+                cin >> n;
+                Fraction* elements = new Fraction[n];
+                for(int i=0;i<n;i++){
+                    cout << "a b: ";
+                    cin >> a >> b;
+                    Fraction tmp(a,b);
+                    elements[i] = tmp;
+                }
+                v1 = CustomVector(elements,n);
+                v2 = CustomVector(v1);
+                delete[] elements;
             }
         }
-        if(s=="contain"){
-
-        }
         if(s=="find"){
-
+            cout << "length: ";
+            cin >> n;
+            Fraction* elements = new Fraction[n];
+            for(int i=0;i<n;i++){
+                cout << "a b: ";
+                cin >> a >> b;
+                Fraction tmp(a,b);
+                elements[i] = tmp;
+            }
+            v1 = CustomVector(elements,n);
+            cout << "The element you'd like to be found: ";
+            cin >> a >> b;
+            Fraction tmp(a,b);
+            cout << "The index of the element is: " << v1.find(tmp)+1 << endl;
+            delete[] elements;
         }
         if(s=="sort"){
 
@@ -112,6 +129,12 @@ void CVtesting() {
         if(s=="swap"){
 
         }
+        cout << "length of v1: " << int(v1) << endl;
+        cout << "elements of v1: " << std::string(v1) << endl;
+        cout << "length of v2: " << int(v2) << endl;
+        cout << "elements of v2: " << std::string(v2) << endl;
+        cout << "length of v3: " << int(v3) << endl;
+        cout << "elements of v3: " << std::string(v3) << endl;
     } catch (CustomVectorException& cve){
         cout << cve.what() << endl;
     }

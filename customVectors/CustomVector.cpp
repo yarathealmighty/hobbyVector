@@ -10,7 +10,7 @@
 #include "CustomVectorIndexOutOfBoundsException.h"
 #include <bits/stdc++.h>
 
-    CustomVector::CustomVector(Fraction elements[],int length) : length(length) {
+    CustomVector::CustomVector(Fraction* elements,int length) : length(length) {
         //todo incorrect parameters exception handling
         try{
             contain = createNewContain(CustomVector::length);
@@ -86,6 +86,7 @@
     }
 
     //todo this
+    /*
     void CustomVector::sort(bool reverse){
         if(!reverse){
             std::sort(&contain[0],&contain[length]);
@@ -93,6 +94,7 @@
             std::sort(&contain[0],&contain[length], std::greater<>());
         }
     }
+    */
 
     Fraction CustomVector::sum(int startIndex, int steps){
         //this is the most half-assed solution I could've come up with

@@ -11,7 +11,7 @@ class CustomVector{
     int length;
     Fraction* contain;
 public:
-    CustomVector(Fraction[],int);
+    CustomVector(Fraction*,int);
 
     explicit CustomVector(int=0);
 
