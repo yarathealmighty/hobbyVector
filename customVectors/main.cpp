@@ -179,13 +179,14 @@ void Ftesting(){
         f= Fraction(a,b);
         g= Fraction(c,d);
         f+=g;
+        h = f;
     }
     if(s=="+"){
         cout << "x1 y1 x2 y2 is a valid input where x1,x2,y1,y2 are all integers" << endl;
         cin >> a >> b >> c >> d;
         f= Fraction(a,b);
         g= Fraction(c,d);
-        h=f+g;
+        h = f+g;
     }
     if(s=="-="){
         cout << "x1 y1 x2 y2 is a valid input where x1,x2,y1,y2 are all integers" << endl;
@@ -193,6 +194,7 @@ void Ftesting(){
         f= Fraction(a,b);
         g= Fraction(c,d);
         f-=g;
+        h = f;
     }
     if(s=="-"){
         cout << "x1 y1 x2 y2 is a valid input where x1,x2,y1,y2 are all integers" << endl;
@@ -207,6 +209,7 @@ void Ftesting(){
         f= Fraction(a,b);
         g= Fraction(c,d);
         f*=g;
+        h = f;
     }
     if(s=="*"){
         cout << "x1 y1 x2 y2 is a valid input where x1,x2,y1,y2 are all integers" << endl;
@@ -221,6 +224,7 @@ void Ftesting(){
         f= Fraction(a,b);
         g= Fraction(c,d);
         f/=g;
+        h = f;
     }
     if(s=="/"){
         cout << "x1 y1 x2 y2 is a valid input where x1,x2,y1,y2 are all integers" << endl;
@@ -271,9 +275,9 @@ void Ftesting(){
         g= Fraction(c,d);
         op=f!=g;
     }
-        cout << "numerator/denominator: " << std::string(f) << endl;
-        cout << "float form: " << f.floatValue() << endl;
-        cout << "int form: " << int(f) << endl;
+        cout << "numerator/denominator: " << std::string(h) << endl;
+        cout << "float form: " << h.floatValue() << endl;
+        cout << "int form: " << int(h) << endl;
     } catch (FractionException& fe){
         cout << fe.what() << endl;
     }
@@ -294,5 +298,6 @@ int main() {
         Ftesting();
     }
 #endif
+
     return 0;
 }

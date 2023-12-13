@@ -14,9 +14,11 @@ public:
 
     explicit Fraction(int,int);
 
-    Fraction(Fraction&);
+    Fraction(const Fraction&);
 
     Fraction& simplify();
+
+    Fraction& expand(int);
 
     [[nodiscard]] float floatValue()const;
 

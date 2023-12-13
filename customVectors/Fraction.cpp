@@ -9,10 +9,16 @@ Fraction::Fraction(int numerator) : numerator(numerator), denominator(1) {}
 
 Fraction::Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {}
 
-Fraction::Fraction(Fraction &f) : numerator(f.numerator), denominator(f.denominator) {}
+Fraction::Fraction(const Fraction &f) : numerator(f.numerator), denominator(f.denominator) {}
 
 Fraction &Fraction::simplify() {
     int a=numerator,b=denominator,ans;
+    if(a<0){
+        a*=-1;
+    }
+    if(b<0){
+        b*=-1;
+    }
     while(a!=b){
         if(a>b){
             a-=b;
@@ -26,33 +32,66 @@ Fraction &Fraction::simplify() {
     return *this;
 }
 
+Fraction &Fraction::expand(int scalarNumber) {
+    numerator*=scalarNumber;
+    denominator*=scalarNumber;
+    return *this;
+}
+
 float Fraction::floatValue() const {
     float out = float(numerator)/float(denominator);
     return out;
 }
 
 Fraction &Fraction::operator+=(const Fraction &f) {
-    numerator*=f.numerator;
-    denominator*=f.denominator;
+    Fraction tmpFraction(f);
+    if(denominator!=f.denominator){
+        int tmp = denominator;
+        this->expand(f.denominator);
+        tmpFraction.expand(tmp);
+    }
+    numerator+=tmpFraction.numerator;
+    this->simplify();
     return *this;
 }
 
 Fraction Fraction::operator+(const Fraction &f) const {
-    int a=numerator+f.numerator,b=denominator+f.denominator;
-    Fraction tmp(a,b);
-    return tmp;
+    Fraction tmpFraction(f);
+    Fraction output(*this);
+    if(denominator!=f.denominator){
+        int tmp = denominator;
+        output.expand(tmpFraction.denominator);
+        tmpFraction.expand(tmp);
+    }
+    output.numerator+=tmpFraction.numerator;
+    return output;
 }
 
 Fraction &Fraction::operator-=(const Fraction &f) {
-    numerator-=f.numerator;
-    denominator-=f.denominator;
+    Fraction tmpFraction(f);
+    if(denominator!=f.denominator){
+        int tmp = denominator;
+        this->expand(f.denominator);
+        tmpFraction.expand(tmp);
+    }
+    numerator-=tmpFraction.numerator;
+    this->simplify();
     return *this;
 }
 
 Fraction Fraction::operator-(const Fraction &f) const {
-    int a=numerator-f.numerator,b=denominator-f.denominator;
-    Fraction tmp(a,b);
-    return tmp;
+    Fraction tmpFraction(f);
+    Fraction output(*this);
+    if(denominator!=f.denominator){
+        int tmp = denominator;
+        output.expand(tmpFraction.denominator);
+        tmpFraction.expand(tmp);
+    }
+    output.numerator-=tmpFraction.numerator;
+    std::cout << std::string(output) << std::endl;
+    output.simplify();
+    std::cout << std::string(output) << std::endl;
+    return output;
 }
 
 Fraction &Fraction::operator*=(const Fraction &f) {
@@ -93,6 +132,9 @@ Fraction::operator int() const {
     if(denominator==1){
         return numerator;
     } else {
+        if(denominator==numerator){
+            return 1;
+        }
         throw FractionException("The fraction: " + std::string(*this) + " is not castable to int");
     }
 }
