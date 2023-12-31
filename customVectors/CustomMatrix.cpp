@@ -5,6 +5,7 @@
 #include "CustomMatrix.h"
 #include "CustomMatrixIncorrectParametersException.h"
 #include "CustomMatrixNonExistentElementException.h"
+#include "FractionException.h"
 
 CustomMatrix::CustomMatrix(Fraction** elements, int rows, int columns) : rows(rows), columns(columns) {
     try{
@@ -66,6 +67,29 @@ void CustomMatrix::cpyMtx(Fraction** originalMtx,Fraction** newMtx, int original
     } catch(CustomMatrixException& cme){
         std::cout << cme.what() << std::endl;
     }
+}
+
+//todo testing and all that
+bool CustomMatrix::reduceable() const {
+    CustomVector* columnVectors = this->split(true);
+    int k=0;
+    for(int i=0;i<columns;i++){
+        for(int j=0;j<int(columnVectors[i]);j++){
+            Fraction tmp = columnVectors[i][0];
+            try {
+                if(int(columnVectors[i].sum()) == 0 && int(columnVectors[i].rowDivide(tmp).sum()) == 0){
+                    return true;
+                } else {
+                    if(int(columnVectors[i][k++])!=1){
+                        return true;
+                    }
+                }
+            } catch(FractionException& fe){
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 Fraction CustomMatrix::at(int n,int k) const {

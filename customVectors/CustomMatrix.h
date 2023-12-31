@@ -22,6 +22,8 @@ public:
 
     static void cpyMtx(Fraction**,Fraction**,int,int,int,int);
 
+    [[nodiscard]] bool reduceable()const;
+
     [[nodiscard]] int getRows()const;
 
     [[nodiscard]] int getColumns()const;
@@ -101,5 +103,3 @@ public:
 void swap(CustomMatrix&, CustomMatrix&);
 
 Fraction determinant(CustomMatrix);
-
-
