@@ -6,8 +6,6 @@
 #include "FractionException.h"
 #include "CustomVectorException.h"
 
-#define TESTING
-
 using namespace std;
 
 void CMtesting() {
@@ -284,6 +282,7 @@ void Ftesting(){
 }
 
 int main() {
+//#define TESTING
 #ifdef TESTING
     string s;
     cout << "cm for CustomMatrix, cv for CustomVector and f for Fraction testing" << endl;
@@ -298,6 +297,11 @@ int main() {
         Ftesting();
     }
 #endif
+
+    CustomMatrix cm(eye(5));
+    cm.coutPrint();
+
+
 
     return 0;
 }

@@ -332,4 +332,5 @@ CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj: \
  D:\hobbyVector\customVectors\Fraction.h \
  D:\hobbyVector\customVectors\CustomMatrixIncorrectParametersException.h \
  D:\hobbyVector\customVectors\CustomMatrixException.h \
- D:\hobbyVector\customVectors\CustomMatrixNonExistentElementException.h
+ D:\hobbyVector\customVectors\CustomMatrixNonExistentElementException.h \
+ D:\hobbyVector\customVectors\FractionException.h

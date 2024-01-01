@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/customVectors.dir/ColumnVector.cpp.obj"
+  "CMakeFiles/customVectors.dir/ColumnVector.cpp.obj.d"
   "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj"
   "CMakeFiles/customVectors.dir/CustomMatrix.cpp.obj.d"
   "CMakeFiles/customVectors.dir/CustomMatrixException.cpp.obj"
@@ -23,6 +25,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/customVectors.dir/Fraction.cpp.obj.d"
   "CMakeFiles/customVectors.dir/FractionException.cpp.obj"
   "CMakeFiles/customVectors.dir/FractionException.cpp.obj.d"
+  "CMakeFiles/customVectors.dir/RowVector.cpp.obj"
+  "CMakeFiles/customVectors.dir/RowVector.cpp.obj.d"
   "CMakeFiles/customVectors.dir/main.cpp.obj"
   "CMakeFiles/customVectors.dir/main.cpp.obj.d"
   "customVectors.exe"

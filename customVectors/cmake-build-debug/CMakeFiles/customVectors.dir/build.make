@@ -250,6 +250,34 @@ CMakeFiles/customVectors.dir/FractionException.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/customVectors.dir/FractionException.cpp.s"
 	"D:\CLion 2023.1.3\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\hobbyVector\customVectors\FractionException.cpp -o CMakeFiles\customVectors.dir\FractionException.cpp.s
 
+CMakeFiles/customVectors.dir/RowVector.cpp.obj: CMakeFiles/customVectors.dir/flags.make
+CMakeFiles/customVectors.dir/RowVector.cpp.obj: D:/hobbyVector/customVectors/RowVector.cpp
+CMakeFiles/customVectors.dir/RowVector.cpp.obj: CMakeFiles/customVectors.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/customVectors.dir/RowVector.cpp.obj"
+	"D:\CLion 2023.1.3\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/customVectors.dir/RowVector.cpp.obj -MF CMakeFiles\customVectors.dir\RowVector.cpp.obj.d -o CMakeFiles\customVectors.dir\RowVector.cpp.obj -c D:\hobbyVector\customVectors\RowVector.cpp
+
+CMakeFiles/customVectors.dir/RowVector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/customVectors.dir/RowVector.cpp.i"
+	"D:\CLion 2023.1.3\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\hobbyVector\customVectors\RowVector.cpp > CMakeFiles\customVectors.dir\RowVector.cpp.i
+
+CMakeFiles/customVectors.dir/RowVector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/customVectors.dir/RowVector.cpp.s"
+	"D:\CLion 2023.1.3\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\hobbyVector\customVectors\RowVector.cpp -o CMakeFiles\customVectors.dir\RowVector.cpp.s
+
+CMakeFiles/customVectors.dir/ColumnVector.cpp.obj: CMakeFiles/customVectors.dir/flags.make
+CMakeFiles/customVectors.dir/ColumnVector.cpp.obj: D:/hobbyVector/customVectors/ColumnVector.cpp
+CMakeFiles/customVectors.dir/ColumnVector.cpp.obj: CMakeFiles/customVectors.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/customVectors.dir/ColumnVector.cpp.obj"
+	"D:\CLion 2023.1.3\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/customVectors.dir/ColumnVector.cpp.obj -MF CMakeFiles\customVectors.dir\ColumnVector.cpp.obj.d -o CMakeFiles\customVectors.dir\ColumnVector.cpp.obj -c D:\hobbyVector\customVectors\ColumnVector.cpp
+
+CMakeFiles/customVectors.dir/ColumnVector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/customVectors.dir/ColumnVector.cpp.i"
+	"D:\CLion 2023.1.3\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\hobbyVector\customVectors\ColumnVector.cpp > CMakeFiles\customVectors.dir\ColumnVector.cpp.i
+
+CMakeFiles/customVectors.dir/ColumnVector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/customVectors.dir/ColumnVector.cpp.s"
+	"D:\CLion 2023.1.3\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\hobbyVector\customVectors\ColumnVector.cpp -o CMakeFiles\customVectors.dir\ColumnVector.cpp.s
+
 # Object files for target customVectors
 customVectors_OBJECTS = \
 "CMakeFiles/customVectors.dir/main.cpp.obj" \
@@ -264,7 +292,9 @@ customVectors_OBJECTS = \
 "CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementException.cpp.obj" \
 "CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj" \
 "CMakeFiles/customVectors.dir/Fraction.cpp.obj" \
-"CMakeFiles/customVectors.dir/FractionException.cpp.obj"
+"CMakeFiles/customVectors.dir/FractionException.cpp.obj" \
+"CMakeFiles/customVectors.dir/RowVector.cpp.obj" \
+"CMakeFiles/customVectors.dir/ColumnVector.cpp.obj"
 
 # External object files for target customVectors
 customVectors_EXTERNAL_OBJECTS =
@@ -282,11 +312,13 @@ customVectors.exe: CMakeFiles/customVectors.dir/CustomMatrixNonExistentElementEx
 customVectors.exe: CMakeFiles/customVectors.dir/CustomMatrixIncorrectParametersException.cpp.obj
 customVectors.exe: CMakeFiles/customVectors.dir/Fraction.cpp.obj
 customVectors.exe: CMakeFiles/customVectors.dir/FractionException.cpp.obj
+customVectors.exe: CMakeFiles/customVectors.dir/RowVector.cpp.obj
+customVectors.exe: CMakeFiles/customVectors.dir/ColumnVector.cpp.obj
 customVectors.exe: CMakeFiles/customVectors.dir/build.make
 customVectors.exe: CMakeFiles/customVectors.dir/linkLibs.rsp
 customVectors.exe: CMakeFiles/customVectors.dir/objects1
 customVectors.exe: CMakeFiles/customVectors.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable customVectors.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\hobbyVector\customVectors\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable customVectors.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\customVectors.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

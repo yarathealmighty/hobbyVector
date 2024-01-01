@@ -72,19 +72,13 @@ void CustomMatrix::cpyMtx(Fraction** originalMtx,Fraction** newMtx, int original
 //todo testing and all that
 bool CustomMatrix::reduceable() const {
     CustomVector* columnVectors = this->split(true);
-    int k=0;
     for(int i=0;i<columns;i++){
-        for(int j=0;j<int(columnVectors[i]);j++){
-            Fraction tmp = columnVectors[i][0];
+        for(int j=i+1;j<int(columnVectors[i]);j++){
             try {
-                if(int(columnVectors[i].sum()) == 0 && int(columnVectors[i].rowDivide(tmp).sum()) == 0){
+                if(int(columnVectors[i][j]) != 0){
                     return true;
-                } else {
-                    if(int(columnVectors[i][k++])!=1){
-                        return true;
-                    }
                 }
-            } catch(FractionException& fe){
+            } catch (FractionException& fe){
                 return true;
             }
         }
@@ -322,7 +316,11 @@ void CustomMatrix::print(Fraction** matrix,int row, int column) {
 void CustomMatrix::coutPrint() const {
     for(int i=0;i<rows;i++){
         for(int j=0;j<columns;j++){
-            std:: cout << std::string(mtx[i][j]);
+            try {
+                std::cout << int(mtx[i][j]);
+            } catch(FractionException& fe){
+                std::cout << std::string(mtx[i][j]);
+            }
             if(j!=columns-1){
                 std::cout << " ";
             }
@@ -599,5 +597,21 @@ void swap(CustomMatrix &cm1, CustomMatrix &cm2) {
     cm1=CM;
 }
 
-
+CustomMatrix eye(const int n){
+    CustomMatrix output(n,n);
+    for(int i=0;i<n;i++){
+        CustomVector cv;
+        for(int j=0;j<n;j++){
+            if(i==j){
+                Fraction one(1,1);
+                cv << one;
+            } else {
+                Fraction zero(0,1);
+                cv << zero;
+            }
+        }
+        output.setRow(i,cv);
+    }
+    return output;
+}
 

@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/hobbyVector/customVectors/ColumnVector.cpp">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/ColumnVector.h">
+			<Option target="customVectors"/>
+		</Unit>
 		<Unit filename="D:/hobbyVector/customVectors/CustomMatrix.cpp">
 			<Option target="customVectors"/>
 		</Unit>
@@ -152,6 +158,12 @@
 			<Option target="customVectors"/>
 		</Unit>
 		<Unit filename="D:/hobbyVector/customVectors/FractionException.h">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/RowVector.cpp">
+			<Option target="customVectors"/>
+		</Unit>
+		<Unit filename="D:/hobbyVector/customVectors/RowVector.h">
 			<Option target="customVectors"/>
 		</Unit>
 		<Unit filename="D:/hobbyVector/customVectors/main.cpp">

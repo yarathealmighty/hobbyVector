@@ -128,6 +128,30 @@ customVectors/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/build
 .PHONY : customVectors/fast
 
+ColumnVector.obj: ColumnVector.cpp.obj
+.PHONY : ColumnVector.obj
+
+# target to build an object file
+ColumnVector.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/ColumnVector.cpp.obj
+.PHONY : ColumnVector.cpp.obj
+
+ColumnVector.i: ColumnVector.cpp.i
+.PHONY : ColumnVector.i
+
+# target to preprocess a source file
+ColumnVector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/ColumnVector.cpp.i
+.PHONY : ColumnVector.cpp.i
+
+ColumnVector.s: ColumnVector.cpp.s
+.PHONY : ColumnVector.s
+
+# target to generate assembly for a file
+ColumnVector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/ColumnVector.cpp.s
+.PHONY : ColumnVector.cpp.s
+
 CustomMatrix.obj: CustomMatrix.cpp.obj
 .PHONY : CustomMatrix.obj
 
@@ -416,6 +440,30 @@ FractionException.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/FractionException.cpp.s
 .PHONY : FractionException.cpp.s
 
+RowVector.obj: RowVector.cpp.obj
+.PHONY : RowVector.obj
+
+# target to build an object file
+RowVector.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/RowVector.cpp.obj
+.PHONY : RowVector.cpp.obj
+
+RowVector.i: RowVector.cpp.i
+.PHONY : RowVector.i
+
+# target to preprocess a source file
+RowVector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/RowVector.cpp.i
+.PHONY : RowVector.cpp.i
+
+RowVector.s: RowVector.cpp.s
+.PHONY : RowVector.s
+
+# target to generate assembly for a file
+RowVector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\customVectors.dir\build.make CMakeFiles/customVectors.dir/RowVector.cpp.s
+.PHONY : RowVector.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -449,6 +497,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... customVectors
+	@echo ... ColumnVector.obj
+	@echo ... ColumnVector.i
+	@echo ... ColumnVector.s
 	@echo ... CustomMatrix.obj
 	@echo ... CustomMatrix.i
 	@echo ... CustomMatrix.s
@@ -485,6 +536,9 @@ help:
 	@echo ... FractionException.obj
 	@echo ... FractionException.i
 	@echo ... FractionException.s
+	@echo ... RowVector.obj
+	@echo ... RowVector.i
+	@echo ... RowVector.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

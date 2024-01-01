@@ -103,3 +103,5 @@ public:
 void swap(CustomMatrix&, CustomMatrix&);
 
 Fraction determinant(CustomMatrix);
+
+CustomMatrix eye(int);
