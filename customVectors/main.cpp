@@ -299,7 +299,27 @@ int main() {
 #endif
 
     CustomMatrix cm(eye(5));
+    Fraction tmp(1, 6);
+    Fraction one(1);
+    Fraction zero(0);
+
+    cm.sMultiple(tmp);
     cm.coutPrint();
+    cout << "upper-triangle matrix? " << cm.upperTriangle() << endl;
+
+    cm[1][0] = tmp;
+    cm.coutPrint();
+    cout << "upper-triangle matrix? " << cm.upperTriangle() << endl;
+
+    cm[1][0] = zero;
+    for(int i=0;i<cm.getRows();i++){
+        cm[i][i] = zero;
+        if(i!=cm.getRows()-1){
+            cm[i][i+1] = one;
+        }
+    }
+    cm.coutPrint();
+    cout << "strictly upper-triangle matrix? " << cm.strictUpperTriangle() << endl;
 
 
 

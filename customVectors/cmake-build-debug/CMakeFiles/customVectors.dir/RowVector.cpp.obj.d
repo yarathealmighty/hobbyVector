@@ -1,5 +1,6 @@
-CMakeFiles/customVectors.dir/CustomVector.cpp.obj: \
- D:\hobbyVector\customVectors\CustomVector.cpp \
+CMakeFiles/customVectors.dir/RowVector.cpp.obj: \
+ D:\hobbyVector\customVectors\RowVector.cpp \
+ D:\hobbyVector\customVectors\RowVector.h \
  D:\hobbyVector\customVectors\CustomVector.h \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/stdc++.h \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cassert \
@@ -328,10 +329,4 @@ CMakeFiles/customVectors.dir/CustomVector.cpp.obj: \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/memory_resource \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/uses_allocator_args.h \
  D:/CLion\ 2023.1.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/variant \
- D:\hobbyVector\customVectors\Fraction.h \
- D:\hobbyVector\customVectors\CustomVectorException.h \
- D:\hobbyVector\customVectors\CustomVectorIncorrectParametersException.h \
- D:\hobbyVector\customVectors\CustomVectorNonExistentElementException.h \
- D:\hobbyVector\customVectors\CustomVectorLengthCannotBeModifiedException.h \
- D:\hobbyVector\customVectors\CustomVectorIndexOutOfBoundsException.h \
- D:\hobbyVector\customVectors\FractionException.h
+ D:\hobbyVector\customVectors\Fraction.h

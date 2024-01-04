@@ -8,6 +8,7 @@
 #include "CustomVectorNonExistentElementException.h"
 #include "CustomVectorLengthCannotBeModifiedException.h"
 #include "CustomVectorIndexOutOfBoundsException.h"
+#include "FractionException.h"
 #include <bits/stdc++.h>
 
     CustomVector::CustomVector(Fraction* elements,int length) : length(length) {
@@ -110,6 +111,7 @@
         Fraction sum(0);
         for(int i=startIndex;i<startIndex+steps;i++){
             sum+=contain[i];
+            std::cout << "[LOG]sum this is the current fraction: " << std::string(contain[i]) << std::endl;
         }
         return sum;
     }
@@ -167,9 +169,17 @@
         std::string str="{";
         for(int i=0;i<length;i++){
             if(i!=length-1){
-                str+= std::string(contain[i]) + ", ";
-            } else {
-                str += std::string(contain[i]);
+                try{
+                    str+= std::to_string(int(contain[i])) + ", ";
+                } catch(FractionException& fe){
+                    str+= std::string(contain[i]) + ", ";
+                }
+                } else {
+                try{
+                    str+= std::to_string(int(contain[i]));
+                } catch(FractionException& fe){
+                    str+= std::string(contain[i]);
+                }
             }
         }
         str+="}";

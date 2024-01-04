@@ -135,6 +135,9 @@ Fraction::operator int() const {
         if(denominator==numerator){
             return 1;
         }
+        if(numerator==0){
+            return 0;
+        }
         throw FractionException("The fraction: " + std::string(*this) + " is not castable to int");
     }
 }

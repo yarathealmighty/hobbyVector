@@ -86,6 +86,32 @@ bool CustomMatrix::reduceable() const {
     return false;
 }
 
+bool CustomMatrix::upperTriangle() const {
+    return !reduceable();
+}
+
+bool CustomMatrix::strictReduceable() const {
+    try {
+        CustomVector diagonal = getDiagonal();
+        std::cout << "lefut2" << std::endl;
+        std::cout << std::string(diagonal) << std::endl;
+        Fraction tmp = diagonal.sum();
+        std::cout << "lefut3" << std::endl;
+        if(int(tmp)==0 && reduceable()){
+            return true;
+        } else {
+            return false;
+        }
+    } catch(FractionException& fe){
+        std::cout << fe.what() << std::endl;
+        return false;
+    }
+}
+
+bool CustomMatrix::strictUpperTriangle() const {
+    return !strictReduceable();
+}
+
 Fraction CustomMatrix::at(int n,int k) const {
     return mtx[n][k];
 }
@@ -322,7 +348,7 @@ void CustomMatrix::coutPrint() const {
                 std::cout << std::string(mtx[i][j]);
             }
             if(j!=columns-1){
-                std::cout << " ";
+                std::cout << "\t";
             }
         }
         std::cout << std::endl;
@@ -487,6 +513,14 @@ CustomMatrix &CustomMatrix::removeLastColumn() {
     destroyMtx(mtx,rows);
     mtx = newMtx;
     return *this;
+}
+
+CustomVector CustomMatrix::getDiagonal() const {
+    CustomVector output = CustomVector();
+    for(int i=0;i<rows;i++){
+        output << mtx[i][i];
+    }
+    return output;
 }
 
 CustomMatrix::operator std::string() const {

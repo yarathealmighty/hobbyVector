@@ -24,6 +24,12 @@ public:
 
     [[nodiscard]] bool reduceable()const;
 
+    [[nodiscard]] bool upperTriangle() const;
+
+    [[nodiscard]] bool strictReduceable() const;
+
+    [[nodiscard]] bool strictUpperTriangle() const;
+
     [[nodiscard]] int getRows()const;
 
     [[nodiscard]] int getColumns()const;
@@ -81,6 +87,8 @@ public:
     CustomMatrix& removeColumn(const CustomVector&);
 
     CustomMatrix& removeLastColumn();
+
+    CustomVector getDiagonal() const;
 
     CustomMatrix& operator+=(const CustomMatrix&);
 
