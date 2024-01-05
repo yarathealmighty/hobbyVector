@@ -2,7 +2,6 @@
 // Created by yarr on 2024. 01. 01..
 //
 
-#pragma once
 #include "RowVector.h"
 
 RowVector::RowVector() : CustomVector() {}

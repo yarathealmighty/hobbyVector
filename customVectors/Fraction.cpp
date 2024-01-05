@@ -13,6 +13,9 @@ Fraction::Fraction(const Fraction &f) : numerator(f.numerator), denominator(f.de
 
 Fraction &Fraction::simplify() {
     int a=numerator,b=denominator,ans;
+    if(a==0 || b==1){
+        return *this;
+    }
     if(a<0){
         a*=-1;
     }

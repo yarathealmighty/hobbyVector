@@ -69,7 +69,6 @@ void CustomMatrix::cpyMtx(Fraction** originalMtx,Fraction** newMtx, int original
     }
 }
 
-//todo testing and all that
 bool CustomMatrix::reduceable() const {
     CustomVector* columnVectors = this->split(true);
     for(int i=0;i<columns;i++){
@@ -90,14 +89,13 @@ bool CustomMatrix::upperTriangle() const {
     return !reduceable();
 }
 
+//todo fix this
 bool CustomMatrix::strictReduceable() const {
     try {
         CustomVector diagonal = getDiagonal();
-        std::cout << "lefut2" << std::endl;
-        std::cout << std::string(diagonal) << std::endl;
         Fraction tmp = diagonal.sum();
-        std::cout << "lefut3" << std::endl;
-        if(int(tmp)==0 && reduceable()){
+        bool tmpBool = reduceable();
+        if(int(tmp)==0 && tmpBool){
             return true;
         } else {
             return false;

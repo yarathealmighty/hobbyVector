@@ -111,7 +111,6 @@
         Fraction sum(0);
         for(int i=startIndex;i<startIndex+steps;i++){
             sum+=contain[i];
-            std::cout << "[LOG]sum this is the current fraction: " << std::string(contain[i]) << std::endl;
         }
         return sum;
     }

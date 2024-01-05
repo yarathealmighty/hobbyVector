@@ -298,6 +298,7 @@ int main() {
     }
 #endif
 
+    //testing reduceable()
     CustomMatrix cm(eye(5));
     Fraction tmp(1, 6);
     Fraction one(1);
@@ -319,6 +320,7 @@ int main() {
         }
     }
     cm.coutPrint();
+    //todo fix this
     cout << "strictly upper-triangle matrix? " << cm.strictUpperTriangle() << endl;
 
 
