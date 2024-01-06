@@ -26,9 +26,13 @@ public:
 
     [[nodiscard]] bool upperTriangle() const;
 
+    [[nodiscard]] bool lowerTriangle() const;
+
     [[nodiscard]] bool strictReduceable() const;
 
     [[nodiscard]] bool strictUpperTriangle() const;
+
+    [[nodiscard]] bool strictLowerTriangle() const;
 
     [[nodiscard]] int getRows()const;
 

@@ -1,6 +1,5 @@
 - implement multiplication and division work with row and column vectors
     - add exceptions
-- implement L matrix checker
 - implement gaussian-elimination for U matrix
     - implement elimination-matrix while gaussian-elimination to get L matrix
 - implement scalar simplification for matrices (rows/columns)

@@ -306,23 +306,21 @@ int main() {
 
     cm.sMultiple(tmp);
     cm.coutPrint();
-    cout << "upper-triangle matrix? " << cm.upperTriangle() << endl;
+    cout << "lower-triangle matrix? " << cm.lowerTriangle() << endl;
 
-    cm[1][0] = tmp;
+    cm[0][1] = tmp;
     cm.coutPrint();
-    cout << "upper-triangle matrix? " << cm.upperTriangle() << endl;
+    cout << "lower-triangle matrix? " << cm.lowerTriangle() << endl;
 
-    cm[1][0] = zero;
+    cm[0][1] = zero;
     for(int i=0;i<cm.getRows();i++){
         cm[i][i] = zero;
-        if(i!=cm.getRows()-1){
-            cm[i][i+1] = one;
+        if(i!=0){
+            cm[i][i-1] = one;
         }
     }
     cm.coutPrint();
-    //todo fix this
-    cout << "strictly upper-triangle matrix? " << cm.strictUpperTriangle() << endl;
-
+    cout << "strictly lower-triangle matrix? " << cm.strictLowerTriangle() << endl;
 
 
     return 0;

@@ -89,7 +89,22 @@ bool CustomMatrix::upperTriangle() const {
     return !reduceable();
 }
 
-//todo fix this
+bool CustomMatrix::lowerTriangle() const {
+    CustomVector* columnVectors = this->split(true);
+    for(int i=0;i<columns;i++){
+        for(int j=0;j<i;j++){
+            try {
+                if(int(columnVectors[i][j]) != 0){
+                    return false;
+                }
+            } catch (FractionException& fe){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 bool CustomMatrix::strictReduceable() const {
     try {
         CustomVector diagonal = getDiagonal();
@@ -108,6 +123,22 @@ bool CustomMatrix::strictReduceable() const {
 
 bool CustomMatrix::strictUpperTriangle() const {
     return !strictReduceable();
+}
+
+bool CustomMatrix::strictLowerTriangle() const {
+    try {
+        CustomVector diagonal = getDiagonal();
+        Fraction tmp = diagonal.sum();
+        bool tmpBool = lowerTriangle();
+        if(int(tmp)==0 && tmpBool){
+            return true;
+        } else {
+            return false;
+        }
+    } catch(FractionException& fe){
+        std::cout << fe.what() << std::endl;
+        return false;
+    }
 }
 
 Fraction CustomMatrix::at(int n,int k) const {
