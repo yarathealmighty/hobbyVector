@@ -22,6 +22,12 @@ public:
 
     static void cpyMtx(Fraction**,Fraction**,int,int,int,int);
 
+    CustomMatrix& reduce(int);
+
+    CustomMatrix& stair();
+
+    CustomMatrix& reducedStair();
+
     [[nodiscard]] bool reduceable()const;
 
     [[nodiscard]] bool upperTriangle() const;

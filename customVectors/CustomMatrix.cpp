@@ -69,6 +69,56 @@ void CustomMatrix::cpyMtx(Fraction** originalMtx,Fraction** newMtx, int original
     }
 }
 
+//todo testing
+CustomMatrix& CustomMatrix::reduce(const int columnIndex){
+    Fraction scalarNumber;
+    int rowIndex;
+    if(columnIndex >= rows){
+        rowIndex=rows-1;
+    } else {
+        rowIndex = columnIndex;
+    }
+    scalarNumber = mtx[rowIndex][columnIndex];
+    CustomVector* rowVectors = this->split();
+    for(int i=0;i<rows;i++){
+        Fraction tmp = rowVectors[i][columnIndex]/scalarNumber;
+        CustomVector tmpCv = rowVectors[rowIndex];
+        std::cout << "[LOG]reduce: tmp: " << std::string(tmp) << std::endl;
+        if(rowIndex==i){
+            continue;
+        } else {
+            rowVectors[i]-=tmpCv.sMultiple(tmp);
+            std::cout << "[LOG]reduce: tmpCv: " << std::string(tmpCv) << std::endl;
+            std::cout << "[LOG]reduce: rows[i]: " << std::string(rowVectors[i]) << std::endl;
+        }
+        this->setRow(i,rowVectors[i]);
+    }
+    this->coutPrint();
+    return *this;
+}
+
+//todo testing
+CustomMatrix &CustomMatrix::stair() {
+    if(!upperTriangle()){
+        for(int i=0;i<columns;i++){
+            this->reduce(i);
+        }
+    }
+    return *this;
+}
+
+//todo testing
+CustomMatrix &CustomMatrix::reducedStair() {
+    stair();
+    CustomVector* rowVectors = split();
+    int tmp = columns<rows?columns:rows;
+    for(int i=0;i<tmp;i++){
+        rowVectors[i].sDivide(mtx[i][i]);
+        setRow(i,rowVectors[i]);
+    }
+    return *this;
+}
+
 bool CustomMatrix::reduceable() const {
     CustomVector* columnVectors = this->split(true);
     for(int i=0;i<columns;i++){
@@ -677,4 +727,6 @@ CustomMatrix eye(const int n){
     }
     return output;
 }
+
+
 

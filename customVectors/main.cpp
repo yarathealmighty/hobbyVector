@@ -299,28 +299,23 @@ int main() {
 #endif
 
     //testing reduceable()
-    CustomMatrix cm(eye(5));
-    Fraction tmp(1, 6);
+    CustomMatrix cm(eye(2));
     Fraction one(1);
-    Fraction zero(0);
-
-    cm.sMultiple(tmp);
+    Fraction two(2);
+    Fraction three(3);
+    Fraction four(4);
+    cm[0][0] = one;
+    cm[0][1] = two;
+    cm[1][0] = three;
+    cm[1][1] = four;
+    cout << "cm: " << endl;
     cm.coutPrint();
-    cout << "lower-triangle matrix? " << cm.lowerTriangle() << endl;
-
-    cm[0][1] = tmp;
+    cm.stair();
+    cout << "stair: " << endl;
     cm.coutPrint();
-    cout << "lower-triangle matrix? " << cm.lowerTriangle() << endl;
-
-    cm[0][1] = zero;
-    for(int i=0;i<cm.getRows();i++){
-        cm[i][i] = zero;
-        if(i!=0){
-            cm[i][i-1] = one;
-        }
-    }
+    cm.reducedStair();
+    cout << "reducedStair: " << endl;
     cm.coutPrint();
-    cout << "strictly lower-triangle matrix? " << cm.strictLowerTriangle() << endl;
 
 
     return 0;
