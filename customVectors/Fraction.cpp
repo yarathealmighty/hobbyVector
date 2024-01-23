@@ -16,6 +16,10 @@ Fraction &Fraction::simplify() {
     if(a==0 || b==1){
         return *this;
     }
+    if(b==-1){
+        expand(-1);
+        return *this;
+    }
     if(a<0){
         a*=-1;
     }
@@ -91,9 +95,7 @@ Fraction Fraction::operator-(const Fraction &f) const {
         tmpFraction.expand(tmp);
     }
     output.numerator-=tmpFraction.numerator;
-    std::cout << std::string(output) << std::endl;
     output.simplify();
-    std::cout << std::string(output) << std::endl;
     return output;
 }
 
@@ -140,6 +142,9 @@ Fraction::operator int() const {
         }
         if(numerator==0){
             return 0;
+        }
+        if(denominator==-1){
+            return numerator*-1;
         }
         throw FractionException("The fraction: " + std::string(*this) + " is not castable to int");
     }

@@ -299,15 +299,20 @@ int main() {
 #endif
 
     //testing reduceable()
-    CustomMatrix cm(eye(2));
+    CustomMatrix cm(eye(3));
     Fraction one(1);
     Fraction two(2);
     Fraction three(3);
     Fraction four(4);
     cm[0][0] = one;
     cm[0][1] = two;
+    cm[0][2] = three;
     cm[1][0] = three;
-    cm[1][1] = four;
+    cm[1][1] = two;
+    cm[1][2] = one;
+    cm[2][0] = two;
+    cm[2][1] = one;
+    cm[2][2] = three;
     cout << "cm: " << endl;
     cm.coutPrint();
     cm.rowReduce();
@@ -317,6 +322,9 @@ int main() {
     cout << "reducedEchelon: " << endl;
     cm.coutPrint();
 
+    //todo check this
+    Fraction tmp(-3,-1);
+    cout << string(tmp) << endl;
 
     return 0;
 }
