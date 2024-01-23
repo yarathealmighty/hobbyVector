@@ -24,9 +24,9 @@ public:
 
     CustomMatrix& reduce(int);
 
-    CustomMatrix& stair();
+    CustomMatrix& rowReduce();
 
-    CustomMatrix& reducedStair();
+    CustomMatrix& reducedEchelon();
 
     [[nodiscard]] bool reduceable()const;
 

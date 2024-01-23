@@ -98,7 +98,7 @@ CustomMatrix& CustomMatrix::reduce(const int columnIndex){
 }
 
 //todo testing
-CustomMatrix &CustomMatrix::stair() {
+CustomMatrix &CustomMatrix::rowReduce() {
     if(!upperTriangle()){
         for(int i=0;i<columns;i++){
             this->reduce(i);
@@ -108,8 +108,8 @@ CustomMatrix &CustomMatrix::stair() {
 }
 
 //todo testing
-CustomMatrix &CustomMatrix::reducedStair() {
-    stair();
+CustomMatrix &CustomMatrix::reducedEchelon() {
+    rowReduce();
     CustomVector* rowVectors = split();
     int tmp = columns<rows?columns:rows;
     for(int i=0;i<tmp;i++){

@@ -310,11 +310,11 @@ int main() {
     cm[1][1] = four;
     cout << "cm: " << endl;
     cm.coutPrint();
-    cm.stair();
-    cout << "stair: " << endl;
+    cm.rowReduce();
+    cout << "rowReduce: " << endl;
     cm.coutPrint();
-    cm.reducedStair();
-    cout << "reducedStair: " << endl;
+    cm.reducedEchelon();
+    cout << "reducedEchelon: " << endl;
     cm.coutPrint();
 
 
