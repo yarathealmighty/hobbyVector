@@ -24,6 +24,8 @@ public:
 
     CustomMatrix& reduce(int);
 
+    CustomMatrix inverse();
+
     CustomMatrix& rowReduce();
 
     CustomMatrix& reducedEchelon();

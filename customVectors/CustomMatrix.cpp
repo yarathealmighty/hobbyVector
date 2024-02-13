@@ -97,6 +97,15 @@ CustomMatrix& CustomMatrix::reduce(const int columnIndex){
     return *this;
 }
 
+CustomMatrix CustomMatrix::inverse() {
+    try{
+        selfDeterminant();
+        //todo actual inverting here
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
+    }
+}
+
 //todo testing
 CustomMatrix &CustomMatrix::rowReduce() {
     if(!upperTriangle()){
