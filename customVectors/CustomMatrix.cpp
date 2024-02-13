@@ -33,6 +33,35 @@ CustomMatrix::CustomMatrix(CustomMatrix& cm) :rows(cm.rows), columns(cm.columns)
     }
 }
 
+//todo check memory leak here
+CustomMatrix::CustomMatrix(CustomVector* vectors, int numberOfVectors, bool rowVectors) {
+    try{
+        if(rowVectors){
+            auto** cpyMtx = new Fraction*[numberOfVectors];
+            for(int i=0;i<numberOfVectors;i++){
+                auto* cpyVector = new Fraction[int(vectors[0])];
+                for(int j=0;j<int(vectors[0]);j++){
+                    cpyVector[j] = vectors[i][j];
+                }
+                cpyMtx[i] = cpyVector;
+            }
+            CustomMatrix(cpyMtx,numberOfVectors,int(vectors[0]));
+        } else {
+            auto** cpyMtx = new Fraction*[int(vectors[0])];
+            for(int i=0;i<int(vectors[0]);i++){
+                auto* cpyVector = new Fraction[numberOfVectors];
+                for(int j=0;j<numberOfVectors;j++){
+                    cpyVector[j] = vectors[j][i];
+                }
+                cpyMtx[i] = cpyVector;
+            }
+            CustomMatrix(cpyMtx,int(vectors[0]),numberOfVectors);
+        }
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
+    }
+}
+
 CustomMatrix::~CustomMatrix() {
     destroyMtx(mtx,rows);
 }
@@ -91,9 +120,9 @@ CustomMatrix& CustomMatrix::reduce(const int columnIndex){
             std::cout << "[LOG]reduce: tmpCv: " << std::string(tmpCv) << std::endl;
             std::cout << "[LOG]reduce: rows[i]: " << std::string(rowVectors[i]) << std::endl;
         }
-        this->setRow(i,rowVectors[i]);
+        setRow(i,rowVectors[i]);
     }
-    this->coutPrint();
+    coutPrint();
     return *this;
 }
 
@@ -101,6 +130,26 @@ CustomMatrix CustomMatrix::inverse() {
     try{
         selfDeterminant();
         //todo actual inverting here
+        CustomVector* rowVectors = split();
+        CustomMatrix inverse = eye(rows);
+        CustomVector* inverseRowVectors = inverse.split();
+        for(int i=0;i<rows;i++){
+            Fraction tmpFraction = rowVectors[i][i];
+            Fraction tmpInverseFraction = inverseRowVectors[i][i];
+            for(int j=0;j<rows;j++){
+                if(i==j){
+                    continue;
+                } else {
+                    //todo this may malfunction
+                    CustomVector tmpVector = rowVectors[i];
+                    CustomVector tmpInverseVector = inverseRowVectors[i];
+                    rowVectors[j]-=tmpVector.sMultiple(tmpFraction);
+                    inverseRowVectors[j]-=tmpInverseVector.sMultiple(tmpInverseFraction);
+                }
+            }
+        }
+        CustomMatrix tmpMatrix(inverseRowVectors,rows);
+        return tmpMatrix;
     } catch(CustomMatrixException& cme){
         std::cout << cme.what() << std::endl;
     }

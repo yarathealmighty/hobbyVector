@@ -16,6 +16,8 @@ public:
 
     CustomMatrix(CustomMatrix&);
 
+    CustomMatrix(CustomVector*,int,bool=true);
+
     static Fraction** createNewMtx(int,int);
 
     static void destroyMtx(Fraction**,int);
