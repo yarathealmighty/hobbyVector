@@ -11,6 +11,29 @@ Fraction::Fraction(int numerator, int denominator) : numerator(numerator), denom
 
 Fraction::Fraction(const Fraction &f) : numerator(f.numerator), denominator(f.denominator) {}
 
+void Fraction::print() {
+    cleanup();
+    try{
+        std::cout << int(*this) << std::endl;
+    } catch(FractionException& fe){
+        std::cout << std::string(*this) << std::endl;
+    }
+}
+
+void Fraction::cleanup() {
+    if(denominator==0){
+        throw FractionException("Not a valid fraction (denominator is 0).");
+    }
+    if(numerator==0){
+        denominator=1;
+    }
+    if(denominator<0){
+        denominator*=-1;
+        numerator*=-1;
+    }
+    simplify();
+}
+
 Fraction &Fraction::simplify() {
     int a=numerator,b=denominator,ans;
     if(a==0 || b==1){
@@ -58,7 +81,7 @@ Fraction &Fraction::operator+=(const Fraction &f) {
         tmpFraction.expand(tmp);
     }
     numerator+=tmpFraction.numerator;
-    this->simplify();
+    cleanup();
     return *this;
 }
 
@@ -78,11 +101,11 @@ Fraction &Fraction::operator-=(const Fraction &f) {
     Fraction tmpFraction(f);
     if(denominator!=f.denominator){
         int tmp = denominator;
-        this->expand(f.denominator);
+        expand(f.denominator);
         tmpFraction.expand(tmp);
     }
     numerator-=tmpFraction.numerator;
-    this->simplify();
+    cleanup();
     return *this;
 }
 
@@ -95,7 +118,7 @@ Fraction Fraction::operator-(const Fraction &f) const {
         tmpFraction.expand(tmp);
     }
     output.numerator-=tmpFraction.numerator;
-    output.simplify();
+    output.cleanup();
     return output;
 }
 
@@ -152,7 +175,7 @@ Fraction::operator int() const {
 
 bool Fraction::operator<(const Fraction &other) const {
     //todo more elegantly
-    if(this->floatValue()<other.floatValue()){
+    if(floatValue()<other.floatValue()){
         return true;
     } else {
         return false;
@@ -160,7 +183,7 @@ bool Fraction::operator<(const Fraction &other) const {
 }
 
 bool Fraction::operator<=(const Fraction &other) const {
-    if(this->floatValue()<=other.floatValue()){
+    if(floatValue()<=other.floatValue()){
         return true;
     } else {
         return false;
@@ -168,7 +191,7 @@ bool Fraction::operator<=(const Fraction &other) const {
 }
 
 bool Fraction::operator>(const Fraction &other) const {
-    if(this->floatValue()>other.floatValue()){
+    if(floatValue()>other.floatValue()){
         return true;
     } else {
         return false;
@@ -176,7 +199,7 @@ bool Fraction::operator>(const Fraction &other) const {
 }
 
 bool Fraction::operator>=(const Fraction &other) const {
-    if(this->floatValue()>=other.floatValue()){
+    if(floatValue()>=other.floatValue()){
         return true;
     } else {
         return false;
@@ -185,7 +208,7 @@ bool Fraction::operator>=(const Fraction &other) const {
 
 bool Fraction::operator==(const Fraction &other) const {
     //todo more elegantly
-    if(this->floatValue()==other.floatValue()){
+    if(floatValue()==other.floatValue()){
         return true;
     } else {
         return false;

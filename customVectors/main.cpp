@@ -323,8 +323,8 @@ int main() {
     cm.coutPrint();
 
     //todo check this
-    Fraction tmp(-3,-1);
-    cout << string(tmp) << endl;
+    Fraction tmp(-3,-2);
+    tmp.print();
 
     return 0;
 }

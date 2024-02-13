@@ -16,6 +16,10 @@ public:
 
     Fraction(const Fraction&);
 
+    void print();
+
+    void cleanup();
+
     Fraction& simplify();
 
     Fraction& expand(int);
