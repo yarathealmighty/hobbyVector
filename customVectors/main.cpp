@@ -298,33 +298,46 @@ int main() {
     }
 #endif
 
-    //testing reduceable()
-    CustomMatrix cm(eye(3));
-    Fraction one(1);
-    Fraction two(2);
-    Fraction three(3);
-    Fraction four(4);
-    cm[0][0] = one;
-    cm[0][1] = two;
-    cm[0][2] = three;
-    cm[1][0] = three;
-    cm[1][1] = two;
-    cm[1][2] = one;
-    cm[2][0] = two;
-    cm[2][1] = one;
-    cm[2][2] = three;
-    cout << "cm: " << endl;
-    cm.coutPrint();
-    cm.rowReduce();
-    cout << "rowReduce: " << endl;
-    cm.coutPrint();
-    cm.reducedEchelon();
-    cout << "reducedEchelon: " << endl;
-    cm.coutPrint();
+/*
+    //todo inverse testing
+    Fraction a11(24,1);
+    Fraction a12(2,1);
+    Fraction a21(9,1);
+    Fraction a22(3,1);
+    CustomMatrix a(2,2);
+    a[0][0] = a11;
+    a[0][1] = a12;
+    a[1][0] = a21;
+    a[1][1] = a22;
+    a.coutPrint();
+    CustomMatrix aInverse = a.inverse();
+    cout << "[TEST] aInverse dimensions: " << aInverse.getRows() << " x " << aInverse.getColumns() << endl;
+    aInverse.coutPrint();
+*/
 
-    //todo check this
-    Fraction tmp(-3,-2);
-    tmp.print();
+    //todo testing constructor4
+    CustomVector v1 = CustomVector();
+    CustomVector v2 = CustomVector();
+    Fraction f1(1,1);
+    Fraction f2(2,1);
+    Fraction f3(3,1);
+    Fraction f4(4,1);
+    v1 << f1 << f2;
+    v2 << f3 << f4;
+
+    cout << "[TEST]constructor4 vectors:" << endl;
+    cout << string(v1) << endl;
+    cout << string(v2) << endl;
+
+    CustomVector* rowVectors = new CustomVector[2];
+    rowVectors[0] = v1;
+    rowVectors[1] = v2;
+
+    cout << "[TEST]constructor4 matrix:" << endl;
+    CustomMatrix m1(rowVectors,2);
+    delete[] rowVectors;
+    m1.coutPrint();
+
 
     return 0;
 }

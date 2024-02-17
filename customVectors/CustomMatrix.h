@@ -82,7 +82,11 @@ public:
 
     void coutPrint() const;
 
-    static void print(Fraction**,int,int) ;
+    void print(Fraction**,int,int) const;
+
+    void info() const;
+
+    void logInfo(Fraction** = nullptr) const;
 
     explicit operator std::string() const;
 

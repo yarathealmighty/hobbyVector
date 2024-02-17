@@ -9,9 +9,14 @@
 
 CustomMatrix::CustomMatrix(Fraction** elements, int rows, int columns) : rows(rows), columns(columns) {
     try{
+        std::cout << "[LOG]constructor1 info: " << std::endl;
+        logInfo();
+        std::cout << "[LOG]constructor1 run1" << std::endl;
         mtx = createNewMtx(rows,columns);
         cpyMtx(elements,mtx,rows,columns,rows,columns);
+        std::cout << "[LOG]constructor1 run2" << std::endl;
     } catch(CustomMatrixException& cme){
+        std::cout << "[LOG]constructor1 run3" << std::endl;
         std::cout << cme.what() << std::endl;
     }
 }
@@ -37,15 +42,23 @@ CustomMatrix::CustomMatrix(CustomMatrix& cm) :rows(cm.rows), columns(cm.columns)
 CustomMatrix::CustomMatrix(CustomVector* vectors, int numberOfVectors, bool rowVectors) {
     try{
         if(rowVectors){
+            std::cout << "[LOG]constructor4 dimensions: " << rows << " x " << columns << std::endl;
+            std::cout << "[LOG]constructor4 parameteres: " << numberOfVectors << " " << rowVectors << std::endl;
+            std::cout << "[LOG]constructor4 vectors: " << std::endl;
+            for(int i=0;i<numberOfVectors;i++){
+                std::cout << std::string(vectors[i]) << std::endl;
+            }
             auto** cpyMtx = new Fraction*[numberOfVectors];
             for(int i=0;i<numberOfVectors;i++){
                 auto* cpyVector = new Fraction[int(vectors[0])];
                 for(int j=0;j<int(vectors[0]);j++){
                     cpyVector[j] = vectors[i][j];
+                    std::cout << "[LOG]constructor4 cpyFraction: " << std::string(cpyVector[j]) << std::endl;
                 }
                 cpyMtx[i] = cpyVector;
             }
-            CustomMatrix(cpyMtx,numberOfVectors,int(vectors[0]));
+            CustomMatrix tmpMtx(cpyMtx,numberOfVectors,int(vectors[0]));
+            *this = tmpMtx;
         } else {
             auto** cpyMtx = new Fraction*[int(vectors[0])];
             for(int i=0;i<int(vectors[0]);i++){
@@ -55,7 +68,8 @@ CustomMatrix::CustomMatrix(CustomVector* vectors, int numberOfVectors, bool rowV
                 }
                 cpyMtx[i] = cpyVector;
             }
-            CustomMatrix(cpyMtx,int(vectors[0]),numberOfVectors);
+            CustomMatrix tmpMtx(cpyMtx,int(vectors[0]),numberOfVectors);
+            *this = tmpMtx;
         }
     } catch(CustomMatrixException& cme){
         std::cout << cme.what() << std::endl;
@@ -128,15 +142,19 @@ CustomMatrix& CustomMatrix::reduce(const int columnIndex){
 
 CustomMatrix CustomMatrix::inverse() {
     try{
+        //todo it has a problem with this for some reason
         selfDeterminant();
         //todo actual inverting here
         CustomVector* rowVectors = split();
         CustomMatrix inverse = eye(rows);
         CustomVector* inverseRowVectors = inverse.split();
+        std::cout << "[LOG]inverse run1" << std::endl;
         for(int i=0;i<rows;i++){
+            std::cout << "[LOG]inverse run2" << std::endl;
             Fraction tmpFraction = rowVectors[i][i];
             Fraction tmpInverseFraction = inverseRowVectors[i][i];
             for(int j=0;j<rows;j++){
+                std::cout << "[LOG]inverse run3" << std::endl;
                 if(i==j){
                     continue;
                 } else {
@@ -148,9 +166,16 @@ CustomMatrix CustomMatrix::inverse() {
                 }
             }
         }
+        std::cout << "[LOG]inverse originalMatrix: " << std::endl;
+        coutPrint();
         CustomMatrix tmpMatrix(inverseRowVectors,rows);
+        std::cout << "[LOG]inverse tmpMatrix: " << std::endl;
+        tmpMatrix.coutPrint();
+        std::cout << "[LOG]inverse inverse: " << std::endl;
+        inverse.coutPrint();
         return tmpMatrix;
     } catch(CustomMatrixException& cme){
+        std::cout << "[LOG]inverse run4" << std::endl;
         std::cout << cme.what() << std::endl;
     }
 }
@@ -464,12 +489,20 @@ CustomMatrix& CustomMatrix::sDivide(const Fraction& scalarNumber) {
     return *this;
 }
 
-void CustomMatrix::print(Fraction** matrix,int row, int column) {
+//todo wtf even is this
+void CustomMatrix::print(Fraction** matrix,int row, int column) const{
+    if(row > rows || column > columns){
+        throw CustomMatrixIncorrectParametersException("The dimensions of the parameters: " + std::to_string(row) + " x " + std::to_string(column) + " are larger than the original matrix dimensions: " + std::to_string(rows) + " x " + std::to_string(columns));
+    }
     for(int i=0;i<row;i++){
         for(int j=0;j<column;j++){
-            std::cout << std::string(matrix[i][j]);
+            try{
+                std::cout << int(matrix[i][j]);
+            } catch(FractionException& fe){
+                std::cout << std::string(matrix[i][j]);
+            }
             if(j!=row-1){
-                std::cout << " ";
+                std::cout << "\t";
             }
         }
         std::cout << std::endl;
@@ -489,6 +522,27 @@ void CustomMatrix::coutPrint() const {
             }
         }
         std::cout << std::endl;
+    }
+}
+
+//todo update this with future functions
+void CustomMatrix::info() const{
+    std::cout << "The dimensions of the matrix: " << rows << " x " << columns << std::endl;
+    std::cout << "The elements of the matrix: " << std::endl;
+    coutPrint();
+}
+
+void CustomMatrix::logInfo(Fraction** elements) const{
+    if(elements== nullptr){
+        elements=mtx;
+    }
+    try {
+        std::cout << "[LOG]info dimensions: " << rows << " x " << columns << std::endl;
+        std::cout << "[LOG]info elements:" << std::endl;
+        //todo this
+        print(mtx, rows, columns);
+    } catch(CustomMatrixException& cme){
+        std::cout << cme.what() << std::endl;
     }
 }
 
