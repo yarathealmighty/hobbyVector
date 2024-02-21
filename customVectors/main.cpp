@@ -336,7 +336,7 @@ int main() {
     cout << "[TEST]constructor4 matrix:" << endl;
     CustomMatrix m1(rowVectors,2);
     delete[] rowVectors;
-    m1.coutPrint();
+    m1.info();
 
 
     return 0;

@@ -7,16 +7,25 @@
 #include "CustomMatrixNonExistentElementException.h"
 #include "FractionException.h"
 
+#define DEBUG
+
 CustomMatrix::CustomMatrix(Fraction** elements, int rows, int columns) : rows(rows), columns(columns) {
     try{
-        std::cout << "[LOG]constructor1 info: " << std::endl;
-        logInfo();
-        std::cout << "[LOG]constructor1 run1" << std::endl;
+#ifdef DEBUG
+        std::cout << "[LOG]constructor1 try{}" << std::endl;
+#endif
         mtx = createNewMtx(rows,columns);
+#ifdef DEBUG
+        std::cout << "[LOG]constructor1 createNewMtx(" << rows << ", " << columns << ")" << std::endl;
+#endif
         cpyMtx(elements,mtx,rows,columns,rows,columns);
-        std::cout << "[LOG]constructor1 run2" << std::endl;
+#ifdef DEBUG
+        std::cout << "[LOG]constructor1 cpyMtx(elements, mtx, " << rows << ", " << columns << ", " << rows << ", " << columns << ")" << std::endl;
+#endif
     } catch(CustomMatrixException& cme){
-        std::cout << "[LOG]constructor1 run3" << std::endl;
+#ifdef DEBUG
+        std::cout << "[LOG]constructor1 catch()" << std::endl;
+#endif
         std::cout << cme.what() << std::endl;
     }
 }
@@ -42,29 +51,44 @@ CustomMatrix::CustomMatrix(CustomMatrix& cm) :rows(cm.rows), columns(cm.columns)
 CustomMatrix::CustomMatrix(CustomVector* vectors, int numberOfVectors, bool rowVectors) {
     try{
         if(rowVectors){
+#ifdef DEBUG
             std::cout << "[LOG]constructor4 dimensions: " << rows << " x " << columns << std::endl;
             std::cout << "[LOG]constructor4 parameteres: " << numberOfVectors << " " << rowVectors << std::endl;
             std::cout << "[LOG]constructor4 vectors: " << std::endl;
             for(int i=0;i<numberOfVectors;i++){
                 std::cout << std::string(vectors[i]) << std::endl;
             }
+#endif
             auto** cpyMtx = new Fraction*[numberOfVectors];
             for(int i=0;i<numberOfVectors;i++){
                 auto* cpyVector = new Fraction[int(vectors[0])];
                 for(int j=0;j<int(vectors[0]);j++){
                     cpyVector[j] = vectors[i][j];
+#ifdef DEBUG
                     std::cout << "[LOG]constructor4 cpyFraction: " << std::string(cpyVector[j]) << std::endl;
+#endif
                 }
                 cpyMtx[i] = cpyVector;
             }
             CustomMatrix tmpMtx(cpyMtx,numberOfVectors,int(vectors[0]));
             *this = tmpMtx;
         } else {
+#ifdef DEBUG
+            std::cout << "[LOG]constructor4 dimensions: " << rows << " x " << columns << std::endl;
+            std::cout << "[LOG]constructor4 parameteres: " << numberOfVectors << " " << rowVectors << std::endl;
+            std::cout << "[LOG]constructor4 vectors: " << std::endl;
+            for(int i=0;i<numberOfVectors;i++){
+                std::cout << std::string(vectors[i]) << std::endl;
+            }
+#endif
             auto** cpyMtx = new Fraction*[int(vectors[0])];
             for(int i=0;i<int(vectors[0]);i++){
                 auto* cpyVector = new Fraction[numberOfVectors];
                 for(int j=0;j<numberOfVectors;j++){
                     cpyVector[j] = vectors[j][i];
+#ifdef DEBUG
+                    std::cout << "[LOG]constructor4 cpyFraction: " << std::string(cpyVector[j]) << std::endl;
+#endif
                 }
                 cpyMtx[i] = cpyVector;
             }
