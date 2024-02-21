@@ -13,15 +13,13 @@ CustomMatrix::CustomMatrix(Fraction** elements, int rows, int columns) : rows(ro
     try{
 #ifdef DEBUG
         std::cout << "[LOG]constructor1 try{}" << std::endl;
+        std::cout << "[LOG]constructor1 createNewMtx(" << rows << ", " << columns << ")" << std::endl;
 #endif
         mtx = createNewMtx(rows,columns);
 #ifdef DEBUG
-        std::cout << "[LOG]constructor1 createNewMtx(" << rows << ", " << columns << ")" << std::endl;
-#endif
-        cpyMtx(elements,mtx,rows,columns,rows,columns);
-#ifdef DEBUG
         std::cout << "[LOG]constructor1 cpyMtx(elements, mtx, " << rows << ", " << columns << ", " << rows << ", " << columns << ")" << std::endl;
 #endif
+        cpyMtx(elements,mtx,rows,columns,rows,columns);
     } catch(CustomMatrixException& cme){
 #ifdef DEBUG
         std::cout << "[LOG]constructor1 catch()" << std::endl;
@@ -32,24 +30,43 @@ CustomMatrix::CustomMatrix(Fraction** elements, int rows, int columns) : rows(ro
 
 CustomMatrix::CustomMatrix(int rows, int columns) : rows(rows), columns(columns) {
     try{
+#ifdef DEBUG
+        std::cout << "[LOG]constructor2 try{}" << std::endl;
+        std::cout << "[LOG]constructor2 createNewMtx(" << rows << ", " << columns << ")" << std::endl;
+#endif
         mtx = createNewMtx(rows,columns);
     } catch(CustomMatrixException& cme){
+#ifdef DEBUG
+        std::cout << "[LOG]constructor2 catch()" << std::endl;
+#endif
         std::cout << cme.what() << std::endl;
     }
 }
 
 CustomMatrix::CustomMatrix(CustomMatrix& cm) :rows(cm.rows), columns(cm.columns) {
     try{
+#ifdef DEBUG
+        std::cout << "[LOG]constructor3 try{}" << std::endl;
+        std::cout << "[LOG]constructor3 createNewMtx(" << cm.rows << ", " << cm.columns << ")" << std::endl;
+#endif
         mtx= createNewMtx(cm.rows,cm.columns);
+#ifdef DEBUG
+        std::cout << "[LOG]constructor3 cpyMtx(cm.Mtx, mtx, " << cm.rows << ", " << cm.columns << ", " << rows << ", " << columns << ")" << std::endl;
+#endif
         cpyMtx(cm.mtx, mtx, cm.rows, cm.columns, rows, columns);
     } catch(CustomMatrixException& cme){
+#ifdef DEBUG
+        std::cout << "[LOG]constructor3 catch()" << std::endl;
+#endif
         std::cout << cme.what() << std::endl;
     }
 }
 
-//todo check memory leak here
 CustomMatrix::CustomMatrix(CustomVector* vectors, int numberOfVectors, bool rowVectors) {
     try{
+#ifdef DEBUG
+        std::cout << "[LOG]constructor4 try{}" << std::endl;
+#endif
         if(rowVectors){
 #ifdef DEBUG
             std::cout << "[LOG]constructor4 dimensions: " << rows << " x " << columns << std::endl;
@@ -63,13 +80,16 @@ CustomMatrix::CustomMatrix(CustomVector* vectors, int numberOfVectors, bool rowV
             for(int i=0;i<numberOfVectors;i++){
                 auto* cpyVector = new Fraction[int(vectors[0])];
                 for(int j=0;j<int(vectors[0]);j++){
-                    cpyVector[j] = vectors[i][j];
 #ifdef DEBUG
                     std::cout << "[LOG]constructor4 cpyFraction: " << std::string(cpyVector[j]) << std::endl;
 #endif
+                    cpyVector[j] = vectors[i][j];
                 }
                 cpyMtx[i] = cpyVector;
             }
+#ifdef DEBUG
+            std::cout << "[LOG]constructor4 tmpMtx(cpyMtx, " << numberOfVectors << ", " << int(vectors[0]) << ")" << std::endl;
+#endif
             CustomMatrix tmpMtx(cpyMtx,numberOfVectors,int(vectors[0]));
             *this = tmpMtx;
         } else {
@@ -85,17 +105,23 @@ CustomMatrix::CustomMatrix(CustomVector* vectors, int numberOfVectors, bool rowV
             for(int i=0;i<int(vectors[0]);i++){
                 auto* cpyVector = new Fraction[numberOfVectors];
                 for(int j=0;j<numberOfVectors;j++){
-                    cpyVector[j] = vectors[j][i];
 #ifdef DEBUG
                     std::cout << "[LOG]constructor4 cpyFraction: " << std::string(cpyVector[j]) << std::endl;
 #endif
+                    cpyVector[j] = vectors[j][i];
                 }
                 cpyMtx[i] = cpyVector;
             }
+#ifdef DEBUG
+            std::cout << "[LOG]constructor4 tmpMtx(cpyMtx, " << int(vectors[0]) << ", " << numberOfVectors << ")" << std::endl;
+#endif
             CustomMatrix tmpMtx(cpyMtx,int(vectors[0]),numberOfVectors);
             *this = tmpMtx;
         }
     } catch(CustomMatrixException& cme){
+#ifdef DEBUG
+        std::cout << "[LOG]constructor4 catch()" << std::endl;
+#endif
         std::cout << cme.what() << std::endl;
     }
 }

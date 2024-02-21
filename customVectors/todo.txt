@@ -2,5 +2,7 @@
     - add exceptions
 - implement gaussian-elimination for U matrix
     - implement elimination-matrix while gaussian-elimination to get L matrix
-- implement scalar simplification for matrices (rows/columns)
 - implement self-value and self-vector finding
+
+- move logging to a different file
+- remake the whole project's folder system and leave out the cmake stuff (eww)
