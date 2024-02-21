@@ -315,6 +315,7 @@ int main() {
     aInverse.coutPrint();
 */
 
+/*
     //todo testing constructor4
     CustomVector v1 = CustomVector();
     CustomVector v2 = CustomVector();
@@ -337,6 +338,32 @@ int main() {
     CustomMatrix m1(rowVectors,2);
     delete[] rowVectors;
     m1.info();
+*/
+
+    Fraction f1(1,1);
+    Fraction* fArr = new Fraction[4];
+    for(int i=0;i<4;i++){
+        fArr[i] = f1;
+    }
+
+    try {
+        //correct
+        CustomVector v1(fArr, 4);
+        cout << string(v1) << endl;
+    } catch(CustomVectorException& cme){
+        cout << cme.what() << endl;
+    }
+
+
+    try {
+        //incorrect
+        CustomVector v1(fArr, 6);
+        cout << string(v1) << endl;
+    } catch(CustomVectorException& cme){
+        cout << cme.what() << endl;
+    }
+
+    delete[] fArr;
 
 
     return 0;

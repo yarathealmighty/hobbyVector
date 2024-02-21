@@ -11,8 +11,25 @@
 #include "FractionException.h"
 #include <bits/stdc++.h>
 
+#define DEBUG
+//#define TESTING
+
     CustomVector::CustomVector(Fraction* elements,int length) : length(length) {
+#ifdef TESTING
         //todo incorrect parameters exception handling
+        if(length>0){
+            int tmpElementsSize = sizeof(elements);
+            int tmpFirstElemenetSize = sizeof(elements[0]);
+#ifdef DEBUG
+            std::cout << "[LOG]constructor1 length: " << length << std::endl;
+            std::cout << "[LOG]constructor1 tmpElementsSize: " << tmpElementsSize << std::endl;
+            std::cout << "[LOG]constructor1 tmpFirstElementSize: " << tmpFirstElemenetSize << std::endl;
+#endif
+            if(tmpElementsSize/tmpFirstElemenetSize != length){
+                throw CustomVectorIncorrectParametersException("The length parameter: " + std::to_string(length) + " is incorrect");
+            }
+        }
+#endif
         try{
             contain = createNewContain(CustomVector::length);
             cpyContain(elements,CustomVector::contain,length, CustomVector::length);
