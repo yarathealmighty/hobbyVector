@@ -340,31 +340,19 @@ int main() {
     m1.info();
 */
 
-    Fraction f1(1,1);
-    Fraction* fArr = new Fraction[4];
-    for(int i=0;i<4;i++){
-        fArr[i] = f1;
-    }
+    cout << "[TEST]CustomVector sort()" << endl;
+    Fraction f1(1);
+    Fraction f2(2);
+    Fraction f3(3);
+    Fraction f4(4);
+    Fraction f5(5);
 
-    try {
-        //correct
-        CustomVector v1(fArr, 4);
-        cout << string(v1) << endl;
-    } catch(CustomVectorException& cme){
-        cout << cme.what() << endl;
-    }
+    CustomVector v1(0);
+    v1 << f3 << f4 << f2 << f5 << f1;
+    cout << string(v1) << endl;
 
-
-    try {
-        //incorrect
-        CustomVector v1(fArr, 6);
-        cout << string(v1) << endl;
-    } catch(CustomVectorException& cme){
-        cout << cme.what() << endl;
-    }
-
-    delete[] fArr;
-
+    v1.sort();
+    cout << string(v1) << endl;
 
     return 0;
 }

@@ -12,24 +12,9 @@
 #include <bits/stdc++.h>
 
 #define DEBUG
-//#define TESTING
+#define TESTING
 
     CustomVector::CustomVector(Fraction* elements,int length) : length(length) {
-#ifdef TESTING
-        //todo incorrect parameters exception handling
-        if(length>0){
-            int tmpElementsSize = sizeof(elements);
-            int tmpFirstElemenetSize = sizeof(elements[0]);
-#ifdef DEBUG
-            std::cout << "[LOG]constructor1 length: " << length << std::endl;
-            std::cout << "[LOG]constructor1 tmpElementsSize: " << tmpElementsSize << std::endl;
-            std::cout << "[LOG]constructor1 tmpFirstElementSize: " << tmpFirstElemenetSize << std::endl;
-#endif
-            if(tmpElementsSize/tmpFirstElemenetSize != length){
-                throw CustomVectorIncorrectParametersException("The length parameter: " + std::to_string(length) + " is incorrect");
-            }
-        }
-#endif
         try{
             contain = createNewContain(CustomVector::length);
             cpyContain(elements,CustomVector::contain,length, CustomVector::length);
@@ -103,16 +88,15 @@
         throw CustomVectorNonExistentElementException("Element " + std::string(element) + " doesn't exist in the vector, so it cannot be found");
     }
 
-    //todo this
-    /*
-    void CustomVector::sort(bool reverse){
-        if(!reverse){
+#ifdef TESTING
+    void CustomVector::sort(bool descending){
+        if(!descending){
             std::sort(&contain[0],&contain[length]);
         } else {
-            std::sort(&contain[0],&contain[length], std::greater<>());
+            std::sort(&contain[0],&contain[length], [](const Fraction& f1, const Fraction& f2){return f1 > f2;});
         }
     }
-    */
+#endif
 
     Fraction CustomVector::sum(int startIndex, int steps){
         //this is the most half-assed solution I could've come up with

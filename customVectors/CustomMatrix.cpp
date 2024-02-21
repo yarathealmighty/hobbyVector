@@ -8,6 +8,7 @@
 #include "FractionException.h"
 
 #define DEBUG
+#define TESTING
 
 CustomMatrix::CustomMatrix(Fraction** elements, int rows, int columns) : rows(rows), columns(columns) {
     try{
@@ -398,7 +399,6 @@ Fraction** CustomMatrix::sorted(bool sortByColumns)const {
     int length = !sortByColumns ? rows : columns;
     CustomVector* vectors = CustomMatrix::split(sortByColumns);
 
-    //todo exception handling and optimalization
     std::sort(vectors, vectors + length);
 
     auto** output = new Fraction*[length];
@@ -539,7 +539,7 @@ CustomMatrix& CustomMatrix::sDivide(const Fraction& scalarNumber) {
     return *this;
 }
 
-//todo wtf even is this
+//wtf even is this
 void CustomMatrix::print(Fraction** matrix,int row, int column) const{
     if(row > rows || column > columns){
         throw CustomMatrixIncorrectParametersException("The dimensions of the parameters: " + std::to_string(row) + " x " + std::to_string(column) + " are larger than the original matrix dimensions: " + std::to_string(rows) + " x " + std::to_string(columns));
@@ -589,7 +589,6 @@ void CustomMatrix::logInfo(Fraction** elements) const{
     try {
         std::cout << "[LOG]info dimensions: " << rows << " x " << columns << std::endl;
         std::cout << "[LOG]info elements:" << std::endl;
-        //todo this
         print(mtx, rows, columns);
     } catch(CustomMatrixException& cme){
         std::cout << cme.what() << std::endl;
@@ -854,7 +853,6 @@ Fraction* CustomMatrix::operator[](int index) const {
     }
 }
 
-//todo this
 CustomMatrix& CustomMatrix::operator=(CustomMatrix& other) {
     if(this!=&other){
         destroyMtx(mtx,rows);
